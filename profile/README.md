@@ -3,9 +3,9 @@
 </h1>
 
 <p align="center">
-  <strong>Infrastructure for building against agent runtimes.</strong><br>
-  Gateway-agnostic clients, typed contracts, and graceful degradation — so web,
-  mobile, and portal frontends talk to many gateways through one clean surface.
+  <strong>Infrastructure and tools for building with agent runtimes.</strong><br>
+  Gateway-agnostic clients, typed contracts, and graceful degradation — plus
+  editor and CLI integrations that bring Claude into the tools you already use.
 </p>
 
 ---
@@ -19,6 +19,23 @@
 ```sh
 npm install @cavi-ai/api-client
 ```
+
+### Plugins
+
+| Plugin | What it does |
+| --- | --- |
+| [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) | Obsidian plugin — chat with Claude using your notes as context, generate gallery-grade interactive HTML artifacts, switch models and extended thinking per message, with conversation history and offline local-model fallback. |
+| [**claude-obsidian**](https://github.com/cavi-ai/claude-obsidian) | Claude Code plugin + marketplace — commands and skills that let Claude Code operate on your Obsidian vault (synthesis, tagging, drafting, session capture, artifacts, spec builds) over the Companion MCP bridge. |
+
+```sh
+# Claude Code plugin
+/plugin marketplace add cavi-ai/claude-obsidian
+```
+
+The two plugins are a paired product: **Companion for Claude** runs a local MCP
+bridge exposing your vault, and **claude-obsidian** connects Claude Code to it —
+so both operate on the same notes. See the
+[monorepo](https://github.com/cavi-ai/claude-obsidian) for both.
 
 ### Principles
 
