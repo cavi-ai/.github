@@ -1,53 +1,52 @@
 <h1 align="center">
-  <img src="./logo-wordmark.png" alt="cavi-ai" width="460">
+  <a href="https://cavi-ai.xyz"><img src="./logo-wordmark.png" alt="CAVI-AI" width="460"></a>
 </h1>
 
 <p align="center">
-  <strong>Infrastructure and tools for building with agent runtimes.</strong><br>
-  Gateway-agnostic clients, typed contracts, and graceful degradation — plus
-  editor and CLI integrations that bring Claude into the tools you already use.
+  <strong>Open research and infrastructure for agent systems.</strong><br>
+  We build MIT-licensed tools that make agent runtimes easier to connect, inspect, adapt, and trust.
+</p>
+
+<p align="center">
+  <a href="https://cavi-ai.xyz"><strong>Visit cavi-ai.xyz →</strong></a>
+  ·
+  <a href="https://github.com/cavi-ai?tab=repositories">Explore the code</a>
 </p>
 
 ---
 
-### Packages
+## What we're building
 
-| Package | What it does |
-| --- | --- |
-| [**@cavi-ai/api-client**](https://github.com/cavi-ai/cavi-api-client) | Gateway-agnostic TypeScript client: HTTP + WebSocket RPC, SSE, provider adapters (Hermes / OpenClaw), a runtime team manifest, React bindings, and graceful degradation as a contract. |
+### 01 · Agent runtime infrastructure
+
+[**@cavi-ai/api-client**](https://github.com/cavi-ai/cavi-api-client) is a gateway-agnostic TypeScript client for typed HTTP, WebSocket, and SSE communication with agent runtimes. It provides adapters and compatibility surfaces without claiming ownership of an upstream runtime contract.
 
 ```sh
 npm install @cavi-ai/api-client
 ```
 
-### Plugins
+### 02 · Knowledge workflows
 
-| Plugin | What it does |
-| --- | --- |
-| [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) | Obsidian plugin — chat with Claude using your notes as context, generate gallery-grade interactive HTML artifacts, switch models and extended thinking per message, with conversation history and offline local-model fallback. |
-| [**claude-obsidian**](https://github.com/cavi-ai/claude-obsidian) | Claude Code plugin + marketplace — commands and skills that let Claude Code operate on your Obsidian vault (synthesis, tagging, drafting, session capture, artifacts, spec builds) over the Companion MCP bridge. |
+[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) and [**claude-obsidian**](https://github.com/cavi-ai/claude-obsidian) form one local-first workflow: an Obsidian interface and MCP bridge paired with Claude Code commands for synthesis, drafting, tagging, session capture, and interactive artifacts.
 
 ```sh
-# Claude Code plugin
 /plugin marketplace add cavi-ai/claude-obsidian
 ```
 
-The two plugins are a paired product: **Companion for Claude** runs a local MCP
-bridge exposing your vault, and **claude-obsidian** connects Claude Code to it —
-so both operate on the same notes. See the
-[monorepo](https://github.com/cavi-ai/claude-obsidian) for both.
+## What we're testing
 
-### Principles
+- **Runtime interoperability** across gateways and providers.
+- **Contracts over conventions** through typed boundaries and executable checks.
+- **Graceful degradation** that returns structured gaps instead of hiding failure.
+- **Local-first workflows** that keep developers close to their own knowledge and tools.
 
-- **One surface, many gateways.** The transport, RPC protocol, retry, and trace
-  behavior are written once; providers override only what genuinely differs.
-- **Contracts over conventions.** Route literals and surfaces live in owned
-  files, and the package boundary is enforced by tests — not honor system.
-- **Degrade, don't crash.** Loaders return typed fallback envelopes with a
-  structured contract gap on backend failure, instead of taking down the page.
-- **Open and verifiable.** MIT-licensed, pure ESM, published to npm with build
-  provenance via OIDC trusted publishing.
+## Built in the open
 
----
+Our public work is released under the MIT license. Read the code, test the assumptions, adapt the tools, and contribute what you learn.
 
-<p align="center"><sub>MIT licensed · built by <a href="https://github.com/sasan1200">@sasan1200</a></sub></p>
+More work is in development. We publish it when there is working software and evidence worth examining.
+
+<p align="center">
+  <a href="https://cavi-ai.xyz">cavi-ai.xyz</a> ·
+  <a href="https://github.com/cavi-ai?tab=repositories">repositories</a>
+</p>
