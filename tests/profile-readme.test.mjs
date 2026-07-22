@@ -4,13 +4,15 @@ import test from "node:test";
 
 const readme = await readFile(new URL("../profile/README.md", import.meta.url), "utf8");
 
-test("presents CAVI-AI as a research company with two current product lines", () => {
+test("presents CAVI-AI as a research company with three current product lines", () => {
   for (const marker of [
     "https://cavi-ai.xyz",
     "Open research",
     "Agent runtime infrastructure",
+    "Local MLX on Apple Silicon",
     "Knowledge workflows",
     "@cavi-ai/api-client",
+    "mlx-agent",
     "Companion for Claude",
     "claude-obsidian",
     "More work is in development",
