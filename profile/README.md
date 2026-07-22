@@ -25,7 +25,16 @@
 npm install @cavi-ai/api-client
 ```
 
-### 02 · Knowledge workflows
+### 02 · Local MLX on Apple Silicon
+
+[**mlx-agent**](https://github.com/cavi-ai/mlx-agent) discovers, verifies, and wires local MLX-optimized models on Apple Silicon — a universal plugin for Claude, Codex, Gemini, and OpenCode, plus portable AgentSkills.
+
+```sh
+claude plugin marketplace add cavi-ai/mlx-agent
+claude plugin install mlx-agent@mlx-agent
+```
+
+### 03 · Knowledge workflows
 
 [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) and [**claude-obsidian**](https://github.com/cavi-ai/claude-obsidian) form one local-first workflow: an Obsidian interface and MCP bridge paired with Claude Code commands for synthesis, drafting, tagging, session capture, and interactive artifacts.
 
@@ -39,6 +48,7 @@ npm install @cavi-ai/api-client
 - **Contracts over conventions** through typed boundaries and executable checks.
 - **Graceful degradation** that returns structured gaps instead of hiding failure.
 - **Local-first workflows** that keep developers close to their own knowledge and tools.
+- **On-device model wiring** that matches MLX models to Apple Silicon hosts and agent configs.
 
 ## Built in the open
 
