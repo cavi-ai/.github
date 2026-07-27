@@ -25,7 +25,11 @@
 npm install @cavi-ai/api-client
 ```
 
-### 02 · Local MLX on Apple Silicon
+### 02 · Secure browser automation
+
+[**bobby-browser**](https://github.com/cavi-ai/bobby-browser) is an alpha browser automation runtime with authenticated, capability-scoped control surfaces across Rust, TypeScript, MCP, and CDP. Its adapters share the same authorization, evidence, checkpoint, and event contracts.
+
+### 03 · Local AI on Apple Silicon
 
 [**mlx-agent**](https://github.com/cavi-ai/mlx-agent) discovers, verifies, and wires local MLX-optimized models on Apple Silicon — a universal plugin for Claude, Codex, Gemini, and OpenCode, plus portable AgentSkills.
 
@@ -34,17 +38,19 @@ claude plugin marketplace add cavi-ai/mlx-agent
 claude plugin install mlx-agent@mlx-agent
 ```
 
-### 03 · Knowledge workflows
+### 04 · Knowledge workflows
 
-[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) and [**claude-obsidian**](https://github.com/cavi-ai/claude-obsidian) form one local-first workflow: an Obsidian interface and MCP bridge paired with Claude Code commands for synthesis, drafting, tagging, session capture, and interactive artifacts.
+[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) and [**claude-obsidian**](https://github.com/cavi-ai/claude-obsidian) form one local-first workflow: an Obsidian interface and MCP bridge paired with Claude Code commands for synthesis, drafting, tagging, session capture, and interactive artifacts. Install the Claude Code plugin through the shared [**cavi-ai/claude-plugins**](https://github.com/cavi-ai/claude-plugins) marketplace.
 
 ```sh
-/plugin marketplace add cavi-ai/claude-obsidian
+/plugin marketplace add cavi-ai/claude-plugins
+/plugin install claude-obsidian@claude-plugins
 ```
 
 ## What we're testing
 
 - **Runtime interoperability** across gateways and providers.
+- **Secure browser control** through authenticated, capability-scoped automation surfaces.
 - **Contracts over conventions** through typed boundaries and executable checks.
 - **Graceful degradation** that returns structured gaps instead of hiding failure.
 - **Local-first workflows** that keep developers close to their own knowledge and tools.
