@@ -37,11 +37,11 @@ Find it in the shared [**CAVI plugins catalog**](https://github.com/cavi-ai/plug
 
 ### 04 · Knowledge workflows
 
-[**obsidian-agent**](https://github.com/cavi-ai/obsidian-agent) brings portable vault workflows to agent hosts through the official Obsidian CLI. Its cross-host skills run with Claude, Codex, Gemini, OpenCode, and AgentSkills without requiring MCP or an Obsidian community plugin.
+[**obsidian-agent**](https://github.com/cavi-ai/obsidian-agent) brings portable vault workflows to agent hosts through the official Obsidian CLI. Its cross-host skills run with Claude, Codex, Gemini, OpenCode, and AgentSkills. It has no MCP dependency and does not require an Obsidian community plugin.
 
 Discover it alongside `mlx-agent` in [**cavi-ai/plugins**](https://github.com/cavi-ai/plugins), the shared catalog for CAVI's installable agent extensions.
 
-[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) remains a separate, specialized Obsidian community experience for Claude workflows; it is not required by `obsidian-agent`.
+[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) remains a separate specialized product: an Obsidian community experience for Claude workflows. It is not required by `obsidian-agent`.
 
 ## What we're testing
 

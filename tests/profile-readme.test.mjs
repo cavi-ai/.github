@@ -3,6 +3,9 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const readme = await readFile(new URL("../profile/README.md", import.meta.url), "utf8");
+const knowledgeWorkflows = readme.match(
+  /### 04 · Knowledge workflows\n(?<body>[\s\S]*?)(?=\n## )/,
+)?.groups?.body ?? "";
 
 test("presents CAVI-AI through four evergreen major product lines", () => {
   for (const marker of [
@@ -39,7 +42,19 @@ test("keeps the public profile scoped, stable, and accurate", () => {
   assert.doesNotMatch(readme, /cavi-ai\/claude-obsidian(?:-plugin)?/i);
   assert.doesNotMatch(readme, /claude-obsidian@claude-plugins/i);
   assert.doesNotMatch(readme, /shared Claude/i);
-  assert.doesNotMatch(readme, /obsidian-agent[^\n]*(?:requires?|depends? on)[^\n]*MCP/i);
   for (const privateName of ["cavi-control-ui", "ecg", "cc-hermes", "cavi-fleet-router"])
     assert.ok(!readme.includes(privateName), `must not expose ${privateName}`);
+});
+
+test("keeps Companion separate from the universal Obsidian plugin", () => {
+  assert.match(knowledgeWorkflows, /Companion for Claude/);
+  assert.match(knowledgeWorkflows, /separate specialized product/i);
+  assert.match(knowledgeWorkflows, /not required by `obsidian-agent`/i);
+});
+
+test("states the universal Obsidian plugin's CLI-only dependency boundary", () => {
+  assert.match(knowledgeWorkflows, /official Obsidian CLI/);
+  assert.match(knowledgeWorkflows, /has no MCP dependency/i);
+  assert.doesNotMatch(knowledgeWorkflows, /(?:requires?|depends? on|dependency[^.]*on)\s+(?:an?\s+)?MCP/i);
+  assert.doesNotMatch(knowledgeWorkflows, /MCP bridge/i);
 });
