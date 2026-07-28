@@ -25,26 +25,28 @@
 npm install @cavi-ai/api-client
 ```
 
-### 02 · Local MLX on Apple Silicon
+### 02 · Secure browser automation
+
+[**bobby-browser**](https://github.com/cavi-ai/bobby-browser) is an alpha browser automation runtime with authenticated, capability-scoped control surfaces across Rust, TypeScript, MCP, and CDP. Its adapters share the same authorization, evidence, checkpoint, and event contracts.
+
+### 03 · Local AI on Apple Silicon
 
 [**mlx-agent**](https://github.com/cavi-ai/mlx-agent) discovers, verifies, and wires local MLX-optimized models on Apple Silicon — a universal plugin for Claude, Codex, Gemini, and OpenCode, plus portable AgentSkills.
 
-```sh
-claude plugin marketplace add cavi-ai/mlx-agent
-claude plugin install mlx-agent@mlx-agent
-```
+Find it in the shared [**CAVI plugins catalog**](https://github.com/cavi-ai/plugins), with installation paths for Claude, Codex, Gemini, OpenCode, and AgentSkills.
 
-### 03 · Knowledge workflows
+### 04 · Knowledge workflows
 
-[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) and [**claude-obsidian**](https://github.com/cavi-ai/claude-obsidian) form one local-first workflow: an Obsidian interface and MCP bridge paired with Claude Code commands for synthesis, drafting, tagging, session capture, and interactive artifacts.
+[**obsidian-agent**](https://github.com/cavi-ai/obsidian-agent) brings portable vault workflows to agent hosts through the official Obsidian CLI. Its cross-host skills run with Claude, Codex, Gemini, OpenCode, and AgentSkills. It has no MCP dependency and does not require an Obsidian community plugin.
 
-```sh
-/plugin marketplace add cavi-ai/claude-obsidian
-```
+Discover it alongside `mlx-agent` in [**cavi-ai/plugins**](https://github.com/cavi-ai/plugins), the shared catalog for CAVI's installable agent extensions.
+
+[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) remains a separate specialized product: an Obsidian community experience for Claude workflows. It is not required by `obsidian-agent`.
 
 ## What we're testing
 
 - **Runtime interoperability** across gateways and providers.
+- **Secure browser control** through authenticated, capability-scoped automation surfaces.
 - **Contracts over conventions** through typed boundaries and executable checks.
 - **Graceful degradation** that returns structured gaps instead of hiding failure.
 - **Local-first workflows** that keep developers close to their own knowledge and tools.
