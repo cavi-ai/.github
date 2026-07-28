@@ -33,19 +33,15 @@ npm install @cavi-ai/api-client
 
 [**mlx-agent**](https://github.com/cavi-ai/mlx-agent) discovers, verifies, and wires local MLX-optimized models on Apple Silicon — a universal plugin for Claude, Codex, Gemini, and OpenCode, plus portable AgentSkills.
 
-```sh
-claude plugin marketplace add cavi-ai/mlx-agent
-claude plugin install mlx-agent@mlx-agent
-```
+Find it in the shared [**CAVI plugins catalog**](https://github.com/cavi-ai/plugins), with installation paths for Claude, Codex, Gemini, OpenCode, and AgentSkills.
 
 ### 04 · Knowledge workflows
 
-[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) and [**claude-obsidian**](https://github.com/cavi-ai/claude-obsidian) form one local-first workflow: an Obsidian interface and MCP bridge paired with Claude Code commands for synthesis, drafting, tagging, session capture, and interactive artifacts. Install the Claude Code plugin through the shared [**cavi-ai/claude-plugins**](https://github.com/cavi-ai/claude-plugins) marketplace.
+[**obsidian-agent**](https://github.com/cavi-ai/obsidian-agent) brings portable vault workflows to agent hosts through the official Obsidian CLI. Its cross-host skills run with Claude, Codex, Gemini, OpenCode, and AgentSkills without requiring MCP or an Obsidian community plugin.
 
-```sh
-/plugin marketplace add cavi-ai/claude-plugins
-/plugin install claude-obsidian@claude-plugins
-```
+Discover it alongside `mlx-agent` in [**cavi-ai/plugins**](https://github.com/cavi-ai/plugins), the shared catalog for CAVI's installable agent extensions.
+
+[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) remains a separate, specialized Obsidian community experience for Claude workflows; it is not required by `obsidian-agent`.
 
 ## What we're testing
 
