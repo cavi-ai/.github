@@ -31,6 +31,23 @@ test("presents CAVI-AI through four evergreen major product lines", () => {
   ]) assert.ok(readme.includes(marker), `missing ${marker}`);
 });
 
+test("presents every approved public product with normalized display names", () => {
+  for (const marker of [
+    "CAVI API Client",
+    "Bobby Browser",
+    "MLX Agent",
+    "MLX Workbench",
+    "Companion for Claude",
+    "CAVI Plugins",
+    "Antigravity for OpenClaw",
+    "https://github.com/cavi-ai/mlx-workbench",
+    "https://github.com/cavi-ai/openclaw-antigravity",
+    "https://github.com/cavi-ai/companion-for-claude",
+  ]) assert.ok(readme.includes(marker), `missing ${marker}`);
+
+  assert.doesNotMatch(readme, /https:\/\/github\.com\/cavi-ai\/claude-obsidian/i);
+});
+
 test("keeps the public profile scoped, stable, and accurate", () => {
   assert.match(readme, /logo-wordmark\.png/);
   assert.match(readme, /gateway-agnostic/i);
