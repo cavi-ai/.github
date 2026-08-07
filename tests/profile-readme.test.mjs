@@ -7,7 +7,7 @@ const knowledgeWorkflows = readme.match(
   /### 04 · Knowledge workflows\n(?<body>[\s\S]*?)(?=\n## )/,
 )?.groups?.body ?? "";
 
-test("presents CAVI-AI through four evergreen major product lines", () => {
+test("presents CAVI-AI through five evergreen major product lines", () => {
   for (const marker of [
     "https://cavi-ai.xyz",
     "Open research",
@@ -15,10 +15,12 @@ test("presents CAVI-AI through four evergreen major product lines", () => {
     "Secure browser automation",
     "Local AI on Apple Silicon",
     "Knowledge workflows",
+    "Evaluation & reliability",
     "@cavi-ai/api-client",
     "bobby-browser",
     "mlx-agent",
     "cavi-ai/plugins",
+    "mcp-eval",
     "Claude",
     "Codex",
     "Gemini",
@@ -35,6 +37,7 @@ test("presents every approved public product through its exact Markdown link", (
     "[**MLX Agent**](https://github.com/cavi-ai/mlx-agent)",
     "[**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench)",
     "[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude)",
+    "[**MCP Eval**](https://github.com/cavi-ai/mcp-eval)",
     "[**CAVI Plugins**](https://github.com/cavi-ai/plugins)",
     "[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity)",
   ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
@@ -62,4 +65,13 @@ test("describes Companion only as the Community Store release", () => {
     knowledgeWorkflows,
     /^\[\*\*Companion for Claude\*\*\]\(https:\/\/github\.com\/cavi-ai\/companion-for-claude\) is the Obsidian Community Store release for Claude knowledge workflows\.$/m,
   );
+});
+
+test("describes MCP Eval as evidence-driven MCP evaluation", () => {
+  assert.match(readme, /discovery cost/i);
+  assert.match(readme, /schema guessability/i);
+  assert.match(readme, /error honesty/i);
+  assert.match(readme, /state recovery/i);
+  assert.match(readme, /contention/i);
+  assert.match(readme, /actionable findings/i);
 });

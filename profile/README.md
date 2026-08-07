@@ -39,6 +39,10 @@ npm install @cavi-ai/api-client
 
 [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) is the Obsidian Community Store release for Claude knowledge workflows.
 
+### 05 · Evaluation & reliability
+
+[**MCP Eval**](https://github.com/cavi-ai/mcp-eval) measures MCP servers across discovery cost, schema guessability, error honesty, state recovery, and contention—turning repeated agent friction and failures into actionable findings.
+
 ## Plugins & extensions
 
 [**CAVI Plugins**](https://github.com/cavi-ai/plugins) is the host-neutral catalog for installable CAVI-AI extensions across Claude, Codex, Gemini, OpenCode, and AgentSkills.
@@ -53,6 +57,7 @@ npm install @cavi-ai/api-client
 - **Graceful degradation** that returns structured gaps instead of hiding failure.
 - **Local-first workflows** that keep developers close to their own knowledge and tools.
 - **On-device model wiring** that matches MLX models to Apple Silicon hosts and agent configs.
+- **MCP reliability** measured through repeatable evaluations and evidence-backed findings.
 
 ## Built in the open
 
