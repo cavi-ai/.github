@@ -62,4 +62,15 @@ test("describes Companion only as the Community Store release", () => {
     knowledgeWorkflows,
     /^\[\*\*Companion for Claude\*\*\]\(https:\/\/github\.com\/cavi-ai\/companion-for-claude\) is the Obsidian Community Store release for Claude knowledge workflows\.$/m,
   );
+test("keeps Companion separate from the universal Obsidian plugin", () => {
+  assert.match(knowledgeWorkflows, /Companion for Claude/);
+  assert.match(knowledgeWorkflows, /separate specialized product/i);
+  assert.match(knowledgeWorkflows, /not required by `obsidian-agent`/i);
+});
+
+test("states the universal Obsidian plugin's CLI-only dependency boundary", () => {
+  assert.match(knowledgeWorkflows, /official Obsidian CLI/);
+  assert.match(knowledgeWorkflows, /has no MCP dependency/i);
+  assert.doesNotMatch(knowledgeWorkflows, /(?:requires?|depends? on|dependency[^.]*on)\s+(?:an?\s+)?MCP/i);
+  assert.doesNotMatch(knowledgeWorkflows, /MCP bridge/i);
 });
