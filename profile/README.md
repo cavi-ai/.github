@@ -15,11 +15,11 @@
 
 ---
 
-## What we're building
+## The CAVI-AI product map
 
-### 01 · Agent runtime infrastructure
+### 01 · Runtime infrastructure
 
-[**@cavi-ai/api-client**](https://github.com/cavi-ai/cavi-api-client) is a gateway-agnostic TypeScript client for typed HTTP, WebSocket, and SSE communication with agent runtimes. It provides adapters and compatibility surfaces without claiming ownership of an upstream runtime contract.
+[**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) is a gateway-agnostic TypeScript client for typed HTTP, WebSocket, and SSE communication with agent runtimes. It provides Agent runtime infrastructure through adapters and compatibility surfaces without claiming ownership of an upstream runtime contract.
 
 ```sh
 npm install @cavi-ai/api-client
@@ -27,21 +27,23 @@ npm install @cavi-ai/api-client
 
 ### 02 · Secure browser automation
 
-[**bobby-browser**](https://github.com/cavi-ai/bobby-browser) is an alpha browser automation runtime with authenticated, capability-scoped control surfaces across Rust, TypeScript, MCP, and CDP. Its adapters share the same authorization, evidence, checkpoint, and event contracts.
+[**Bobby Browser**](https://github.com/cavi-ai/bobby-browser) is an alpha browser automation runtime with authenticated, capability-scoped control surfaces across Rust, TypeScript, MCP, and CDP. Its adapters share authorization, evidence, checkpoint, and event contracts.
 
 ### 03 · Local AI on Apple Silicon
 
-[**mlx-agent**](https://github.com/cavi-ai/mlx-agent) discovers, verifies, and wires local MLX-optimized models on Apple Silicon — a universal plugin for Claude, Codex, Gemini, and OpenCode, plus portable AgentSkills.
+[**MLX Agent**](https://github.com/cavi-ai/mlx-agent) discovers, verifies, and wires local MLX-optimized models on Apple Silicon — a universal plugin for Claude, Codex, Gemini, and OpenCode, plus portable AgentSkills.
 
-Find it in the shared [**CAVI plugins catalog**](https://github.com/cavi-ai/plugins), with installation paths for Claude, Codex, Gemini, OpenCode, and AgentSkills.
+[**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) is the loopback-local UI for the MLX Agent model lifecycle.
 
 ### 04 · Knowledge workflows
 
-[**obsidian-agent**](https://github.com/cavi-ai/obsidian-agent) brings portable vault workflows to agent hosts through the official Obsidian CLI. Its cross-host skills run with Claude, Codex, Gemini, OpenCode, and AgentSkills. It has no MCP dependency and does not require an Obsidian community plugin.
+[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) is the Obsidian Community Store release for Claude knowledge workflows. It remains a separate specialized product and is not required by `obsidian-agent`; its cross-host workflows use the official Obsidian CLI and it has no MCP dependency.
 
-Discover it alongside `mlx-agent` in [**cavi-ai/plugins**](https://github.com/cavi-ai/plugins), the shared catalog for CAVI's installable agent extensions.
+## Plugins & extensions
 
-[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) remains a separate specialized product: an Obsidian community experience for Claude workflows. It is not required by `obsidian-agent`.
+[**CAVI Plugins**](https://github.com/cavi-ai/plugins) is the host-neutral catalog for installable CAVI-AI extensions across Claude, Codex, Gemini, OpenCode, and AgentSkills.
+
+[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity) is an external OpenClaw provider plugin for Google's Antigravity CLI. Install it from npm as `@cavi-ai/antigravity`.
 
 ## What we're testing
 
