@@ -11,17 +11,14 @@ test("presents CAVI-AI through four evergreen major product lines", () => {
   for (const marker of [
     "https://cavi-ai.xyz",
     "Open research",
-    "Agent runtime infrastructure",
+    "agent runtime infrastructure",
     "Secure browser automation",
     "Local AI on Apple Silicon",
     "Knowledge workflows",
     "@cavi-ai/api-client",
     "bobby-browser",
     "mlx-agent",
-    "obsidian-agent",
     "cavi-ai/plugins",
-    "cross-host",
-    "official Obsidian CLI",
     "Claude",
     "Codex",
     "Gemini",
@@ -31,21 +28,18 @@ test("presents CAVI-AI through four evergreen major product lines", () => {
   ]) assert.ok(readme.includes(marker), `missing ${marker}`);
 });
 
-test("presents every approved public product with normalized display names", () => {
-  for (const marker of [
-    "CAVI API Client",
-    "Bobby Browser",
-    "MLX Agent",
-    "MLX Workbench",
-    "Companion for Claude",
-    "CAVI Plugins",
-    "Antigravity for OpenClaw",
-    "https://github.com/cavi-ai/mlx-workbench",
-    "https://github.com/cavi-ai/openclaw-antigravity",
-    "https://github.com/cavi-ai/companion-for-claude",
-  ]) assert.ok(readme.includes(marker), `missing ${marker}`);
+test("presents every approved public product through its exact Markdown link", () => {
+  for (const link of [
+    "[**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client)",
+    "[**Bobby Browser**](https://github.com/cavi-ai/bobby-browser)",
+    "[**MLX Agent**](https://github.com/cavi-ai/mlx-agent)",
+    "[**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench)",
+    "[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude)",
+    "[**CAVI Plugins**](https://github.com/cavi-ai/plugins)",
+    "[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity)",
+  ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
 
-  assert.doesNotMatch(readme, /https:\/\/github\.com\/cavi-ai\/claude-obsidian/i);
+  assert.doesNotMatch(readme, /claude-obsidian/i);
 });
 
 test("keeps the public profile scoped, stable, and accurate", () => {
@@ -63,15 +57,9 @@ test("keeps the public profile scoped, stable, and accurate", () => {
     assert.ok(!readme.includes(privateName), `must not expose ${privateName}`);
 });
 
-test("keeps Companion separate from the universal Obsidian plugin", () => {
-  assert.match(knowledgeWorkflows, /Companion for Claude/);
-  assert.match(knowledgeWorkflows, /separate specialized product/i);
-  assert.match(knowledgeWorkflows, /not required by `obsidian-agent`/i);
-});
-
-test("states the universal Obsidian plugin's CLI-only dependency boundary", () => {
-  assert.match(knowledgeWorkflows, /official Obsidian CLI/);
-  assert.match(knowledgeWorkflows, /has no MCP dependency/i);
-  assert.doesNotMatch(knowledgeWorkflows, /(?:requires?|depends? on|dependency[^.]*on)\s+(?:an?\s+)?MCP/i);
-  assert.doesNotMatch(knowledgeWorkflows, /MCP bridge/i);
+test("describes Companion only as the Community Store release", () => {
+  assert.match(
+    knowledgeWorkflows,
+    /^\[\*\*Companion for Claude\*\*\]\(https:\/\/github\.com\/cavi-ai\/companion-for-claude\) is the Obsidian Community Store release for Claude knowledge workflows\.$/m,
+  );
 });

@@ -19,7 +19,7 @@
 
 ### 01 · Runtime infrastructure
 
-[**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) is a gateway-agnostic TypeScript client for typed HTTP, WebSocket, and SSE communication with agent runtimes. It provides Agent runtime infrastructure through adapters and compatibility surfaces without claiming ownership of an upstream runtime contract.
+[**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) is a gateway-agnostic TypeScript client for typed HTTP, WebSocket, and SSE communication with agent runtimes. It provides agent runtime infrastructure through adapters and compatibility surfaces without claiming ownership of an upstream runtime contract.
 
 ```sh
 npm install @cavi-ai/api-client
@@ -37,7 +37,7 @@ npm install @cavi-ai/api-client
 
 ### 04 · Knowledge workflows
 
-[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) is the Obsidian Community Store release for Claude knowledge workflows. It remains a separate specialized product and is not required by `obsidian-agent`; its cross-host workflows use the official Obsidian CLI and it has no MCP dependency.
+[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) is the Obsidian Community Store release for Claude knowledge workflows.
 
 ## Plugins & extensions
 
