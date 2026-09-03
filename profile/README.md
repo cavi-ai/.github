@@ -4,7 +4,7 @@
 
 <p align="center">
   <strong>Open research and infrastructure for agent systems.</strong><br>
-  We build MIT-licensed tools that make agent runtimes easier to connect, inspect, adapt, and trust.
+  We build MIT-licensed tools that make agent runtimes easier to connect, inspect, secure, and trust.
 </p>
 
 <p align="center">
@@ -17,7 +17,11 @@
 
 ## The CAVI-AI product map
 
-### 01 · Runtime infrastructure
+### 01 · Agent security
+
+[**Secure Agent**](https://github.com/cavi-ai/secure-agent) is an egress-inspection and secret-leak firewall for local AI agents on macOS. It correlates a sensitive-file read with the outbound network egress that follows, flags a leaking secret before a key leaves the machine, and writes read-only rotation advisories — a menu-bar app over a lightweight Go daemon, with hooks for Claude Code, Cursor, and OpenCode.
+
+### 02 · Runtime infrastructure
 
 [**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) is a gateway-agnostic TypeScript client for typed HTTP, WebSocket, and SSE communication with agent runtimes. It provides agent runtime infrastructure through adapters and compatibility surfaces without claiming ownership of an upstream runtime contract.
 
@@ -25,21 +29,21 @@
 npm install @cavi-ai/api-client
 ```
 
-### 02 · Secure browser automation
+### 03 · Secure browser automation
 
 [**Bobby Browser**](https://github.com/cavi-ai/bobby-browser) is an alpha browser automation runtime with authenticated, capability-scoped control surfaces across Rust, TypeScript, MCP, and CDP. Its adapters share authorization, evidence, checkpoint, and event contracts.
 
-### 03 · Local AI on Apple Silicon
+### 04 · Local AI on Apple Silicon
 
 [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) discovers, verifies, and wires local MLX-optimized models on Apple Silicon — a universal plugin for Claude, Codex, Gemini, and OpenCode, plus portable AgentSkills.
 
 [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) is the loopback-local UI for the MLX Agent model lifecycle.
 
-### 04 · Knowledge workflows
+### 05 · Knowledge workflows
 
 [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) is the Obsidian Community Store release for Claude knowledge workflows.
 
-### 05 · Evaluation & reliability
+### 06 · Evaluation & reliability
 
 [**MCP Eval**](https://github.com/cavi-ai/mcp-eval) measures MCP servers across discovery cost, schema guessability, error honesty, state recovery, and contention—turning repeated agent friction and failures into actionable findings.
 
@@ -51,6 +55,7 @@ npm install @cavi-ai/api-client
 
 ## What we're testing
 
+- **Agent egress inspection** that ties a sensitive-file read to the network traffic that follows.
 - **Runtime interoperability** across gateways and providers.
 - **Secure browser control** through authenticated, capability-scoped automation surfaces.
 - **Contracts over conventions** through typed boundaries and executable checks.
