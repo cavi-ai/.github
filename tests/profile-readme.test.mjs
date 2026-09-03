@@ -4,13 +4,15 @@ import test from "node:test";
 
 const readme = await readFile(new URL("../profile/README.md", import.meta.url), "utf8");
 const knowledgeWorkflows = readme.match(
-  /### 04 · Knowledge workflows\n(?<body>[\s\S]*?)(?=\n## )/,
+  /### 05 · Knowledge workflows\n(?<body>[\s\S]*?)(?=\n## )/,
 )?.groups?.body ?? "";
 
 test("presents CAVI-AI through five evergreen major product lines", () => {
   for (const marker of [
     "https://cavi-ai.xyz",
     "Open research",
+    "Agent security",
+    "secret-leak firewall",
     "agent runtime infrastructure",
     "Secure browser automation",
     "Local AI on Apple Silicon",
@@ -32,6 +34,7 @@ test("presents CAVI-AI through five evergreen major product lines", () => {
 
 test("presents every approved public product through its exact Markdown link", () => {
   for (const link of [
+    "[**Secure Agent**](https://github.com/cavi-ai/secure-agent)",
     "[**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client)",
     "[**Bobby Browser**](https://github.com/cavi-ai/bobby-browser)",
     "[**MLX Agent**](https://github.com/cavi-ai/mlx-agent)",
@@ -74,4 +77,15 @@ test("describes MCP Eval as evidence-driven MCP evaluation", () => {
   assert.match(readme, /state recovery/i);
   assert.match(readme, /contention/i);
   assert.match(readme, /actionable findings/i);
+});
+
+test("presents Secure Agent as the egress and secret-leak firewall", () => {
+  assert.match(readme, /egress-inspection and secret-leak firewall/i);
+  assert.match(readme, /rotation advisor/i);
+  // The flagship must lead the product map, above runtime infrastructure.
+  assert.ok(
+    readme.indexOf("### 01 · Agent security") <
+      readme.indexOf("### 02 · Runtime infrastructure"),
+    "Agent security must be the first product-map line",
+  );
 });
