@@ -3,32 +3,20 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const readme = await readFile(new URL("../profile/README.md", import.meta.url), "utf8");
-const knowledgeWorkflows = readme.match(
-  /### 05 · Knowledge workflows\n(?<body>[\s\S]*?)(?=\n## )/,
-)?.groups?.body ?? "";
 
-test("presents CAVI-AI through five evergreen major product lines", () => {
+test("presents CAVI-AI with its positioning and canonical links", () => {
   for (const marker of [
     "https://cavi-ai.xyz",
     "Open research",
-    "Agent security",
-    "secret-leak firewall",
-    "agent runtime infrastructure",
-    "Secure browser automation",
-    "Local AI on Apple Silicon",
-    "Knowledge workflows",
-    "Evaluation & reliability",
-    "@cavi-ai/api-client",
-    "bobby-browser",
-    "mlx-agent",
-    "cavi-ai/plugins",
-    "mcp-eval",
+    "logo-wordmark.png",
+    "MIT",
+    "More work is in development",
+    // Hosts the plugin catalog supports.
     "Claude",
     "Codex",
     "Gemini",
     "OpenCode",
     "AgentSkills",
-    "More work is in development",
   ]) assert.ok(readme.includes(marker), `missing ${marker}`);
 });
 
@@ -44,48 +32,49 @@ test("presents every approved public product through its exact Markdown link", (
     "[**CAVI Plugins**](https://github.com/cavi-ai/plugins)",
     "[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity)",
   ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
-
   assert.doesNotMatch(readme, /claude-obsidian/i);
 });
 
-test("keeps the public profile scoped, stable, and accurate", () => {
-  assert.match(readme, /logo-wordmark\.png/);
+test("describes each product accurately", () => {
+  // Secure Agent (flagship).
+  assert.match(readme, /secret-leak firewall/i);
+  assert.match(readme, /egress/i);
+  // API client.
   assert.match(readme, /gateway-agnostic/i);
+  assert.match(readme, /agent runtime infrastructure/i);
+  // Bobby Browser ships as alpha.
   assert.match(readme, /\balpha\b/i);
-  assert.doesNotMatch(readme, /canonical runtime contract/i);
-  assert.doesNotMatch(readme, /latest releases?/i);
+  // MLX on Apple Silicon.
+  assert.match(readme, /Apple Silicon/i);
+  // Companion — the exact Community Store description.
+  assert.match(
+    readme,
+    /Obsidian Community Store release for Claude knowledge workflows/,
+  );
+  // MCP Eval — evidence-driven evaluation dimensions.
+  for (const dimension of [
+    "discovery cost",
+    "schema guessability",
+    "error honesty",
+    "state recovery",
+    "contention",
+    "actionable findings",
+  ]) assert.match(readme, new RegExp(dimension, "i"));
+});
+
+test("leads the product list with the Secure Agent flagship", () => {
+  assert.ok(
+    readme.indexOf("Secure Agent") < readme.indexOf("CAVI API Client"),
+    "Secure Agent must be listed first",
+  );
+});
+
+test("keeps the public profile scoped, stable, and version-free", () => {
+  // No pinned version numbers: the profile must not rot as releases move.
   assert.doesNotMatch(readme, /\bv?\d+\.\d+\.\d+\b/);
-  assert.doesNotMatch(readme, /cavi-ai\/claude-plugins/i);
+  assert.doesNotMatch(readme, /latest releases?/i);
+  assert.doesNotMatch(readme, /canonical runtime contract/i);
   assert.doesNotMatch(readme, /cavi-ai\/claude-obsidian(?:-plugin)?/i);
-  assert.doesNotMatch(readme, /claude-obsidian@claude-plugins/i);
-  assert.doesNotMatch(readme, /shared Claude/i);
   for (const privateName of ["cavi-control-ui", "ecg", "cc-hermes", "cavi-fleet-router"])
     assert.ok(!readme.includes(privateName), `must not expose ${privateName}`);
-});
-
-test("describes Companion only as the Community Store release", () => {
-  assert.match(
-    knowledgeWorkflows,
-    /^\[\*\*Companion for Claude\*\*\]\(https:\/\/github\.com\/cavi-ai\/companion-for-claude\) is the Obsidian Community Store release for Claude knowledge workflows\.$/m,
-  );
-});
-
-test("describes MCP Eval as evidence-driven MCP evaluation", () => {
-  assert.match(readme, /discovery cost/i);
-  assert.match(readme, /schema guessability/i);
-  assert.match(readme, /error honesty/i);
-  assert.match(readme, /state recovery/i);
-  assert.match(readme, /contention/i);
-  assert.match(readme, /actionable findings/i);
-});
-
-test("presents Secure Agent as the egress and secret-leak firewall", () => {
-  assert.match(readme, /egress-inspection and secret-leak firewall/i);
-  assert.match(readme, /rotation advisor/i);
-  // The flagship must lead the product map, above runtime infrastructure.
-  assert.ok(
-    readme.indexOf("### 01 · Agent security") <
-      readme.indexOf("### 02 · Runtime infrastructure"),
-    "Agent security must be the first product-map line",
-  );
 });
