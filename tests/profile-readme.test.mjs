@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
 
 const readme = await readFile(new URL("../profile/README.md", import.meta.url), "utf8");
@@ -8,7 +8,6 @@ test("presents CAVI-AI with its positioning and canonical links", () => {
   for (const marker of [
     "https://cavi-ai.xyz",
     "Open research",
-    "logo-wordmark.png",
     "MIT",
     "More work is in development",
     // Hosts the plugin catalog supports.
@@ -28,11 +27,32 @@ test("presents every approved public product through its exact Markdown link", (
     "[**MLX Agent**](https://github.com/cavi-ai/mlx-agent)",
     "[**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench)",
     "[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude)",
+    "[**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent)",
     "[**MCP Eval**](https://github.com/cavi-ai/mcp-eval)",
     "[**CAVI Plugins**](https://github.com/cavi-ai/plugins)",
     "[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity)",
   ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
   assert.doesNotMatch(readme, /claude-obsidian/i);
+});
+
+test("selects a dedicated profile banner for each GitHub color scheme", async () => {
+  assert.match(
+    readme,
+    /<source media="\(prefers-color-scheme: dark\)" srcset="\.\/banner-dark\.png">/,
+  );
+  assert.match(
+    readme,
+    /<source media="\(prefers-color-scheme: light\)" srcset="\.\/banner-light\.png">/,
+  );
+  assert.match(
+    readme,
+    /<img src="\.\/banner-light\.png" alt="CAVI-AI — open research and infrastructure for agent systems">/,
+  );
+
+  for (const asset of ["banner-dark.png", "banner-light.png"]) {
+    const metadata = await stat(new URL(`../profile/${asset}`, import.meta.url));
+    assert.ok(metadata.size > 0, `${asset} must not be empty`);
+  }
 });
 
 test("describes each product accurately", () => {
