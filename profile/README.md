@@ -36,11 +36,12 @@ Open building blocks for secure, local, and inspectable agent systems.
 | :-- | :-- |
 | [**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) | Gateway-agnostic TypeScript client — agent runtime infrastructure for typed HTTP, WebSocket, and SSE. |
 | [**Bobby Browser**](https://github.com/cavi-ai/bobby-browser) | Alpha browser-automation runtime with authenticated, capability-scoped control across Rust, TypeScript, MCP, and CDP. |
-| [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discovers, verifies, and wires local MLX-optimized models on Apple Silicon — Claude, Codex, Gemini, OpenCode, and AgentSkills. |
+| [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discovers, verifies, and wires local MLX-optimized models on Apple Silicon — Claude, Codex, Antigravity, OpenCode, and AgentSkills. |
 | [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Loopback-local UI for the MLX Agent model lifecycle. |
 | [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) | The Obsidian Community Store release for Claude knowledge workflows. |
 | [**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent) | Portable, CLI-powered Obsidian workflows across agent hosts. |
 | [**MCP Eval**](https://github.com/cavi-ai/mcp-eval) | Evidence-driven MCP-server evaluation across discovery cost, schema guessability, error honesty, state recovery, and contention — turning agent friction into actionable findings. |
+| [**Ableton MCP**](https://github.com/cavi-ai/ableton-mcp) | Local-first Ableton Live control for MCP clients — Remote Script bridge, stdio MCP server, and CLI with confirm-to-execute mutations. |
 | [**CAVI Plugins**](https://github.com/cavi-ai/plugins) | Host-neutral plugin catalog across Claude, Codex, Gemini, OpenCode, and AgentSkills. |
 | [**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity) | OpenClaw provider plugin for Google's Antigravity CLI. |
 

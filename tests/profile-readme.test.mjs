@@ -29,6 +29,7 @@ test("presents every approved public product through its exact Markdown link", (
     "[**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude)",
     "[**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent)",
     "[**MCP Eval**](https://github.com/cavi-ai/mcp-eval)",
+    "[**Ableton MCP**](https://github.com/cavi-ai/ableton-mcp)",
     "[**CAVI Plugins**](https://github.com/cavi-ai/plugins)",
     "[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity)",
   ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
@@ -66,6 +67,13 @@ test("describes each product accurately", () => {
   assert.match(readme, /\balpha\b/i);
   // MLX on Apple Silicon.
   assert.match(readme, /Apple Silicon/i);
+  // MLX Agent ships Antigravity (agy) adapters, not Gemini.
+  const mlxAgentRow = readme.split("\n").find((line) => line.includes("[**MLX Agent**]"));
+  assert.match(mlxAgentRow, /Antigravity/);
+  assert.doesNotMatch(mlxAgentRow, /Gemini/);
+  // Ableton MCP — guarded Live control.
+  assert.match(readme, /Ableton Live/);
+  assert.match(readme, /confirm-to-execute/);
   // Companion — the exact Community Store description.
   assert.match(
     readme,
