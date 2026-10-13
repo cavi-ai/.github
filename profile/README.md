@@ -37,7 +37,7 @@ Open building blocks for secure, local, and inspectable agent systems.
 | [**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) | Gateway-agnostic TypeScript client — agent runtime infrastructure for typed HTTP, WebSocket, and SSE. |
 | [**Bobby Browser**](https://github.com/cavi-ai/bobby-browser) | Alpha browser-automation runtime with authenticated, capability-scoped control across Rust, TypeScript, MCP, and CDP. |
 | [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discovers, verifies, and wires local MLX-optimized models on Apple Silicon — Claude, Codex, Antigravity, OpenCode, and AgentSkills. |
-| [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Loopback-local UI for the MLX Agent model lifecycle. |
+| [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Native macOS app for the MLX Agent model lifecycle: converts, verifies, compares, serves, and fine-tunes local models on Apple Silicon. |
 | [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) | The Obsidian Community Store release for Claude knowledge workflows. |
 | [**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent) | Portable, CLI-powered Obsidian workflows across agent hosts. |
 | [**MCP Eval**](https://github.com/cavi-ai/mcp-eval) | Evidence-driven MCP-server evaluation across discovery cost, schema guessability, error honesty, state recovery, and contention — turning agent friction into actionable findings. |
