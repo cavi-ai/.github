@@ -109,6 +109,22 @@ test("leads with the most-starred products, each listed once", () => {
     assert.equal(readme.split(link).length - 1, 1, `${link} must appear once`);
 });
 
+test("installs each packaged product in one line under its published name", () => {
+  const install = readme.split(/\n(?=## )/).find((part) => part.startsWith("## Install"));
+  assert.ok(install, "missing Install section");
+  for (const line of [
+    "https://obsidian.md/plugins?id=claude-companion",
+    "`brew install cavi-ai/tap/bobby-browser`",
+    "`brew install cavi-ai/tap/mcpeval`",
+    "`npm install @cavi-ai/api-client`",
+    "https://github.com/cavi-ai/ableton-mcp#install",
+  ]) assert.ok(install.includes(line), `missing install line: ${line}`);
+  assert.ok(
+    readme.indexOf("## Install") < readme.indexOf("## Explore the stack"),
+    "Install precedes the stack",
+  );
+});
+
 test("groups the rest of the stack by job", () => {
   const groups = {
     "### Secure and evaluate agents": ["Secure Agent", "MCP Eval"],

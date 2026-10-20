@@ -42,6 +42,18 @@
 
 ---
 
+## Install
+
+| Product | Install |
+| :-- | :-- |
+| Companion for Claude | In Obsidian: **Settings → Community plugins → Browse**, search "Companion for Claude", or open the [store listing](https://obsidian.md/plugins?id=claude-companion). |
+| Bobby Browser | `brew install cavi-ai/tap/bobby-browser` |
+| Ableton MCP | [Clone and install](https://github.com/cavi-ai/ableton-mcp#install) on macOS with Ableton Live and Node.js. |
+| MCP Eval | `brew install cavi-ai/tap/mcpeval` |
+| CAVI API Client | `npm install @cavi-ai/api-client` |
+
+---
+
 ## Explore the stack
 
 Open building blocks for secure, local, and inspectable agent systems.
