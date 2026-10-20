@@ -26,6 +26,8 @@
 
 [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) brings Claude into your Obsidian vault: vault-aware chat, an agent mode whose edits you review hunk by hunk, sandboxed HTML artifacts, and evidence-backed research. The Obsidian Community Store release for Claude knowledge workflows. Connect with Claude Code, your own Anthropic key, or a local model.
 
+<a href="https://github.com/cavi-ai/companion-for-claude"><img src="https://raw.githubusercontent.com/cavi-ai/companion-for-claude/main/assets/hero.png" alt="Companion in Obsidian: a note with pending inline edits and the chat that proposed them" width="100%"></a>
+
 [**Install from the Obsidian store**](https://obsidian.md/plugins?id=claude-companion) · [**View source**](https://github.com/cavi-ai/companion-for-claude)
 
 ### Bobby Browser
@@ -57,6 +59,17 @@
 ## Explore the stack
 
 Open building blocks for secure, local, and inspectable agent systems.
+
+<table>
+  <tr>
+    <td width="50%"><a href="https://github.com/cavi-ai/secure-agent"><img src="https://raw.githubusercontent.com/cavi-ai/secure-agent/main/assets/screenshots/overview-dark.jpg" alt="Secure Agent overview with an access request, monitoring coverage and active sessions"></a></td>
+    <td width="50%"><a href="https://github.com/cavi-ai/mlx-workbench"><img src="https://raw.githubusercontent.com/cavi-ai/mlx-workbench/main/docs/images/library.png" alt="MLX Workbench Library with the model inspector"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Secure Agent</sub></td>
+    <td align="center"><sub>MLX Workbench</sub></td>
+  </tr>
+</table>
 
 ### Secure and evaluate agents
 

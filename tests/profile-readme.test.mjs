@@ -125,6 +125,16 @@ test("installs each packaged product in one line under its published name", () =
   );
 });
 
+test("shows real product screenshots from each product's own repository", () => {
+  for (const src of [
+    "https://raw.githubusercontent.com/cavi-ai/companion-for-claude/main/assets/hero.png",
+    "https://raw.githubusercontent.com/cavi-ai/secure-agent/main/assets/screenshots/overview-dark.jpg",
+    "https://raw.githubusercontent.com/cavi-ai/mlx-workbench/main/docs/images/library.png",
+  ]) assert.ok(readme.includes(`src="${src}"`), `missing screenshot ${src}`);
+  for (const img of readme.match(/<img\b[^>]*>/g))
+    assert.match(img, /\balt="[^"]+"/, `image without alt text: ${img}`);
+});
+
 test("groups the rest of the stack by job", () => {
   const groups = {
     "### Secure and evaluate agents": ["Secure Agent", "MCP Eval"],
