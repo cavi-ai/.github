@@ -90,11 +90,20 @@ test("describes each product accurately", () => {
   ]) assert.match(readme, new RegExp(dimension, "i"));
 });
 
-test("leads the product list with the Secure Agent flagship", () => {
-  assert.ok(
-    readme.indexOf("Secure Agent") < readme.indexOf("CAVI API Client"),
-    "Secure Agent must be listed first",
-  );
+test("leads with the most-starred products, each listed once", () => {
+  const start = readme.indexOf("## Start here");
+  const stack = readme.indexOf("## Explore the stack");
+  assert.ok(start !== -1 && start < stack, "Start here must precede the stack");
+  const flagships = [
+    "[**Companion for Claude**]",
+    "[**Bobby Browser**]",
+    "[**Ableton MCP**]",
+  ].map((link) => readme.indexOf(link));
+  assert.deepEqual([...flagships].sort((a, b) => a - b), flagships, "flagship order");
+  for (const position of flagships)
+    assert.ok(position > start && position < stack, "flagships live under Start here");
+  for (const link of ["[**Companion for Claude**]", "[**Bobby Browser**]", "[**Ableton MCP**]"])
+    assert.equal(readme.split(link).length - 1, 1, `${link} must appear once`);
 });
 
 test("keeps the public profile scoped, stable, and version-free", () => {
