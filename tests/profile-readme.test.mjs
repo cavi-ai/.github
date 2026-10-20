@@ -57,9 +57,12 @@ test("selects a dedicated profile banner for each GitHub color scheme", async ()
 });
 
 test("describes each product accurately", () => {
-  // Secure Agent (flagship).
-  assert.match(readme, /secret-leak firewall/i);
-  assert.match(readme, /egress/i);
+  // Secure Agent monitors by default; guards and the proxy are optional.
+  const secureAgentRow = readme.split("\n").find((line) => line.includes("[**Secure Agent**]"));
+  assert.match(secureAgentRow, /local monitor for AI coding agents/i);
+  assert.match(secureAgentRow, /optional guards/i);
+  assert.match(secureAgentRow, /opt-in proxy/i);
+  assert.doesNotMatch(readme, /firewall|correlates/i);
   // API client.
   assert.match(readme, /gateway-agnostic/i);
   assert.match(readme, /agent runtime infrastructure/i);

@@ -48,7 +48,7 @@ Open building blocks for secure, local, and inspectable agent systems.
 
 | Project | What it does |
 | :-- | :-- |
-| [**Secure Agent**](https://github.com/cavi-ai/secure-agent) | Egress-inspection and secret-leak firewall for local AI agents on macOS. |
+| [**Secure Agent**](https://github.com/cavi-ai/secure-agent) | Local monitor for AI coding agents on macOS: sessions, processes, file activity, and network destinations. Optional guards can stop supported tool calls; an opt-in proxy inspects routed traffic for secret leaks. |
 | [**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) | Gateway-agnostic TypeScript client — agent runtime infrastructure for typed HTTP, WebSocket, and SSE. |
 | [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discovers, verifies, and wires local MLX-optimized models on Apple Silicon — Claude, Codex, Antigravity, OpenCode, and AgentSkills. |
 | [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Native macOS app for the MLX Agent model lifecycle: converts, verifies, compares, serves, and fine-tunes local models on Apple Silicon. |
@@ -59,7 +59,7 @@ Open building blocks for secure, local, and inspectable agent systems.
 
 ## Research and verification
 
-- **Agent security** — tying a sensitive-file read to the network egress that follows.
+- **Agent security** — recording what local agents read, run, and connect to, with guards you opt into.
 - **Runtime interoperability** — connecting gateways and providers through typed boundaries.
 - **Local-first workflows** — running models and knowledge tools on hardware you control.
 - **MCP reliability** — measuring discovery cost, schema guessability, error honesty, state recovery, and contention.
