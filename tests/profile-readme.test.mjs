@@ -109,6 +109,26 @@ test("leads with the most-starred products, each listed once", () => {
     assert.equal(readme.split(link).length - 1, 1, `${link} must appear once`);
 });
 
+test("groups the rest of the stack by job", () => {
+  const groups = {
+    "### Secure and evaluate agents": ["Secure Agent", "MCP Eval"],
+    "### Run local models on Apple Silicon": ["MLX Agent", "MLX Workbench"],
+    "### Connect and extend agent hosts": [
+      "CAVI API Client",
+      "CAVI Plugins",
+      "Obsidian Agent",
+      "Antigravity for OpenClaw",
+    ],
+  };
+  const sections = readme.split(/\n(?=#{2,3} )/);
+  for (const [heading, products] of Object.entries(groups)) {
+    const section = sections.find((part) => part.startsWith(heading));
+    assert.ok(section, `missing ${heading}`);
+    for (const product of products)
+      assert.ok(section.includes(`[**${product}**]`), `${product} belongs under ${heading}`);
+  }
+});
+
 test("keeps the public profile scoped, stable, and version-free", () => {
   // No pinned version numbers: the profile must not rot as releases move.
   assert.doesNotMatch(readme, /\bv?\d+\.\d+\.\d+\b/);
