@@ -135,6 +135,18 @@ test("shows real product screenshots from each product's own repository", () => 
     assert.match(img, /\balt="[^"]+"/, `image without alt text: ${img}`);
 });
 
+test("shows only badges backed by live data or real destinations", () => {
+  const badges = readme.slice(readme.indexOf("</h2>"), readme.indexOf("## Start here"));
+  for (const marker of [
+    "community-plugin-stats.json",
+    "https://obsidian.md/plugins?id=claude-companion",
+    "https://github.com/cavi-ai/homebrew-tap",
+    "https://cavi-ai.xyz/docs",
+  ]) assert.ok(badges.includes(marker), `missing badge marker ${marker}`);
+  // The organization has no social accounts yet.
+  assert.doesNotMatch(readme, /discord\.|x\.com\/|twitter\.com\/|linkedin\.com\//i);
+});
+
 test("groups the rest of the stack by job", () => {
   const groups = {
     "### Secure and evaluate agents": ["Secure Agent", "MCP Eval"],
