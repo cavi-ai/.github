@@ -57,9 +57,12 @@ test("selects a dedicated profile banner for each GitHub color scheme", async ()
 });
 
 test("describes each product accurately", () => {
-  // Secure Agent (flagship).
-  assert.match(readme, /secret-leak firewall/i);
-  assert.match(readme, /egress/i);
+  // Secure Agent monitors by default; guards and the proxy are optional.
+  const secureAgentRow = readme.split("\n").find((line) => line.includes("[**Secure Agent**]"));
+  assert.match(secureAgentRow, /local monitor for AI coding agents/i);
+  assert.match(secureAgentRow, /optional guards/i);
+  assert.match(secureAgentRow, /opt-in proxy/i);
+  assert.doesNotMatch(readme, /firewall|correlates/i);
   // API client.
   assert.match(readme, /gateway-agnostic/i);
   assert.match(readme, /agent runtime infrastructure/i);
@@ -90,11 +93,78 @@ test("describes each product accurately", () => {
   ]) assert.match(readme, new RegExp(dimension, "i"));
 });
 
-test("leads the product list with the Secure Agent flagship", () => {
+test("leads with the most-starred products, each listed once", () => {
+  const start = readme.indexOf("## Start here");
+  const stack = readme.indexOf("## Explore the stack");
+  assert.ok(start !== -1 && start < stack, "Start here must precede the stack");
+  const flagships = [
+    "[**Companion for Claude**]",
+    "[**Bobby Browser**]",
+    "[**Ableton MCP**]",
+  ].map((link) => readme.indexOf(link));
+  assert.deepEqual([...flagships].sort((a, b) => a - b), flagships, "flagship order");
+  for (const position of flagships)
+    assert.ok(position > start && position < stack, "flagships live under Start here");
+  for (const link of ["[**Companion for Claude**]", "[**Bobby Browser**]", "[**Ableton MCP**]"])
+    assert.equal(readme.split(link).length - 1, 1, `${link} must appear once`);
+});
+
+test("installs each packaged product in one line under its published name", () => {
+  const install = readme.split(/\n(?=## )/).find((part) => part.startsWith("## Install"));
+  assert.ok(install, "missing Install section");
+  for (const line of [
+    "https://obsidian.md/plugins?id=claude-companion",
+    "`brew install cavi-ai/tap/bobby-browser`",
+    "`brew install cavi-ai/tap/mcpeval`",
+    "`npm install @cavi-ai/api-client`",
+    "https://github.com/cavi-ai/ableton-mcp#install",
+  ]) assert.ok(install.includes(line), `missing install line: ${line}`);
   assert.ok(
-    readme.indexOf("Secure Agent") < readme.indexOf("CAVI API Client"),
-    "Secure Agent must be listed first",
+    readme.indexOf("## Install") < readme.indexOf("## Explore the stack"),
+    "Install precedes the stack",
   );
+});
+
+test("shows real product screenshots from each product's own repository", () => {
+  for (const src of [
+    "https://raw.githubusercontent.com/cavi-ai/companion-for-claude/main/assets/hero.png",
+    "https://raw.githubusercontent.com/cavi-ai/secure-agent/main/assets/screenshots/overview-dark.jpg",
+    "https://raw.githubusercontent.com/cavi-ai/mlx-workbench/main/docs/images/library.png",
+  ]) assert.ok(readme.includes(`src="${src}"`), `missing screenshot ${src}`);
+  for (const img of readme.match(/<img\b[^>]*>/g))
+    assert.match(img, /\balt="[^"]+"/, `image without alt text: ${img}`);
+});
+
+test("shows only badges backed by live data or real destinations", () => {
+  const badges = readme.slice(readme.indexOf("</h2>"), readme.indexOf("## Start here"));
+  for (const marker of [
+    "community-plugin-stats.json",
+    "https://obsidian.md/plugins?id=claude-companion",
+    "https://github.com/cavi-ai/homebrew-tap",
+    "https://cavi-ai.xyz/docs",
+  ]) assert.ok(badges.includes(marker), `missing badge marker ${marker}`);
+  // The organization has no social accounts yet.
+  assert.doesNotMatch(readme, /discord\.|x\.com\/|twitter\.com\/|linkedin\.com\//i);
+});
+
+test("groups the rest of the stack by job", () => {
+  const groups = {
+    "### Secure and evaluate agents": ["Secure Agent", "MCP Eval"],
+    "### Run local models on Apple Silicon": ["MLX Agent", "MLX Workbench"],
+    "### Connect and extend agent hosts": [
+      "CAVI API Client",
+      "CAVI Plugins",
+      "Obsidian Agent",
+      "Antigravity for OpenClaw",
+    ],
+  };
+  const sections = readme.split(/\n(?=#{2,3} )/);
+  for (const [heading, products] of Object.entries(groups)) {
+    const section = sections.find((part) => part.startsWith(heading));
+    assert.ok(section, `missing ${heading}`);
+    for (const product of products)
+      assert.ok(section.includes(`[**${product}**]`), `${product} belongs under ${heading}`);
+  }
 });
 
 test("keeps the public profile scoped, stable, and version-free", () => {
