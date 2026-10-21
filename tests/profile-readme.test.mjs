@@ -127,7 +127,7 @@ test("installs each packaged product in one line under its published name", () =
 
 test("shows real product screenshots from each product's own repository", () => {
   for (const src of [
-    "https://raw.githubusercontent.com/cavi-ai/companion-for-claude/main/assets/hero.png",
+    "https://raw.githubusercontent.com/cavi-ai/companion-for-claude/main/assets/canvas-output.png",
     "https://raw.githubusercontent.com/cavi-ai/secure-agent/main/assets/screenshots/overview-dark.jpg",
     "https://raw.githubusercontent.com/cavi-ai/mlx-workbench/main/docs/images/library.png",
   ]) assert.ok(readme.includes(`src="${src}"`), `missing screenshot ${src}`);
