@@ -32,7 +32,7 @@
 
 [**Companion for Claude**](https://github.com/cavi-ai/companion-for-claude) brings Claude into your Obsidian vault: vault-aware chat, an agent mode whose edits you review hunk by hunk, sandboxed HTML artifacts, and evidence-backed research. The Obsidian Community Store release for Claude knowledge workflows. Connect with Claude Code, your own Anthropic key, or a local model.
 
-<a href="https://github.com/cavi-ai/companion-for-claude"><img src="https://raw.githubusercontent.com/cavi-ai/companion-for-claude/main/assets/hero.png" alt="Companion in Obsidian: a note with pending inline edits and the chat that proposed them" width="100%"></a>
+<a href="https://github.com/cavi-ai/companion-for-claude"><img src="https://raw.githubusercontent.com/cavi-ai/companion-for-claude/main/assets/canvas-output.png" alt="Companion in Obsidian: onboarding interviews connected to a finding, proposal, and next research session beside Claude chat" width="100%"></a>
 
 [**Install from the Obsidian store**](https://obsidian.md/plugins?id=claude-companion) · [**View source**](https://github.com/cavi-ai/companion-for-claude)
 
