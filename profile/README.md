@@ -21,6 +21,8 @@
   &nbsp;·&nbsp;
   <a href="https://github.com/cavi-ai/ableton-mcp"><strong>Ableton MCP</strong></a>
   &nbsp;·&nbsp;
+  <a href="https://github.com/cavi-ai/cavi-api-client"><strong>CAVI API Client</strong></a>
+  &nbsp;·&nbsp;
   <a href="https://cavi-ai.xyz/docs"><strong>Documentation</strong></a>
 </p>
 
@@ -47,6 +49,12 @@
 [**Ableton MCP**](https://github.com/cavi-ai/ableton-mcp) gives MCP clients local-first control of Ableton Live through a Remote Script bridge, a stdio MCP server, and a CLI with confirm-to-execute mutations: every change to the Live Set is planned first and runs only with a single-use confirmation.
 
 [**Install**](https://github.com/cavi-ai/ableton-mcp#install) · [**View source**](https://github.com/cavi-ai/ableton-mcp)
+
+### CAVI API Client
+
+[**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) lets one TypeScript application offer a choice of agent runtimes. It adapts Claude, Codex, AGY, OpenCode, Hermes, and OpenClaw to shared contracts for runs, statuses, stream events, and token usage, so you write one progress renderer and one failure handler instead of one per backend. Gateway-agnostic agent runtime infrastructure over typed HTTP, WebSocket, and SSE; ESM with no runtime dependencies.
+
+[**Install**](https://github.com/cavi-ai/cavi-api-client#build-an-answer-service) · [**Documentation**](https://cavi-ai.xyz/docs/api-client) · [**View source**](https://github.com/cavi-ai/cavi-api-client)
 
 ---
 
@@ -99,11 +107,10 @@ Open building blocks for secure, local, and inspectable agent systems.
 | [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discovers, verifies, and wires local MLX-optimized models on Apple Silicon — Claude, Codex, Antigravity, OpenCode, and AgentSkills. |
 | [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Native macOS app for the MLX Agent model lifecycle: converts, verifies, compares, serves, and fine-tunes local models on Apple Silicon. |
 
-### Connect and extend agent hosts
+### Plugins for agent hosts
 
 | Project | What it does |
 | :-- | :-- |
-| [**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) | Gateway-agnostic TypeScript client — agent runtime infrastructure for typed HTTP, WebSocket, and SSE. |
 | [**CAVI Plugins**](https://github.com/cavi-ai/plugins) | Host-neutral plugin catalog across Claude, Codex, Agy, OpenCode, OpenClaw, Hermes, and AgentSkills. |
 | [**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent) | Portable, CLI-powered Obsidian workflows across agent hosts. |
 | [**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity) | OpenClaw provider plugin for Google's Antigravity CLI. |
