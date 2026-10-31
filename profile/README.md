@@ -56,11 +56,17 @@
 | :-- | :-- |
 | Companion for Claude | In Obsidian: **Settings → Community plugins → Browse**, search "Companion for Claude", or open the [store listing](https://obsidian.md/plugins?id=claude-companion). |
 | Bobby Browser | `brew install cavi-ai/tap/bobby-browser` |
-| Ableton MCP | [Clone and install](https://github.com/cavi-ai/ableton-mcp#install) on macOS with Ableton Live and Node.js. |
-| Blender MCP | [Clone and install](https://github.com/cavi-ai/blender-mcp#install) with Blender, Python, and uv. |
-| Loop Killer | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in a Claude Code session. |
+| Ableton MCP | `npm install -g @cavi-ai/ableton-mcp`, then `ableton-mcp install` |
+| Secure Agent | Download the [macOS app](https://github.com/cavi-ai/secure-agent/releases/latest) (macOS 14 or later). |
 | MCP Eval | `brew install cavi-ai/tap/mcpeval` |
+| MLX Agent | `claude plugin marketplace add cavi-ai/mlx-agent`, then `claude plugin install mlx-agent@mlx-agent` |
+| MLX Workbench | Download the [macOS app](https://github.com/cavi-ai/mlx-workbench/releases/latest) (Apple Silicon). |
 | CAVI API Client | `npm install @cavi-ai/api-client` |
+| CAVI Plugins | `claude plugin marketplace add cavi-ai/plugins` |
+| Obsidian Agent | `/plugin marketplace add cavi-ai/obsidian-agent`, then `/plugin install obsidian-agent@obsidian-agent` in Claude Code |
+| Antigravity for OpenClaw | `openclaw plugins install @cavi-ai/antigravity` |
+| Loop Killer | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in Claude Code |
+| Blender MCP | [Clone and install](https://github.com/cavi-ai/blender-mcp#install) with Blender, Python, and uv. |
 
 ---
 

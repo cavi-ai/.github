@@ -141,15 +141,30 @@ test("installs each packaged product in one line under its published name", () =
     "`brew install cavi-ai/tap/bobby-browser`",
     "`brew install cavi-ai/tap/mcpeval`",
     "`npm install @cavi-ai/api-client`",
-    "https://github.com/cavi-ai/ableton-mcp#install",
+    "`npm install -g @cavi-ai/ableton-mcp`",
     "https://github.com/cavi-ai/blender-mcp#install",
     "`claude plugin marketplace add cavi-ai/plugins`",
     "`/plugin install loop-killer@cavi-ai`",
+    "https://github.com/cavi-ai/secure-agent/releases/latest",
+    "https://github.com/cavi-ai/mlx-workbench/releases/latest",
+    "`claude plugin install mlx-agent@mlx-agent`",
+    "`/plugin install obsidian-agent@obsidian-agent`",
+    "`openclaw plugins install @cavi-ai/antigravity`",
   ]) assert.ok(install.includes(line), `missing install line: ${line}`);
+  assert.doesNotMatch(install, /ableton-mcp#install/, "Ableton MCP installs from npm");
   assert.ok(
     readme.indexOf("## Install") < readme.indexOf("## Explore the stack"),
     "Install precedes the stack",
   );
+});
+
+test("gives every listed product an install row", () => {
+  const install = readme.split(/\n(?=## )/).find((part) => part.startsWith("## Install"));
+  const rows = new Set(install.split("\n").filter((line) => line.startsWith("| ")).map((line) => line.split("|")[1].trim()));
+  for (const [, name] of readme.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm))
+    assert.ok(rows.has(name), `${name} has no install row`);
+  for (const name of ["Companion for Claude", "Bobby Browser", "Ableton MCP"])
+    assert.ok(rows.has(name), `${name} has no install row`);
 });
 
 test("shows real product screenshots from each product's own repository", () => {
