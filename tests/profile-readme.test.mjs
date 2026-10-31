@@ -117,19 +117,21 @@ test("describes each product accurately", () => {
   assert.match(loopKillerRow, /stop-hook/);
 });
 
-test("leads with the most-starred products, each listed once", () => {
+test("leads with the featured products, each listed once", () => {
   const start = readme.indexOf("## Start here");
   const stack = readme.indexOf("## Explore the stack");
   assert.ok(start !== -1 && start < stack, "Start here must precede the stack");
-  const flagships = [
+  const featured = [
     "[**Companion for Claude**]",
     "[**Bobby Browser**]",
     "[**Ableton MCP**]",
-  ].map((link) => readme.indexOf(link));
-  assert.deepEqual([...flagships].sort((a, b) => a - b), flagships, "flagship order");
-  for (const position of flagships)
-    assert.ok(position > start && position < stack, "flagships live under Start here");
-  for (const link of ["[**Companion for Claude**]", "[**Bobby Browser**]", "[**Ableton MCP**]"])
+    "[**CAVI API Client**]",
+  ];
+  const positions = featured.map((link) => readme.indexOf(link));
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions, "featured order");
+  for (const position of positions)
+    assert.ok(position > start && position < stack, "featured products live under Start here");
+  for (const link of featured)
     assert.equal(readme.split(link).length - 1, 1, `${link} must appear once`);
 });
 
@@ -193,8 +195,7 @@ test("groups the rest of the stack by job", () => {
   const groups = {
     "### Secure and evaluate agents": ["Secure Agent", "MCP Eval"],
     "### Run local models on Apple Silicon": ["MLX Agent", "MLX Workbench"],
-    "### Connect and extend agent hosts": [
-      "CAVI API Client",
+    "### Plugins for agent hosts": [
       "CAVI Plugins",
       "Obsidian Agent",
       "Antigravity for OpenClaw",
@@ -206,8 +207,8 @@ test("groups the rest of the stack by job", () => {
   for (const [heading, products] of Object.entries(groups)) {
     const section = sections.find((part) => part.startsWith(heading));
     assert.ok(section, `missing ${heading}`);
-    for (const product of products)
-      assert.ok(section.includes(`[**${product}**]`), `${product} belongs under ${heading}`);
+    const listed = [...section.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm)].map(([, name]) => name);
+    assert.deepEqual(listed, products, `${heading} lists exactly its products`);
   }
 });
 
