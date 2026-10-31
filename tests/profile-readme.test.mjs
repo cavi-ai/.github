@@ -144,7 +144,8 @@ test("installs each packaged product in one line under its published name", () =
     "`brew install cavi-ai/tap/mcpeval`",
     "`npm install @cavi-ai/api-client`",
     "`npm install -g @cavi-ai/ableton-mcp`",
-    "https://github.com/cavi-ai/blender-mcp#install",
+    "`uv tool install cavi-blender-mcp`",
+    "`cavi-blender-mcp runtime start`",
     "`claude plugin marketplace add cavi-ai/plugins`",
     "`/plugin install loop-killer@cavi-ai`",
     "https://github.com/cavi-ai/secure-agent/releases/latest",
@@ -154,6 +155,7 @@ test("installs each packaged product in one line under its published name", () =
     "`openclaw plugins install @cavi-ai/antigravity`",
   ]) assert.ok(install.includes(line), `missing install line: ${line}`);
   assert.doesNotMatch(install, /ableton-mcp#install/, "Ableton MCP installs from npm");
+  assert.doesNotMatch(install, /blender-mcp#install/, "Blender MCP installs from PyPI");
   assert.ok(
     readme.indexOf("## Install") < readme.indexOf("## Explore the stack"),
     "Install precedes the stack",
