@@ -74,7 +74,7 @@
 | Obsidian Agent | `/plugin marketplace add cavi-ai/obsidian-agent`, then `/plugin install obsidian-agent@obsidian-agent` in Claude Code |
 | Antigravity for OpenClaw | `openclaw plugins install @cavi-ai/antigravity` |
 | Loop Killer | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in Claude Code |
-| Blender MCP | [Clone and install](https://github.com/cavi-ai/blender-mcp#install) with Blender, Python, and uv. |
+| Blender MCP | `uv tool install cavi-blender-mcp`, then `cavi-blender-mcp runtime start` to open Blender with the bridge |
 
 ---
 
