@@ -13,6 +13,19 @@ test("presents CAVI-AI with its positioning and canonical links", () => {
   ]) assert.ok(readme.includes(marker), `missing ${marker}`);
 });
 
+test("names every product in title case", () => {
+  const titleCase = (name) => name.split(" ").every((word) => word === "for" || /^[A-Z]/.test(word));
+  for (const [, name] of readme.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm))
+    assert.ok(titleCase(name), `product name "${name}" is not title case`);
+  for (const [, name] of readme.matchAll(/^### (.+)$/gm))
+    if (readme.includes(`[**${name}**]`)) assert.ok(titleCase(name), `flagship "${name}" is not title case`);
+  const install = readme.split(/\n(?=## )/).find((part) => part.startsWith("## Install"));
+  for (const row of install.split("\n").filter((line) => /^\| (?!Product |:--)/.test(line))) {
+    const name = row.split("|")[1].trim();
+    assert.ok(titleCase(name), `install row "${name}" is not title case`);
+  }
+});
+
 test("lists the hosts the plugin catalog supports", () => {
   const pluginsRow = readme.split("\n").find((line) => line.includes("[**CAVI Plugins**]"));
   for (const host of ["Claude", "Codex", "Agy", "OpenCode", "OpenClaw", "Hermes", "AgentSkills"])
@@ -34,7 +47,7 @@ test("presents every approved public product through its exact Markdown link", (
     "[**CAVI Plugins**](https://github.com/cavi-ai/plugins)",
     "[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity)",
     "[**Blender MCP**](https://github.com/cavi-ai/blender-mcp)",
-    "[**loop-killer**](https://github.com/cavi-ai/loop-killer)",
+    "[**Loop Killer**](https://github.com/cavi-ai/loop-killer)",
   ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
   assert.doesNotMatch(readme, /claude-obsidian/i);
 });
@@ -98,8 +111,8 @@ test("describes each product accurately", () => {
   const blenderRow = readme.split("\n").find((line) => line.includes("[**Blender MCP**]"));
   assert.match(blenderRow, /loopback/);
   assert.match(blenderRow, /session token/);
-  // loop-killer — clears the goal behind a stop-hook loop.
-  const loopKillerRow = readme.split("\n").find((line) => line.includes("[**loop-killer**]"));
+  // Loop Killer — clears the goal behind a stop-hook loop.
+  const loopKillerRow = readme.split("\n").find((line) => line.includes("[**Loop Killer**]"));
   assert.match(loopKillerRow, /Claude Code plugin/);
   assert.match(loopKillerRow, /stop-hook/);
 });
@@ -170,7 +183,7 @@ test("groups the rest of the stack by job", () => {
       "CAVI Plugins",
       "Obsidian Agent",
       "Antigravity for OpenClaw",
-      "loop-killer",
+      "Loop Killer",
     ],
     "### Create 3D and game assets": ["Blender MCP"],
   };

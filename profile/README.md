@@ -58,7 +58,7 @@
 | Bobby Browser | `brew install cavi-ai/tap/bobby-browser` |
 | Ableton MCP | [Clone and install](https://github.com/cavi-ai/ableton-mcp#install) on macOS with Ableton Live and Node.js. |
 | Blender MCP | [Clone and install](https://github.com/cavi-ai/blender-mcp#install) with Blender, Python, and uv. |
-| loop-killer | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in a Claude Code session. |
+| Loop Killer | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in a Claude Code session. |
 | MCP Eval | `brew install cavi-ai/tap/mcpeval` |
 | CAVI API Client | `npm install @cavi-ai/api-client` |
 
@@ -101,7 +101,7 @@ Open building blocks for secure, local, and inspectable agent systems.
 | [**CAVI Plugins**](https://github.com/cavi-ai/plugins) | Host-neutral plugin catalog across Claude, Codex, Agy, OpenCode, OpenClaw, Hermes, and AgentSkills. |
 | [**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent) | Portable, CLI-powered Obsidian workflows across agent hosts. |
 | [**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity) | OpenClaw provider plugin for Google's Antigravity CLI. |
-| [**loop-killer**](https://github.com/cavi-ai/loop-killer) | Claude Code plugin that ends stop-hook re-prompt loops: when replies to a re-prompting hook stop doing tool work, it clears the active goal and says so. |
+| [**Loop Killer**](https://github.com/cavi-ai/loop-killer) | Claude Code plugin that ends stop-hook re-prompt loops: when replies to a re-prompting hook stop doing tool work, it clears the active goal and says so. |
 
 ### Create 3D and game assets
 
