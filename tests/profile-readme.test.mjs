@@ -10,13 +10,27 @@ test("presents CAVI-AI with its positioning and canonical links", () => {
     "Open research",
     "MIT",
     "More work is in development",
-    // Hosts the plugin catalog supports.
-    "Claude",
-    "Codex",
-    "Gemini",
-    "OpenCode",
-    "AgentSkills",
   ]) assert.ok(readme.includes(marker), `missing ${marker}`);
+});
+
+test("names every product in title case", () => {
+  const titleCase = (name) => name.split(" ").every((word) => word === "for" || /^[A-Z]/.test(word));
+  for (const [, name] of readme.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm))
+    assert.ok(titleCase(name), `product name "${name}" is not title case`);
+  for (const [, name] of readme.matchAll(/^### (.+)$/gm))
+    if (readme.includes(`[**${name}**]`)) assert.ok(titleCase(name), `flagship "${name}" is not title case`);
+  const install = readme.split(/\n(?=## )/).find((part) => part.startsWith("## Install"));
+  for (const row of install.split("\n").filter((line) => /^\| (?!Product |:--)/.test(line))) {
+    const name = row.split("|")[1].trim();
+    assert.ok(titleCase(name), `install row "${name}" is not title case`);
+  }
+});
+
+test("lists the hosts the plugin catalog supports", () => {
+  const pluginsRow = readme.split("\n").find((line) => line.includes("[**CAVI Plugins**]"));
+  for (const host of ["Claude", "Codex", "Agy", "OpenCode", "OpenClaw", "Hermes", "AgentSkills"])
+    assert.ok(pluginsRow.includes(host), `CAVI Plugins row missing ${host}`);
+  assert.doesNotMatch(pluginsRow, /Gemini/);
 });
 
 test("presents every approved public product through its exact Markdown link", () => {
@@ -32,6 +46,8 @@ test("presents every approved public product through its exact Markdown link", (
     "[**Ableton MCP**](https://github.com/cavi-ai/ableton-mcp)",
     "[**CAVI Plugins**](https://github.com/cavi-ai/plugins)",
     "[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity)",
+    "[**Blender MCP**](https://github.com/cavi-ai/blender-mcp)",
+    "[**Loop Killer**](https://github.com/cavi-ai/loop-killer)",
   ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
   assert.doesNotMatch(readme, /claude-obsidian/i);
 });
@@ -91,6 +107,14 @@ test("describes each product accurately", () => {
     "contention",
     "actionable findings",
   ]) assert.match(readme, new RegExp(dimension, "i"));
+  // Blender MCP — local bridge behind a session token.
+  const blenderRow = readme.split("\n").find((line) => line.includes("[**Blender MCP**]"));
+  assert.match(blenderRow, /loopback/);
+  assert.match(blenderRow, /session token/);
+  // Loop Killer — clears the goal behind a stop-hook loop.
+  const loopKillerRow = readme.split("\n").find((line) => line.includes("[**Loop Killer**]"));
+  assert.match(loopKillerRow, /Claude Code plugin/);
+  assert.match(loopKillerRow, /stop-hook/);
 });
 
 test("leads with the most-starred products, each listed once", () => {
@@ -118,6 +142,9 @@ test("installs each packaged product in one line under its published name", () =
     "`brew install cavi-ai/tap/mcpeval`",
     "`npm install @cavi-ai/api-client`",
     "https://github.com/cavi-ai/ableton-mcp#install",
+    "https://github.com/cavi-ai/blender-mcp#install",
+    "`claude plugin marketplace add cavi-ai/plugins`",
+    "`/plugin install loop-killer@cavi-ai`",
   ]) assert.ok(install.includes(line), `missing install line: ${line}`);
   assert.ok(
     readme.indexOf("## Install") < readme.indexOf("## Explore the stack"),
@@ -156,7 +183,9 @@ test("groups the rest of the stack by job", () => {
       "CAVI Plugins",
       "Obsidian Agent",
       "Antigravity for OpenClaw",
+      "Loop Killer",
     ],
+    "### Create 3D and game assets": ["Blender MCP"],
   };
   const sections = readme.split(/\n(?=#{2,3} )/);
   for (const [heading, products] of Object.entries(groups)) {
@@ -173,6 +202,9 @@ test("keeps the public profile scoped, stable, and version-free", () => {
   assert.doesNotMatch(readme, /latest releases?/i);
   assert.doesNotMatch(readme, /canonical runtime contract/i);
   assert.doesNotMatch(readme, /cavi-ai\/claude-obsidian(?:-plugin)?/i);
-  for (const privateName of ["cavi-control-ui", "ecg", "cc-hermes", "cavi-fleet-router"])
+  for (const privateName of [
+    "cavi-control-ui", "ecg", "cc-hermes", "cavi-fleet-router",
+    "game-art-pipeline", "substance-mcp", "houdini-mcp", "repo-audit",
+  ])
     assert.ok(!readme.includes(privateName), `must not expose ${privateName}`);
 });
