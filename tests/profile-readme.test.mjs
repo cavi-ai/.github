@@ -48,6 +48,7 @@ test("presents every approved public product through its exact Markdown link", (
     "[**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity)",
     "[**Blender MCP**](https://github.com/cavi-ai/blender-mcp)",
     "[**Loop Killer**](https://github.com/cavi-ai/loop-killer)",
+    "[**Substance MCP**](https://github.com/cavi-ai/substance-mcp)",
   ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
   assert.doesNotMatch(readme, /claude-obsidian/i);
 });
@@ -115,6 +116,10 @@ test("describes each product accurately", () => {
   const loopKillerRow = readme.split("\n").find((line) => line.includes("[**Loop Killer**]"));
   assert.match(loopKillerRow, /Claude Code plugin/);
   assert.match(loopKillerRow, /stop-hook/);
+  // Substance MCP — one server per Adobe app, receipts across all three.
+  const substanceRow = readme.split("\n").find((line) => line.includes("[**Substance MCP**]"));
+  assert.match(substanceRow, /Painter, Designer and Sampler/);
+  assert.match(substanceRow, /SHA-256 receipts/);
 });
 
 test("leads with the featured products, each listed once", () => {
@@ -146,6 +151,7 @@ test("installs each packaged product in one line under its published name", () =
     "`npm install -g @cavi-ai/ableton-mcp`",
     "`uv tool install cavi-blender-mcp`",
     "`cavi-blender-mcp runtime start`",
+    "`uv tool install cavi-substance-mcp`",
     "`claude plugin marketplace add cavi-ai/plugins`",
     "`/plugin install loop-killer@cavi-ai`",
     "https://github.com/cavi-ai/secure-agent/releases/latest",
@@ -203,7 +209,7 @@ test("groups the rest of the stack by job", () => {
       "Antigravity for OpenClaw",
       "Loop Killer",
     ],
-    "### Create 3D and game assets": ["Blender MCP"],
+    "### Create 3D and game assets": ["Blender MCP", "Substance MCP"],
   };
   const sections = readme.split(/\n(?=#{2,3} )/);
   for (const [heading, products] of Object.entries(groups)) {
@@ -222,7 +228,7 @@ test("keeps the public profile scoped, stable, and version-free", () => {
   assert.doesNotMatch(readme, /cavi-ai\/claude-obsidian(?:-plugin)?/i);
   for (const privateName of [
     "cavi-control-ui", "ecg", "cc-hermes", "cavi-fleet-router",
-    "game-art-pipeline", "substance-mcp", "houdini-mcp", "repo-audit",
+    "game-art-pipeline", "houdini-mcp", "repo-audit",
   ])
     assert.ok(!readme.includes(privateName), `must not expose ${privateName}`);
 });

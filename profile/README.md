@@ -75,6 +75,7 @@
 | Antigravity for OpenClaw | `openclaw plugins install @cavi-ai/antigravity` |
 | Loop Killer | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in Claude Code |
 | Blender MCP | `uv tool install cavi-blender-mcp`, then `cavi-blender-mcp runtime start` to open Blender with the bridge |
+| Substance MCP | `uv tool install cavi-substance-mcp` for the Painter, Designer and Sampler servers |
 
 ---
 
@@ -121,6 +122,7 @@ Open building blocks for secure, local, and inspectable agent systems.
 | Project | What it does |
 | :-- | :-- |
 | [**Blender MCP**](https://github.com/cavi-ai/blender-mcp) | Local-first MCP tools for Blender scene inspection, mesh editing, previews, and game asset export, through a bridge that binds to loopback and requires a session token. |
+| [**Substance MCP**](https://github.com/cavi-ai/substance-mcp) | Local-first MCP servers for Adobe Substance 3D Painter, Designer and Sampler: layer editing, baking, texture export, batch jobs that export for Unreal, Unity and Blender, and SHA-256 receipts that chain across all three apps. |
 
 ## Research and verification
 
