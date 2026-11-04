@@ -6,7 +6,7 @@
 
 <h2 align="center">Open research and infrastructure for agent systems.</h2>
 
-<p align="center">MIT-licensed tools that make agent runtimes easier to connect, inspect, secure, and trust.</p>
+<p align="center">MIT-licensed MCP servers, Claude and Obsidian plugins, browser automation, and local MLX models: tools that make agent runtimes easier to connect, inspect, secure, and trust.</p>
 
 <p align="center">
   <a href="https://obsidian.md/plugins?id=claude-companion"><img src="https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%23483699&label=Companion%20downloads&query=%24%5B%22claude-companion%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json" alt="Companion for Claude downloads from the Obsidian community store"></a>
@@ -23,7 +23,7 @@
   &nbsp;·&nbsp;
   <a href="https://github.com/cavi-ai/cavi-api-client"><strong>CAVI API Client</strong></a>
   &nbsp;·&nbsp;
-  <a href="#create-3d-and-game-assets"><strong>3D assets</strong></a>
+  <a href="#control-creative-apps-over-mcp"><strong>3D assets</strong></a>
   &nbsp;·&nbsp;
   <a href="https://cavi-ai.xyz/docs"><strong>Documentation</strong></a>
 </p>
@@ -47,43 +47,13 @@
 **First result:** fill a form you control, inspect failed-field evidence, then
 submit separately and check its saved result.
 [Try the controlled-form workflow](https://github.com/cavi-ai/bobby-browser#try-a-controlled-form)
-or [watch the synthetic screenshot walkthrough](https://github.com/cavi-ai/bobby-browser/blob/main/assets/form-walkthrough.mp4).
-Field validity alone does not prove server acceptance.
+or [watch the walkthrough](https://github.com/cavi-ai/bobby-browser/blob/main/assets/form-walkthrough.mp4).
 
-[**Install**](https://github.com/cavi-ai/bobby-browser#install) · [**Documentation**](https://cavi-ai.xyz/docs/bobby-browser) · [**View source**](https://github.com/cavi-ai/bobby-browser)
+```sh
+brew install cavi-ai/tap/bobby-browser
+```
 
-### Ableton MCP
-
-[**Ableton MCP**](https://github.com/cavi-ai/ableton-mcp) gives MCP clients local-first control of Ableton Live through a Remote Script bridge, a stdio MCP server, and a CLI with confirm-to-execute mutations: every change to the Live Set is planned first and runs only with a single-use confirmation.
-
-[**Install**](https://github.com/cavi-ai/ableton-mcp#install) · [**View source**](https://github.com/cavi-ai/ableton-mcp)
-
-### CAVI API Client
-
-[**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) lets one TypeScript application offer a choice of agent runtimes. It adapts Claude, Codex, AGY, OpenCode, Hermes, and OpenClaw to shared contracts for runs, statuses, stream events, and token usage, so you write one progress renderer and one failure handler instead of one per backend. Gateway-agnostic agent runtime infrastructure over typed HTTP, WebSocket, and SSE; ESM with no runtime dependencies.
-
-[**Install**](https://github.com/cavi-ai/cavi-api-client#build-an-answer-service) · [**Documentation**](https://cavi-ai.xyz/docs/api-client) · [**View source**](https://github.com/cavi-ai/cavi-api-client)
-
----
-
-## Install
-
-| Product | Install |
-| :-- | :-- |
-| Companion for Claude | In Obsidian: **Settings → Community plugins → Browse**, search "Companion for Claude", or open the [store listing](https://obsidian.md/plugins?id=claude-companion). |
-| Bobby Browser | `brew install cavi-ai/tap/bobby-browser` |
-| Ableton MCP | `npm install -g @cavi-ai/ableton-mcp`, then `ableton-mcp install` |
-| Secure Agent | Download the [macOS app](https://github.com/cavi-ai/secure-agent/releases/latest) (macOS 14 or later). |
-| MCP Eval | `brew install cavi-ai/tap/mcpeval` |
-| MLX Agent | `claude plugin marketplace add cavi-ai/mlx-agent`, then `claude plugin install mlx-agent@mlx-agent` |
-| MLX Workbench | Download the [macOS app](https://github.com/cavi-ai/mlx-workbench/releases/latest) (Apple Silicon). |
-| CAVI API Client | `npm install @cavi-ai/api-client` |
-| CAVI Plugins | `claude plugin marketplace add cavi-ai/plugins` |
-| Obsidian Agent | `/plugin marketplace add cavi-ai/obsidian-agent`, then `/plugin install obsidian-agent@obsidian-agent` in Claude Code |
-| Antigravity for OpenClaw | `openclaw plugins install @cavi-ai/antigravity` |
-| Loop Killer | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in Claude Code |
-| Blender MCP | `uv tool install cavi-blender-mcp`, then `cavi-blender-mcp runtime start` to open Blender with the bridge |
-| Substance MCP | `uv tool install cavi-substance-mcp` for the Painter, Designer and Sampler servers |
+[**Install options**](https://github.com/cavi-ai/bobby-browser#install) · [**Documentation**](https://cavi-ai.xyz/docs/bobby-browser) · [**View source**](https://github.com/cavi-ai/bobby-browser)
 
 ---
 
@@ -102,49 +72,51 @@ Open building blocks for secure, local, and inspectable agent systems.
   </tr>
 </table>
 
-### Secure and evaluate agents
+### Control creative apps over MCP
 
-| Project | What it does |
-| :-- | :-- |
-| [**Secure Agent**](https://github.com/cavi-ai/secure-agent) | Local monitor for AI coding agents on macOS: sessions, processes, file activity, and network destinations. Optional guards can stop supported tool calls; an opt-in proxy inspects routed traffic for secret leaks. |
-| [**MCP Eval**](https://github.com/cavi-ai/mcp-eval) | Evidence-driven MCP-server evaluation across discovery cost, schema guessability, error honesty, state recovery, and contention — turning agent friction into actionable findings. |
-
-### Run local models on Apple Silicon
-
-| Project | What it does |
-| :-- | :-- |
-| [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discovers, verifies, and wires local MLX-optimized models on Apple Silicon — Claude, Codex, Antigravity, OpenCode, and AgentSkills. |
-| [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Native macOS app for the MLX Agent model lifecycle: converts, verifies, compares, serves, and fine-tunes local models on Apple Silicon. |
-
-### Plugins for agent hosts
-
-| Project | What it does |
-| :-- | :-- |
-| [**CAVI Plugins**](https://github.com/cavi-ai/plugins) | Host-neutral plugin catalog across Claude, Codex, Agy, OpenCode, OpenClaw, Hermes, and AgentSkills. |
-| [**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent) | Portable, CLI-powered Obsidian workflows across agent hosts. |
-| [**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity) | OpenClaw provider plugin for Google's Antigravity CLI. |
-| [**Loop Killer**](https://github.com/cavi-ai/loop-killer) | Claude Code plugin that ends stop-hook re-prompt loops: when replies to a re-prompting hook stop doing tool work, it clears the active goal and says so. |
-
-### Create 3D and game assets
-
-| Project | What it does |
-| :-- | :-- |
-| [**Blender MCP**](https://github.com/cavi-ai/blender-mcp) | Local-first MCP tools for Blender scene inspection, mesh editing, previews, and game asset export, through a bridge that binds to loopback and requires a session token. |
-| [**Substance MCP**](https://github.com/cavi-ai/substance-mcp) | Local-first MCP servers for Adobe Substance 3D Painter, Designer and Sampler: layer editing, baking, texture export, batch jobs that export for Unreal, Unity and Blender, and SHA-256 receipts that chain across all three apps. |
+| Project | What it does | Install |
+| :-- | :-- | :-- |
+| [**Ableton MCP**](https://github.com/cavi-ai/ableton-mcp) | Local-first control of Ableton Live for MCP clients through a Remote Script bridge, a stdio MCP server, and a CLI with confirm-to-execute mutations: every change to the Live Set is planned first and runs only with a single-use confirmation. | `npm install -g @cavi-ai/ableton-mcp`, then `ableton-mcp install` |
+| [**Blender MCP**](https://github.com/cavi-ai/blender-mcp) | Local-first MCP tools for Blender scene inspection, mesh editing, previews, and game asset export, through a bridge that binds to loopback and requires a session token. | `uv tool install cavi-blender-mcp`, then `cavi-blender-mcp runtime start` to open Blender with the bridge |
+| [**Substance MCP**](https://github.com/cavi-ai/substance-mcp) | Local-first MCP servers for Adobe Substance 3D Painter, Designer and Sampler: layer editing, baking, texture export, batch jobs that export for Unreal, Unity and Blender, and SHA-256 receipts that chain across all three apps. | `uv tool install cavi-substance-mcp` |
+| [**Adobe MCP**](https://github.com/cavi-ai/adobe-mcp) | Local MCP servers for Adobe Photoshop, Illustrator, After Effects, Animate, Character Animator and Dimension on macOS. Each edits owned copies of documents inside one workspace and records every native operation before it runs. | `uv tool install cavi-adobe-mcp` |
 
 **Try one material choice:** [recreate a Painter roughness revision](https://github.com/cavi-ai/substance-mcp/blob/main/examples/painter/uniform-fill-revision/README.md)
 with the original mesh and maps, or [trace a two-material FBX into Painter](https://github.com/cavi-ai/blender-mcp/blob/main/examples/material-texture-sets/README.md).
 
-## Research and verification
+### Secure and evaluate agents
 
-- **Agent security** — recording what local agents read, run, and connect to, with guards you opt into.
-- **Runtime interoperability** — connecting gateways and providers through typed boundaries.
-- **Local-first workflows** — running models and knowledge tools on hardware you control.
-- **MCP reliability** — measuring discovery cost, schema guessability, error honesty, state recovery, and contention.
+| Project | What it does | Install |
+| :-- | :-- | :-- |
+| [**Secure Agent**](https://github.com/cavi-ai/secure-agent) | Local monitor for AI coding agents on macOS: sessions, processes, file activity, and network destinations. Optional guards can stop supported tool calls; an opt-in proxy inspects routed traffic for secret leaks. | Download the [macOS app](https://github.com/cavi-ai/secure-agent/releases/latest) (macOS 14 or later) |
+| [**MCP Eval**](https://github.com/cavi-ai/mcp-eval) | Evidence-driven MCP-server evaluation across discovery cost, schema guessability, error honesty, state recovery, and contention — turning agent friction into actionable findings. | `brew install cavi-ai/tap/mcpeval` |
+
+### Build agent integrations
+
+| Project | What it does | Install |
+| :-- | :-- | :-- |
+| [**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) | One TypeScript client for many agent runtimes: adapts Claude, Codex, AGY, OpenCode, Hermes, and OpenClaw to shared contracts for runs, statuses, stream events, and token usage, so you write one progress renderer and one failure handler. Gateway-agnostic agent runtime infrastructure over typed HTTP, WebSocket, and SSE; ESM with no runtime dependencies. | `npm install @cavi-ai/api-client` |
+| [**MCP Core**](https://github.com/cavi-ai/mcp-core) | Shared Python core for MCP servers: one server type, one structured failure contract, compact tool schemas, bounded process runs and file reads, and an operation journal. Adobe MCP is built on it. | `uv add cavi-mcp-core` |
+
+### Run local models on Apple Silicon
+
+| Project | What it does | Install |
+| :-- | :-- | :-- |
+| [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discovers, verifies, and wires local MLX-optimized models on Apple Silicon — Claude, Codex, Antigravity, OpenCode, and AgentSkills. | `claude plugin marketplace add cavi-ai/mlx-agent`, then `claude plugin install mlx-agent@mlx-agent` |
+| [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Native macOS app for the MLX Agent model lifecycle: converts, verifies, compares, serves, and fine-tunes local models on Apple Silicon. | Download the [macOS app](https://github.com/cavi-ai/mlx-workbench/releases/latest) (Apple Silicon) |
+
+### Plugins for agent hosts
+
+| Project | What it does | Install |
+| :-- | :-- | :-- |
+| [**CAVI Plugins**](https://github.com/cavi-ai/plugins) | Host-neutral plugin catalog across Claude, Codex, Agy, OpenCode, OpenClaw, Hermes, and AgentSkills. | `claude plugin marketplace add cavi-ai/plugins` |
+| [**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent) | Portable, CLI-powered Obsidian workflows across agent hosts. | `/plugin marketplace add cavi-ai/obsidian-agent`, then `/plugin install obsidian-agent@obsidian-agent` in Claude Code |
+| [**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity) | OpenClaw provider plugin for Google's Antigravity CLI. | `openclaw plugins install @cavi-ai/antigravity` |
+| [**Loop Killer**](https://github.com/cavi-ai/loop-killer) | Claude Code plugin that ends stop-hook re-prompt loops: when replies to a re-prompting hook stop doing tool work, it clears the active goal and says so. | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in Claude Code |
 
 ## Built in the open
 
-Every public CAVI-AI project ships with its source and provenance. Read the code, test the assumptions, adapt the tools, and contribute what you learn. More work is in development — we publish it when there is working software and evidence worth examining.
+Every public CAVI-AI project ships with its source. Read the code, test the assumptions, adapt the tools, and contribute what you learn. More work is in development — we publish it when there is working software and evidence worth examining.
 
 <p align="center">
   <a href="https://cavi-ai.xyz">cavi-ai.xyz</a>
@@ -154,4 +126,4 @@ Every public CAVI-AI project ships with its source and provenance. Read the code
   <a href="https://github.com/cavi-ai/plugins">plugin catalog</a>
 </p>
 
-<p align="center"><sub>MIT licensed · Source published · Provenance attached</sub></p>
+<p align="center"><sub>MIT licensed · Source published</sub></p>
