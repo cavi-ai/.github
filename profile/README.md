@@ -23,6 +23,8 @@
   &nbsp;·&nbsp;
   <a href="https://github.com/cavi-ai/cavi-api-client"><strong>CAVI API Client</strong></a>
   &nbsp;·&nbsp;
+  <a href="#create-3d-and-game-assets"><strong>3D assets</strong></a>
+  &nbsp;·&nbsp;
   <a href="https://cavi-ai.xyz/docs"><strong>Documentation</strong></a>
 </p>
 
@@ -129,6 +131,9 @@ Open building blocks for secure, local, and inspectable agent systems.
 | :-- | :-- |
 | [**Blender MCP**](https://github.com/cavi-ai/blender-mcp) | Local-first MCP tools for Blender scene inspection, mesh editing, previews, and game asset export, through a bridge that binds to loopback and requires a session token. |
 | [**Substance MCP**](https://github.com/cavi-ai/substance-mcp) | Local-first MCP servers for Adobe Substance 3D Painter, Designer and Sampler: layer editing, baking, texture export, batch jobs that export for Unreal, Unity and Blender, and SHA-256 receipts that chain across all three apps. |
+
+**Try one material choice:** [recreate a Painter roughness revision](https://github.com/cavi-ai/substance-mcp/blob/main/examples/painter/uniform-fill-revision/README.md)
+with the original mesh and maps, or [trace a two-material FBX into Painter](https://github.com/cavi-ai/blender-mcp/blob/main/examples/material-texture-sets/README.md).
 
 ## Research and verification
 
