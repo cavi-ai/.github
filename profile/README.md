@@ -42,6 +42,12 @@
 
 [**Bobby Browser**](https://github.com/cavi-ai/bobby-browser) is an alpha browser-automation runtime for agents on Firefox and Chromium. Every call is authenticated, capability-scoped, journaled with evidence, and recoverable after a crash, through MCP, ACP, CDP, and SDKs for TypeScript, Python, and Rust.
 
+**First result:** fill a form you control, inspect failed-field evidence, then
+submit separately and check its saved result.
+[Try the controlled-form workflow](https://github.com/cavi-ai/bobby-browser#try-a-controlled-form)
+or [watch the synthetic screenshot walkthrough](https://github.com/cavi-ai/bobby-browser/blob/main/assets/form-walkthrough.mp4).
+Field validity alone does not prove server acceptance.
+
 [**Install**](https://github.com/cavi-ai/bobby-browser#install) · [**Documentation**](https://cavi-ai.xyz/docs/bobby-browser) · [**View source**](https://github.com/cavi-ai/bobby-browser)
 
 ### Ableton MCP
