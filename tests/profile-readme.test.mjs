@@ -4,6 +4,9 @@ import test from "node:test";
 
 const readme = await readFile(new URL("../profile/README.md", import.meta.url), "utf8");
 
+const productRow = (name) => readme.split("\n").find((line) => line.startsWith(`| [**${name}**](`));
+const section = (heading) => readme.split(/\n(?=#{2,3} )/).find((part) => part.startsWith(heading));
+
 test("presents CAVI-AI with its positioning and canonical links", () => {
   for (const marker of [
     "https://cavi-ai.xyz",
@@ -13,27 +16,28 @@ test("presents CAVI-AI with its positioning and canonical links", () => {
   ]) assert.ok(readme.includes(marker), `missing ${marker}`);
 });
 
+test("names what the organization ships above the badges", () => {
+  const hero = readme.slice(readme.indexOf("</h2>"), readme.indexOf("<a href"));
+  for (const term of ["MCP servers", "Claude", "Obsidian", "browser automation", "MLX"])
+    assert.ok(hero.includes(term), `hero missing ${term}`);
+});
+
 test("names every product in title case", () => {
   const titleCase = (name) => name.split(" ").every((word) => word === "for" || /^[A-Z]/.test(word));
   for (const [, name] of readme.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm))
     assert.ok(titleCase(name), `product name "${name}" is not title case`);
   for (const [, name] of readme.matchAll(/^### (.+)$/gm))
     if (readme.includes(`[**${name}**]`)) assert.ok(titleCase(name), `flagship "${name}" is not title case`);
-  const install = readme.split(/\n(?=## )/).find((part) => part.startsWith("## Install"));
-  for (const row of install.split("\n").filter((line) => /^\| (?!Product |:--)/.test(line))) {
-    const name = row.split("|")[1].trim();
-    assert.ok(titleCase(name), `install row "${name}" is not title case`);
-  }
 });
 
 test("lists the hosts the plugin catalog supports", () => {
-  const pluginsRow = readme.split("\n").find((line) => line.includes("[**CAVI Plugins**]"));
+  const pluginsRow = productRow("CAVI Plugins");
   for (const host of ["Claude", "Codex", "Agy", "OpenCode", "OpenClaw", "Hermes", "AgentSkills"])
     assert.ok(pluginsRow.includes(host), `CAVI Plugins row missing ${host}`);
   assert.doesNotMatch(pluginsRow, /Gemini/);
 });
 
-test("presents every approved public product through its exact Markdown link", () => {
+test("presents every approved public product once through its exact Markdown link", () => {
   for (const link of [
     "[**Secure Agent**](https://github.com/cavi-ai/secure-agent)",
     "[**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client)",
@@ -49,8 +53,11 @@ test("presents every approved public product through its exact Markdown link", (
     "[**Blender MCP**](https://github.com/cavi-ai/blender-mcp)",
     "[**Loop Killer**](https://github.com/cavi-ai/loop-killer)",
     "[**Substance MCP**](https://github.com/cavi-ai/substance-mcp)",
-  ]) assert.ok(readme.includes(link), `missing exact product link: ${link}`);
+    "[**Adobe MCP**](https://github.com/cavi-ai/adobe-mcp)",
+    "[**MCP Core**](https://github.com/cavi-ai/mcp-core)",
+  ]) assert.equal(readme.split(link).length - 1, 1, `${link} must appear exactly once`);
   assert.doesNotMatch(readme, /claude-obsidian/i);
+  assert.doesNotMatch(readme, /^## Install/m, "products are not listed a second time in an Install section");
 });
 
 test("selects a dedicated profile banner for each GitHub color scheme", async () => {
@@ -75,25 +82,27 @@ test("selects a dedicated profile banner for each GitHub color scheme", async ()
 
 test("describes each product accurately", () => {
   // Secure Agent monitors by default; guards and the proxy are optional.
-  const secureAgentRow = readme.split("\n").find((line) => line.includes("[**Secure Agent**]"));
+  const secureAgentRow = productRow("Secure Agent");
   assert.match(secureAgentRow, /local monitor for AI coding agents/i);
   assert.match(secureAgentRow, /optional guards/i);
   assert.match(secureAgentRow, /opt-in proxy/i);
   assert.doesNotMatch(readme, /firewall|correlates/i);
   // API client.
-  assert.match(readme, /gateway-agnostic/i);
-  assert.match(readme, /agent runtime infrastructure/i);
+  const apiClientRow = productRow("CAVI API Client");
+  assert.match(apiClientRow, /gateway-agnostic/i);
+  assert.match(apiClientRow, /agent runtime infrastructure/i);
   // Bobby Browser ships as alpha.
-  assert.match(readme, /\balpha\b/i);
+  assert.match(section("### Bobby Browser"), /\balpha\b/i);
   // MLX on Apple Silicon.
   assert.match(readme, /Apple Silicon/i);
   // MLX Agent ships Antigravity (agy) adapters, not Gemini.
-  const mlxAgentRow = readme.split("\n").find((line) => line.includes("[**MLX Agent**]"));
+  const mlxAgentRow = productRow("MLX Agent");
   assert.match(mlxAgentRow, /Antigravity/);
   assert.doesNotMatch(mlxAgentRow, /Gemini/);
   // Ableton MCP — guarded Live control.
-  assert.match(readme, /Ableton Live/);
-  assert.match(readme, /confirm-to-execute/);
+  const abletonRow = productRow("Ableton MCP");
+  assert.match(abletonRow, /Ableton Live/);
+  assert.match(abletonRow, /confirm-to-execute/);
   // Companion — the exact Community Store description.
   assert.match(
     readme,
@@ -107,74 +116,71 @@ test("describes each product accurately", () => {
     "state recovery",
     "contention",
     "actionable findings",
-  ]) assert.match(readme, new RegExp(dimension, "i"));
+  ]) assert.match(productRow("MCP Eval"), new RegExp(dimension, "i"));
   // Blender MCP — local bridge behind a session token.
-  const blenderRow = readme.split("\n").find((line) => line.includes("[**Blender MCP**]"));
+  const blenderRow = productRow("Blender MCP");
   assert.match(blenderRow, /loopback/);
   assert.match(blenderRow, /session token/);
   // Loop Killer — clears the goal behind a stop-hook loop.
-  const loopKillerRow = readme.split("\n").find((line) => line.includes("[**Loop Killer**]"));
+  const loopKillerRow = productRow("Loop Killer");
   assert.match(loopKillerRow, /Claude Code plugin/);
   assert.match(loopKillerRow, /stop-hook/);
   // Substance MCP — one server per Adobe app, receipts across all three.
-  const substanceRow = readme.split("\n").find((line) => line.includes("[**Substance MCP**]"));
+  const substanceRow = productRow("Substance MCP");
   assert.match(substanceRow, /Painter, Designer and Sampler/);
   assert.match(substanceRow, /SHA-256 receipts/);
+  // Adobe MCP — macOS servers that edit owned copies and journal native operations.
+  const adobeRow = productRow("Adobe MCP");
+  assert.match(adobeRow, /Photoshop, Illustrator, After Effects, Animate, Character Animator and Dimension/);
+  assert.match(adobeRow, /macOS/);
+  assert.match(adobeRow, /owned copies/);
+  // MCP Core — the shared server type and failure contract.
+  const coreRow = productRow("MCP Core");
+  assert.match(coreRow, /failure contract/);
+  assert.match(coreRow, /operation journal/);
 });
 
 test("leads with the featured products, each listed once", () => {
   const start = readme.indexOf("## Start here");
   const stack = readme.indexOf("## Explore the stack");
   assert.ok(start !== -1 && start < stack, "Start here must precede the stack");
-  const featured = [
-    "[**Companion for Claude**]",
-    "[**Bobby Browser**]",
-    "[**Ableton MCP**]",
-    "[**CAVI API Client**]",
-  ];
-  const positions = featured.map((link) => readme.indexOf(link));
-  assert.deepEqual([...positions].sort((a, b) => a - b), positions, "featured order");
-  for (const position of positions)
-    assert.ok(position > start && position < stack, "featured products live under Start here");
-  for (const link of featured)
-    assert.equal(readme.split(link).length - 1, 1, `${link} must appear once`);
-});
-
-test("installs each packaged product in one line under its published name", () => {
-  const install = readme.split(/\n(?=## )/).find((part) => part.startsWith("## Install"));
-  assert.ok(install, "missing Install section");
-  for (const line of [
-    "https://obsidian.md/plugins?id=claude-companion",
-    "`brew install cavi-ai/tap/bobby-browser`",
-    "`brew install cavi-ai/tap/mcpeval`",
-    "`npm install @cavi-ai/api-client`",
-    "`npm install -g @cavi-ai/ableton-mcp`",
-    "`uv tool install cavi-blender-mcp`",
-    "`cavi-blender-mcp runtime start`",
-    "`uv tool install cavi-substance-mcp`",
-    "`claude plugin marketplace add cavi-ai/plugins`",
-    "`/plugin install loop-killer@cavi-ai`",
-    "https://github.com/cavi-ai/secure-agent/releases/latest",
-    "https://github.com/cavi-ai/mlx-workbench/releases/latest",
-    "`claude plugin install mlx-agent@mlx-agent`",
-    "`/plugin install obsidian-agent@obsidian-agent`",
-    "`openclaw plugins install @cavi-ai/antigravity`",
-  ]) assert.ok(install.includes(line), `missing install line: ${line}`);
-  assert.doesNotMatch(install, /ableton-mcp#install/, "Ableton MCP installs from npm");
-  assert.doesNotMatch(install, /blender-mcp#install/, "Blender MCP installs from PyPI");
-  assert.ok(
-    readme.indexOf("## Install") < readme.indexOf("## Explore the stack"),
-    "Install precedes the stack",
+  const startHere = readme.slice(start, stack);
+  assert.deepEqual(
+    [...startHere.matchAll(/^### (.+)$/gm)].map(([, name]) => name),
+    ["Companion for Claude", "Bobby Browser"],
   );
+  for (const link of ["[**Companion for Claude**]", "[**Bobby Browser**]"])
+    assert.ok(startHere.includes(link), `${link} lives under Start here`);
 });
 
-test("gives every listed product an install row", () => {
-  const install = readme.split(/\n(?=## )/).find((part) => part.startsWith("## Install"));
-  const rows = new Set(install.split("\n").filter((line) => line.startsWith("| ")).map((line) => line.split("|")[1].trim()));
-  for (const [, name] of readme.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm))
-    assert.ok(rows.has(name), `${name} has no install row`);
-  for (const name of ["Companion for Claude", "Bobby Browser", "Ableton MCP"])
-    assert.ok(rows.has(name), `${name} has no install row`);
+test("installs each product beside its description under its published name", () => {
+  const installs = {
+    "Ableton MCP": ["`npm install -g @cavi-ai/ableton-mcp`", "`ableton-mcp install`"],
+    "Blender MCP": ["`uv tool install cavi-blender-mcp`", "`cavi-blender-mcp runtime start`"],
+    "Substance MCP": ["`uv tool install cavi-substance-mcp`"],
+    "Adobe MCP": ["`uv tool install cavi-adobe-mcp`"],
+    "Secure Agent": ["https://github.com/cavi-ai/secure-agent/releases/latest"],
+    "MCP Eval": ["`brew install cavi-ai/tap/mcpeval`"],
+    "CAVI API Client": ["`npm install @cavi-ai/api-client`"],
+    "MCP Core": ["`uv add cavi-mcp-core`"],
+    "MLX Agent": ["`claude plugin marketplace add cavi-ai/mlx-agent`", "`claude plugin install mlx-agent@mlx-agent`"],
+    "MLX Workbench": ["https://github.com/cavi-ai/mlx-workbench/releases/latest"],
+    "CAVI Plugins": ["`claude plugin marketplace add cavi-ai/plugins`"],
+    "Obsidian Agent": ["`/plugin install obsidian-agent@obsidian-agent`"],
+    "Antigravity for OpenClaw": ["`openclaw plugins install @cavi-ai/antigravity`"],
+    "Loop Killer": ["`claude plugin marketplace add cavi-ai/plugins`", "`/plugin install loop-killer@cavi-ai`"],
+  };
+  const listed = [...readme.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm)].map(([, name]) => name);
+  assert.deepEqual([...listed].sort(), Object.keys(installs).sort(), "every table product has an install");
+  for (const [name, commands] of Object.entries(installs)) {
+    const cells = productRow(name).split(" | ");
+    assert.equal(cells.length, 3, `${name} row has Project, What it does and Install cells`);
+    for (const command of commands) assert.ok(cells[2].includes(command), `${name} install missing ${command}`);
+  }
+  assert.ok(section("### Companion for Claude").includes("https://obsidian.md/plugins?id=claude-companion"));
+  assert.ok(section("### Bobby Browser").includes("brew install cavi-ai/tap/bobby-browser"));
+  assert.doesNotMatch(productRow("Ableton MCP"), /ableton-mcp#install/, "Ableton MCP installs from npm");
+  assert.doesNotMatch(productRow("Blender MCP"), /blender-mcp#install/, "Blender MCP installs from PyPI");
 });
 
 test("shows real product screenshots from each product's own repository", () => {
@@ -201,7 +207,9 @@ test("shows only badges backed by live data or real destinations", () => {
 
 test("groups the rest of the stack by job", () => {
   const groups = {
+    "### Control creative apps over MCP": ["Ableton MCP", "Blender MCP", "Substance MCP", "Adobe MCP"],
     "### Secure and evaluate agents": ["Secure Agent", "MCP Eval"],
+    "### Build agent integrations": ["CAVI API Client", "MCP Core"],
     "### Run local models on Apple Silicon": ["MLX Agent", "MLX Workbench"],
     "### Plugins for agent hosts": [
       "CAVI Plugins",
@@ -209,15 +217,22 @@ test("groups the rest of the stack by job", () => {
       "Antigravity for OpenClaw",
       "Loop Killer",
     ],
-    "### Create 3D and game assets": ["Blender MCP", "Substance MCP"],
   };
-  const sections = readme.split(/\n(?=#{2,3} )/);
+  const stack = readme.slice(readme.indexOf("## Explore the stack"));
+  assert.deepEqual([...stack.matchAll(/^### .+$/gm)].map(([heading]) => heading), Object.keys(groups));
   for (const [heading, products] of Object.entries(groups)) {
-    const section = sections.find((part) => part.startsWith(heading));
-    assert.ok(section, `missing ${heading}`);
-    const listed = [...section.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm)].map(([, name]) => name);
+    const part = section(heading);
+    assert.ok(part.includes("| Project | What it does | Install |"), `${heading} has an Install column`);
+    const listed = [...part.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm)].map(([, name]) => name);
     assert.deepEqual(listed, products, `${heading} lists exactly its products`);
   }
+});
+
+test("makes only claims every listed project meets", () => {
+  // Not every published package carries a provenance attestation.
+  assert.doesNotMatch(readme, /provenance/i);
+  assert.doesNotMatch(readme, /synthetic|field validity alone/i);
+  assert.doesNotMatch(readme, /^## Research and verification/m);
 });
 
 test("keeps the public profile scoped, stable, and version-free", () => {
