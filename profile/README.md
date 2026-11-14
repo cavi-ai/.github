@@ -12,6 +12,7 @@
   <a href="https://obsidian.md/plugins?id=claude-companion"><img src="https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%23483699&label=Companion%20downloads&query=%24%5B%22claude-companion%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json" alt="Companion for Claude downloads from the Obsidian community store"></a>
   <a href="https://github.com/cavi-ai/homebrew-tap"><img src="https://img.shields.io/badge/brew%20tap-cavi--ai%2Ftap-FBB040?logo=homebrew&logoColor=white" alt="Homebrew tap cavi-ai/tap"></a>
   <a href="https://cavi-ai.xyz/docs"><img src="https://img.shields.io/badge/docs-cavi--ai.xyz-5B5BD6" alt="Documentation at cavi-ai.xyz"></a>
+  <a href="https://huggingface.co/cavi-ai"><img src="https://img.shields.io/badge/Hugging%20Face-cavi--ai-FFD21E?logo=huggingface&logoColor=000" alt="CAVI-AI models on Hugging Face"></a>
 </p>
 
 <p align="center">
@@ -23,7 +24,9 @@
   &nbsp;·&nbsp;
   <a href="https://github.com/cavi-ai/cavi-api-client"><strong>CAVI API Client</strong></a>
   &nbsp;·&nbsp;
-  <a href="#control-creative-apps-over-mcp"><strong>3D assets</strong></a>
+  <a href="#control-creative-apps-over-mcp"><strong>Creative apps</strong></a>
+  &nbsp;·&nbsp;
+  <a href="#models-on-hugging-face"><strong>Models</strong></a>
   &nbsp;·&nbsp;
   <a href="https://cavi-ai.xyz/docs"><strong>Documentation</strong></a>
 </p>
@@ -80,6 +83,8 @@ Open building blocks for secure, local, and inspectable agent systems.
 | [**Blender MCP**](https://github.com/cavi-ai/blender-mcp) | Local-first MCP tools for Blender scene inspection, mesh editing, previews, and game asset export, through a bridge that binds to loopback and requires a session token. | `uv tool install cavi-blender-mcp`, then `cavi-blender-mcp runtime start` to open Blender with the bridge |
 | [**Substance MCP**](https://github.com/cavi-ai/substance-mcp) | Local-first MCP servers for Adobe Substance 3D Painter, Designer and Sampler: layer editing, baking, texture export, batch jobs that export for Unreal, Unity and Blender, and SHA-256 receipts that chain across all three apps. | `uv tool install cavi-substance-mcp` |
 | [**Adobe MCP**](https://github.com/cavi-ai/adobe-mcp) | Local MCP servers for Adobe Photoshop, Illustrator, After Effects, Animate, Character Animator and Dimension on macOS. Each edits owned copies of documents inside one workspace and records every native operation before it runs. | `uv tool install cavi-adobe-mcp` |
+| [**Premiere MCP**](https://github.com/cavi-ai/premiere-mcp) | Preview. MCP server for Adobe Premiere Pro on macOS: 42 typed tools run ExtendScript in Premiere Pro through an Adobe Bridge relay, and cut a clip list into a new project with transitions and a ProRes 422 HQ master. | `uv tool install git+https://github.com/cavi-ai/premiere-mcp.git` (Python 3.15+) |
+| [**After Effects MCP**](https://github.com/cavi-ai/after-effects-mcp) | Preview. MCP server for headless After Effects on macOS: 45 tools for comps, layers, shapes, masks, text, keyframes, effects, 3D and Essential Graphics, with `aerender` renders that check every output movie's frame count. | `uv tool install git+https://github.com/cavi-ai/after-effects-mcp.git` (Python 3.15+) |
 
 **Try one material choice:** [recreate a Painter roughness revision](https://github.com/cavi-ai/substance-mcp/blob/main/examples/painter/uniform-fill-revision/README.md)
 with the original mesh and maps, or [trace a two-material FBX into Painter](https://github.com/cavi-ai/blender-mcp/blob/main/examples/material-texture-sets/README.md).
@@ -97,6 +102,7 @@ with the original mesh and maps, or [trace a two-material FBX into Painter](http
 | :-- | :-- | :-- |
 | [**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) | One TypeScript client for many agent runtimes: adapts Claude, Codex, AGY, OpenCode, Hermes, and OpenClaw to shared contracts for runs, statuses, stream events, and token usage, so you write one progress renderer and one failure handler. Gateway-agnostic agent runtime infrastructure over typed HTTP, WebSocket, and SSE; ESM with no runtime dependencies. | `npm install @cavi-ai/api-client` |
 | [**MCP Core**](https://github.com/cavi-ai/mcp-core) | Shared Python core for MCP servers: one server type, one structured failure contract, compact tool schemas, bounded process runs and file reads, and an operation journal. Adobe MCP is built on it. | `uv add cavi-mcp-core` |
+| [**Agent Sessions**](https://github.com/cavi-ai/agent-sessions) | Find the Codex and Claude Code sessions that share a repository, send work to a peer, and claim messages before acting on them. Discovery and messaging run locally and never interrupt a running session. | `uv tool install git+https://github.com/cavi-ai/agent-sessions.git` (macOS or Linux) |
 
 ### Run local models on Apple Silicon
 
@@ -114,6 +120,18 @@ with the original mesh and maps, or [trace a two-material FBX into Painter](http
 | [**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity) | OpenClaw provider plugin for Google's Antigravity CLI. | `openclaw plugins install @cavi-ai/antigravity` |
 | [**Loop Killer**](https://github.com/cavi-ai/loop-killer) | Claude Code plugin that ends stop-hook re-prompt loops: when replies to a re-prompting hook stop doing tool work, it clears the active goal and says so. | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in Claude Code |
 
+## Models on Hugging Face
+
+MLX conversions for Apple Silicon and a page-control detector, published at [huggingface.co/cavi-ai](https://huggingface.co/cavi-ai). Each model card names its base model, the exact source revision, its contents and its requirements.
+
+| Model | What it does | Download |
+| :-- | :-- | :-- |
+| [`cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit`](https://huggingface.co/cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit) | Image and text to text. 4-bit MLX conversion of Qwen3-VL-8B-Instruct; the vision tower stays in bf16. | `hf download cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit` |
+| [`cavi-ai/Audio8-ASR-Infinite-MLX-8bit`](https://huggingface.co/cavi-ai/Audio8-ASR-Infinite-MLX-8bit) | Speech recognition. 8-bit MLX conversion of Audio8-ASR-Infinite; the audio tower stays in bf16. | `hf download cavi-ai/Audio8-ASR-Infinite-MLX-8bit` |
+| [`cavi-ai/Audio8-ASR-Infinite-MLX-4bit`](https://huggingface.co/cavi-ai/Audio8-ASR-Infinite-MLX-4bit) | Speech recognition. 4-bit MLX conversion of Audio8-ASR-Infinite. | `hf download cavi-ai/Audio8-ASR-Infinite-MLX-4bit` |
+| [`cavi-ai/laya-MLX-8bit`](https://huggingface.co/cavi-ai/laya-MLX-8bit) | Text classification. MLX conversion of laya with its English, multilingual and typed-decisions checkpoints. | `hf download cavi-ai/laya-MLX-8bit` |
+| [`cavi-ai/bobby-control-detector`](https://huggingface.co/cavi-ai/bobby-control-detector) | Object detection. Finds the interactable controls in a web page screenshot; fine-tuned from RT-DETRv2, shipped as safetensors and ONNX. | `hf download cavi-ai/bobby-control-detector` |
+
 ## Built in the open
 
 Every public CAVI-AI project ships with its source. Read the code, test the assumptions, adapt the tools, and contribute what you learn. More work is in development — we publish it when there is working software and evidence worth examining.
@@ -124,6 +142,8 @@ Every public CAVI-AI project ships with its source. Read the code, test the assu
   <a href="https://github.com/cavi-ai?tab=repositories">all repositories</a>
   &nbsp;·&nbsp;
   <a href="https://github.com/cavi-ai/plugins">plugin catalog</a>
+  &nbsp;·&nbsp;
+  <a href="https://huggingface.co/cavi-ai">models</a>
 </p>
 
 <p align="center"><sub>MIT licensed · Source published</sub></p>

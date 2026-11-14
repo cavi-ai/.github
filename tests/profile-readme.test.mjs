@@ -55,6 +55,9 @@ test("presents every approved public product once through its exact Markdown lin
     "[**Substance MCP**](https://github.com/cavi-ai/substance-mcp)",
     "[**Adobe MCP**](https://github.com/cavi-ai/adobe-mcp)",
     "[**MCP Core**](https://github.com/cavi-ai/mcp-core)",
+    "[**Agent Sessions**](https://github.com/cavi-ai/agent-sessions)",
+    "[**Premiere MCP**](https://github.com/cavi-ai/premiere-mcp)",
+    "[**After Effects MCP**](https://github.com/cavi-ai/after-effects-mcp)",
   ]) assert.equal(readme.split(link).length - 1, 1, `${link} must appear exactly once`);
   assert.doesNotMatch(readme, /claude-obsidian/i);
   assert.doesNotMatch(readme, /^## Install/m, "products are not listed a second time in an Install section");
@@ -163,6 +166,9 @@ test("installs each product beside its description under its published name", ()
     "MCP Eval": ["`brew install cavi-ai/tap/mcpeval`"],
     "CAVI API Client": ["`npm install @cavi-ai/api-client`"],
     "MCP Core": ["`uv add cavi-mcp-core`"],
+    "Agent Sessions": ["`uv tool install git+https://github.com/cavi-ai/agent-sessions.git`"],
+    "Premiere MCP": ["`uv tool install git+https://github.com/cavi-ai/premiere-mcp.git`"],
+    "After Effects MCP": ["`uv tool install git+https://github.com/cavi-ai/after-effects-mcp.git`"],
     "MLX Agent": ["`claude plugin marketplace add cavi-ai/mlx-agent`", "`claude plugin install mlx-agent@mlx-agent`"],
     "MLX Workbench": ["https://github.com/cavi-ai/mlx-workbench/releases/latest"],
     "CAVI Plugins": ["`claude plugin marketplace add cavi-ai/plugins`"],
@@ -207,9 +213,16 @@ test("shows only badges backed by live data or real destinations", () => {
 
 test("groups the rest of the stack by job", () => {
   const groups = {
-    "### Control creative apps over MCP": ["Ableton MCP", "Blender MCP", "Substance MCP", "Adobe MCP"],
+    "### Control creative apps over MCP": [
+      "Ableton MCP",
+      "Blender MCP",
+      "Substance MCP",
+      "Adobe MCP",
+      "Premiere MCP",
+      "After Effects MCP",
+    ],
     "### Secure and evaluate agents": ["Secure Agent", "MCP Eval"],
-    "### Build agent integrations": ["CAVI API Client", "MCP Core"],
+    "### Build agent integrations": ["CAVI API Client", "MCP Core", "Agent Sessions"],
     "### Run local models on Apple Silicon": ["MLX Agent", "MLX Workbench"],
     "### Plugins for agent hosts": [
       "CAVI Plugins",
@@ -226,6 +239,42 @@ test("groups the rest of the stack by job", () => {
     const listed = [...part.matchAll(/^\| \[\*\*([^*]+)\*\*\]/gm)].map(([, name]) => name);
     assert.deepEqual(listed, products, `${heading} lists exactly its products`);
   }
+});
+
+test("marks products without a published release as Preview, installed from source", () => {
+  for (const name of ["Premiere MCP", "After Effects MCP"]) {
+    const cells = productRow(name).split(" | ");
+    assert.match(cells[1], /^Preview\./, `${name} is marked Preview`);
+    assert.match(cells[2], /git\+https:\/\/github\.com\/cavi-ai\//, `${name} installs from source`);
+  }
+  assert.match(productRow("Premiere MCP"), /Premiere Pro/);
+  assert.match(productRow("Premiere MCP"), /Adobe Bridge/);
+  assert.match(productRow("After Effects MCP"), /headless After Effects/);
+  assert.match(productRow("After Effects MCP"), /aerender/);
+  for (const name of ["Ableton MCP", "Blender MCP", "Substance MCP", "Adobe MCP", "Agent Sessions"])
+    assert.doesNotMatch(productRow(name), /Preview/, `${name} has a release and is not Preview`);
+});
+
+test("lists every Hugging Face model with its download command", () => {
+  const models = section("## Models on Hugging Face");
+  assert.ok(models, "missing Models on Hugging Face section");
+  assert.ok(readme.indexOf("## Models on Hugging Face") < readme.indexOf("## Built in the open"));
+  assert.ok(models.includes("https://huggingface.co/cavi-ai"), "links the organization");
+  for (const id of [
+    "cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit",
+    "cavi-ai/Audio8-ASR-Infinite-MLX-8bit",
+    "cavi-ai/Audio8-ASR-Infinite-MLX-4bit",
+    "cavi-ai/laya-MLX-8bit",
+    "cavi-ai/bobby-control-detector",
+  ]) {
+    const row = models.split("\n").find((line) => line.startsWith(`| [\`${id}\`](https://huggingface.co/${id})`));
+    assert.ok(row, `missing model row ${id}`);
+    assert.ok(row.includes(`\`hf download ${id}\``), `${id} row missing its download command`);
+  }
+  assert.ok(
+    readme.slice(readme.indexOf("</h2>"), readme.indexOf("## Start here")).includes("https://huggingface.co/cavi-ai"),
+    "Hugging Face badge links the organization",
+  );
 });
 
 test("makes only claims every listed project meets", () => {
