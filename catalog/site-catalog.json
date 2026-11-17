@@ -271,15 +271,15 @@
       "category": "creative-apps",
       "summary": "Inspect GLB models in Godot, review materials and animation poses, and explore assets in an interactive 3D viewer.",
       "description": "See a GLB as Godot imports it: inspect meshes, materials, skeletons and animation clips, sample poses, then capture a rendered view or orbit the asset in a local 3D viewer.",
-      "status": "Preview",
+      "status": null,
       "version": null,
       "releasedAt": null,
       "license": "MIT",
-      "install": "git clone https://github.com/cavi-ai/godot-mcp.git",
+      "install": "uv tool install cavi-godot-mcp",
       "page": "https://cavi-ai.xyz/products/godot-mcp/",
       "repository": "https://github.com/cavi-ai/godot-mcp",
       "docs": null,
-      "releases": null,
+      "releases": "https://github.com/cavi-ai/godot-mcp/releases",
       "platforms": [
         "macOS",
         "Linux"
