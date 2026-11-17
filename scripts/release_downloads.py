@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 import sys
 from urllib.parse import urlsplit
+from zoneinfo import ZoneInfo
 
 API = "https://api.github.com"
 ORG = "cavi-ai"
@@ -28,6 +29,14 @@ def pages(url, request):
         if len(matches) > 1:
             raise ValueError("ambiguous pagination")
         url = matches[0] if matches else None
+
+
+def format_as_of(value):
+    instant = datetime.datetime.fromisoformat(value)
+    if instant.utcoffset() is None:
+        raise ValueError("timestamp must include an offset")
+    local = instant.astimezone(ZoneInfo("America/New_York"))
+    return f"{local:%b} {local.day}, {local.year} {local.hour % 12 or 12}:{local:%M %p %Z}"
 
 
 def collect(request, now):
@@ -72,7 +81,7 @@ def collect(request, now):
                 seen[aid] = (name, count)
                 subtotal += count
         totals[name] = subtotal
-    return {"total": sum(totals.values()), "asOf": now, "definition": "Downloads of GitHub release assets from public non-fork CAVI repositories, including prereleases, documentation and repeated downloads; excludes drafts and other distribution channels.", "repositories": totals}
+    return {"total": sum(totals.values()), "asOf": now, "asOfDisplay": format_as_of(now), "definition": "Downloads of GitHub release assets from public non-fork CAVI repositories, including prereleases, documentation and repeated downloads; excludes drafts and other distribution channels.", "repositories": totals}
 
 
 def request(url):

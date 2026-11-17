@@ -26,6 +26,10 @@ class CollectorTest(unittest.TestCase):
     def request(self, url):
         return self.responses[url]
 
+    def test_timestamp_display_uses_new_york_standard_and_daylight_time(self):
+        self.assertEqual(mod.format_as_of("2026-11-17T02:14:51+00:00"), "Nov 16, 2026 9:14 PM EST")
+        self.assertEqual(mod.format_as_of("2026-07-01T16:05:00+00:00"), "Jul 1, 2026 12:05 PM EDT")
+
     def test_pagination_dedup_prerelease_and_drafts(self):
         result = mod.collect(self.request, "2026-01-01T00:00:00+00:00")
         self.assertEqual(result["total"], 7)
