@@ -134,7 +134,8 @@ test("describes each product accurately", () => {
   assert.match(substanceRow, /SHA-256 receipts/);
   // Adobe MCP — macOS servers that edit owned copies and journal native operations.
   const adobeRow = productRow("Adobe MCP");
-  assert.match(adobeRow, /Photoshop, Illustrator, After Effects, Animate, Character Animator and Dimension/);
+  assert.match(adobeRow, /Photoshop, Illustrator, Animate, Character Animator and Dimension/);
+  assert.doesNotMatch(adobeRow, /After Effects/);
   assert.match(adobeRow, /macOS/);
   assert.match(adobeRow, /owned copies/);
   // MCP Core — the shared server type and failure contract.
