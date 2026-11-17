@@ -202,8 +202,8 @@ test("shows real product screenshots from each product's own repository", () => 
 test("shows only badges backed by live data or real destinations", () => {
   const badges = readme.slice(readme.indexOf("</h2>"), readme.indexOf("## Start here"));
   for (const marker of [
-    "community-plugin-stats.json",
-    "https://obsidian.md/plugins?id=claude-companion",
+    "metrics/release-downloads.json",
+    "GitHub release asset downloads",
     "https://github.com/cavi-ai/homebrew-tap",
     "https://cavi-ai.xyz/docs",
   ]) assert.ok(badges.includes(marker), `missing badge marker ${marker}`);

@@ -9,7 +9,7 @@
 <p align="center">MIT-licensed MCP servers, Claude and Obsidian plugins, browser automation, and local MLX models: tools that make agent runtimes easier to connect, inspect, secure, and trust.</p>
 
 <p align="center">
-  <a href="https://obsidian.md/plugins?id=claude-companion"><img src="https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%23483699&label=Companion%20downloads&query=%24%5B%22claude-companion%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json" alt="Companion for Claude downloads from the Obsidian community store"></a>
+  <a href="https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json"><img src="https://img.shields.io/badge/dynamic/json?label=GitHub%20release%20asset%20downloads&amp;query=%24.total&amp;url=https%3A%2F%2Fraw.githubusercontent.com%2Fcavi-ai%2F.github%2Fmain%2Fmetrics%2Frelease-downloads.json" alt="GitHub release asset downloads across CAVI repositories"></a>
   <a href="https://github.com/cavi-ai/homebrew-tap"><img src="https://img.shields.io/badge/brew%20tap-cavi--ai%2Ftap-FBB040?logo=homebrew&logoColor=white" alt="Homebrew tap cavi-ai/tap"></a>
   <a href="https://cavi-ai.xyz/docs"><img src="https://img.shields.io/badge/docs-cavi--ai.xyz-5B5BD6" alt="Documentation at cavi-ai.xyz"></a>
   <a href="https://huggingface.co/cavi-ai"><img src="https://img.shields.io/badge/Hugging%20Face-cavi--ai-FFD21E?logo=huggingface&logoColor=000" alt="CAVI-AI models on Hugging Face"></a>

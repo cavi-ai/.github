@@ -1,0 +1,39 @@
+name: Release download counts
+
+on:
+  pull_request:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: python3 -m unittest discover -s tests -p 'test_*release_downloads.py'
+      - run: node --test tests/profile-readme.test.mjs
+
+  refresh:
+    if: github.repository == 'cavi-ai/.github' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    concurrency:
+      group: release-download-counts
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Collect public release downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release_downloads.py "$RUNNER_TEMP/release-downloads.json"
+      - name: Publish changed counts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/publish_release_downloads.py metrics/release-downloads.json "$RUNNER_TEMP/release-downloads.json" "$(git rev-parse HEAD)"
