@@ -1,0 +1,667 @@
+{
+  "schema": 1,
+  "site": "https://cavi-ai.xyz/",
+  "categories": [
+    {
+      "slug": "creative-apps",
+      "label": "Creative apps"
+    },
+    {
+      "slug": "browser-automation",
+      "label": "Browser automation"
+    },
+    {
+      "slug": "obsidian",
+      "label": "Obsidian"
+    },
+    {
+      "slug": "local-models",
+      "label": "Local models"
+    },
+    {
+      "slug": "secure-and-evaluate",
+      "label": "Secure and evaluate"
+    },
+    {
+      "slug": "build-integrations",
+      "label": "Build integrations"
+    },
+    {
+      "slug": "host-plugins",
+      "label": "Host plugins"
+    }
+  ],
+  "products": [
+    {
+      "slug": "bobby-browser",
+      "name": "Bobby Browser",
+      "kind": "Browser runtime",
+      "category": "browser-automation",
+      "summary": "Capability-scoped browser automation across SDK, MCP, and authenticated CDP surfaces.",
+      "description": "Run multi-principal browser automation through explicit capabilities, idempotency, evidence, checkpoints, and authenticated control surfaces.",
+      "status": "Alpha",
+      "version": "v0.24.0",
+      "releasedAt": "2026-11-09",
+      "license": "MIT",
+      "install": "brew install cavi-ai/tap/bobby-browser",
+      "page": "https://cavi-ai.xyz/products/bobby-browser/",
+      "repository": "https://github.com/cavi-ai/bobby-browser",
+      "docs": "https://cavi-ai.xyz/docs/bobby-browser/",
+      "releases": "https://github.com/cavi-ai/bobby-browser/releases",
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "hosts": [
+        "MCP",
+        "TypeScript",
+        "Rust",
+        "CDP"
+      ],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/bobby-hero.jpg",
+        "alt": "Bobby Browser illustration with a bee handling browser tasks"
+      }
+    },
+    {
+      "slug": "companion-for-claude",
+      "name": "Companion for Claude",
+      "kind": "Obsidian plugin",
+      "category": "obsidian",
+      "summary": "In-vault companion experience for Obsidian-powered knowledge and agent continuity.",
+      "description": "Use a local vault workflow to keep notes, context, and handoffs synchronized while working in Claude Code.",
+      "status": null,
+      "version": "v0.50.2",
+      "releasedAt": "2026-11-10",
+      "license": "MIT",
+      "install": null,
+      "page": "https://cavi-ai.xyz/products/companion-for-claude/",
+      "repository": "https://github.com/cavi-ai/claude-obsidian",
+      "docs": "https://cavi-ai.xyz/docs/companion-for-claude/",
+      "releases": "https://github.com/cavi-ai/companion-for-claude/releases",
+      "platforms": [
+        "Obsidian"
+      ],
+      "hosts": [
+        "Obsidian"
+      ],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/companion-hero.jpg",
+        "alt": "An owl researches notes: Your vault has a research partner"
+      }
+    },
+    {
+      "slug": "secure-agent",
+      "name": "Secure Agent",
+      "kind": "macOS app",
+      "category": "secure-and-evaluate",
+      "summary": "Local agent session monitoring and optional guards for file access and secret leaks.",
+      "description": "Track agent sessions, file activity, network destinations, and model-call costs through a macOS app, local console, daemon, and harness hooks.",
+      "status": null,
+      "version": "v1.5.0",
+      "releasedAt": "2026-10-31",
+      "license": "MIT",
+      "install": null,
+      "page": "https://cavi-ai.xyz/products/secure-agent/",
+      "repository": "https://github.com/cavi-ai/secure-agent",
+      "docs": "https://cavi-ai.xyz/docs/secure-agent/",
+      "releases": "https://github.com/cavi-ai/secure-agent/releases",
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "hosts": [],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/secure-agent-hero.jpg",
+        "alt": "A concierge stops a browser carrying a covered dish"
+      }
+    },
+    {
+      "slug": "mlx-workbench",
+      "name": "MLX Workbench",
+      "kind": "macOS app",
+      "category": "local-models",
+      "summary": "Native macOS app for converting, verifying, serving and comparing local MLX models.",
+      "description": "Find a model, convert it to MLX, verify it, serve it on a loopback port, compare it against alternatives and wire it into your coding tools, with every operation running through mlx-agent.",
+      "status": null,
+      "version": "v0.8.0",
+      "releasedAt": "2026-11-09",
+      "license": "MIT",
+      "install": null,
+      "page": "https://cavi-ai.xyz/products/mlx-workbench/",
+      "repository": "https://github.com/cavi-ai/mlx-workbench",
+      "docs": "https://cavi-ai.xyz/docs/mlx-workbench/",
+      "releases": "https://github.com/cavi-ai/mlx-workbench/releases",
+      "platforms": [
+        "macOS"
+      ],
+      "hosts": [],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/workbench-hero.jpg",
+        "alt": "MLX Workbench illustration with robots on a stage"
+      }
+    },
+    {
+      "slug": "substance-mcp",
+      "name": "Substance MCP",
+      "kind": "MCP servers",
+      "category": "creative-apps",
+      "summary": "Local-first MCP servers for Adobe Substance 3D Painter, Designer and Sampler, with SHA-256 receipts across all three.",
+      "description": "Three stdio MCP servers: Painter over its loopback remote-scripting API with leased edits, Designer through its command-line cooker, renderer and baker, and Sampler through one-shot launches and batch jobs that export for Unreal, Unity and Blender. Every file-producing call writes a manifest with SHA-256 hashes that verifies and chains across the apps.",
+      "status": null,
+      "version": "v0.13.0",
+      "releasedAt": "2026-11-09",
+      "license": "MIT",
+      "install": "uv tool install cavi-substance-mcp",
+      "page": "https://cavi-ai.xyz/products/substance-mcp/",
+      "repository": "https://github.com/cavi-ai/substance-mcp",
+      "docs": "https://cavi-ai.xyz/docs/substance-mcp/",
+      "releases": "https://github.com/cavi-ai/substance-mcp/releases",
+      "platforms": [
+        "macOS"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/substance-poster.jpg",
+        "alt": "A utility case rendered in Blender from Painter exports at two roughness values"
+      }
+    },
+    {
+      "slug": "blender-mcp",
+      "name": "Blender MCP",
+      "kind": "MCP server",
+      "category": "creative-apps",
+      "summary": "Local-first MCP tools for Blender scene inspection, mesh editing, previews and game asset export.",
+      "description": "A stdio MCP server sends every operation to a bridge on Blender's main thread that binds to loopback and requires a session token: inspect scenes and meshes, edit objects and materials, bake maps, rig and animate, build terrain, render previews, and export FBX, GLB or USD assets for game engines.",
+      "status": null,
+      "version": "v0.57.0",
+      "releasedAt": "2026-11-09",
+      "license": "MIT",
+      "install": "uv tool install cavi-blender-mcp",
+      "page": "https://cavi-ai.xyz/products/blender-mcp/",
+      "repository": "https://github.com/cavi-ai/blender-mcp",
+      "docs": "https://cavi-ai.xyz/docs/blender-mcp/",
+      "releases": "https://github.com/cavi-ai/blender-mcp/releases",
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/blender-poster.jpg",
+        "alt": "A utility case in Blender with its two assigned material names and nine mesh objects"
+      }
+    },
+    {
+      "slug": "premiere-mcp",
+      "name": "Premiere MCP",
+      "kind": "MCP server",
+      "category": "creative-apps",
+      "summary": "42 typed tools for Premiere Pro on macOS that cut a clip list into a ProRes 422 HQ master.",
+      "description": "Run ExtendScript in Premiere Pro through an Adobe Bridge relay with 42 typed tools, and cut a clip list into a new project with transitions and a ProRes 422 HQ master.",
+      "status": null,
+      "version": null,
+      "releasedAt": null,
+      "license": "MIT",
+      "install": "uv tool install cavi-premiere-mcp",
+      "page": "https://cavi-ai.xyz/products/premiere-mcp/",
+      "repository": "https://github.com/cavi-ai/premiere-mcp",
+      "docs": null,
+      "releases": "https://github.com/cavi-ai/premiere-mcp/releases",
+      "platforms": [
+        "macOS"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [
+        "Adobe Premiere Pro",
+        "Python 3.15+"
+      ],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/premiere-cut.jpg",
+        "alt": "Four stills exported by Premiere Pro from a cut with cross dissolves"
+      }
+    },
+    {
+      "slug": "after-effects-mcp",
+      "name": "After Effects MCP",
+      "kind": "MCP server",
+      "category": "creative-apps",
+      "summary": "45 tools for headless After Effects on macOS, with aerender renders checked frame by frame.",
+      "description": "Drive headless After Effects on macOS with 45 tools, and render through aerender with a frame-count check on every output movie.",
+      "status": null,
+      "version": null,
+      "releasedAt": null,
+      "license": "MIT",
+      "install": "uv tool install cavi-after-effects-mcp",
+      "page": "https://cavi-ai.xyz/products/after-effects-mcp/",
+      "repository": "https://github.com/cavi-ai/after-effects-mcp",
+      "docs": null,
+      "releases": "https://github.com/cavi-ai/after-effects-mcp/releases",
+      "platforms": [
+        "macOS"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [
+        "Adobe After Effects",
+        "Python 3.15+"
+      ],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/ae-title.jpg",
+        "alt": "A lower third rendered by headless After Effects over a server aisle shot"
+      }
+    },
+    {
+      "slug": "godot-mcp",
+      "name": "Godot MCP",
+      "kind": "MCP server",
+      "category": "creative-apps",
+      "summary": "Inspect GLB models in Godot, review materials and animation poses, and explore assets in an interactive 3D viewer.",
+      "description": "See a GLB as Godot imports it: inspect meshes, materials, skeletons and animation clips, sample poses, then capture a rendered view or orbit the asset in a local 3D viewer.",
+      "status": "Preview",
+      "version": null,
+      "releasedAt": null,
+      "license": "MIT",
+      "install": "git clone https://github.com/cavi-ai/godot-mcp.git",
+      "page": "https://cavi-ai.xyz/products/godot-mcp/",
+      "repository": "https://github.com/cavi-ai/godot-mcp",
+      "docs": null,
+      "releases": null,
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [
+        "Godot editor",
+        "Python 3.15+"
+      ],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/godot-hero.jpg",
+        "alt": "A frog king on a turntable, inspected by an otter curator"
+      }
+    },
+    {
+      "slug": "ableton-mcp",
+      "name": "Ableton MCP",
+      "kind": "MCP server",
+      "category": "creative-apps",
+      "summary": "Local-first Ableton Live control for MCP clients, with every change to the Set planned first and confirmed once.",
+      "description": "Drive Live through a Remote Script bridge, a stdio MCP server, and a CLI: read the Set, plan guarded mutations, and execute them only with a single-use token bound to the plan.",
+      "status": null,
+      "version": "v0.4.0",
+      "releasedAt": "2026-10-23",
+      "license": "MIT",
+      "install": "npm install -g @cavi-ai/ableton-mcp",
+      "page": "https://cavi-ai.xyz/products/ableton-mcp/",
+      "repository": "https://github.com/cavi-ai/ableton-mcp",
+      "docs": "https://cavi-ai.xyz/docs/ableton-mcp/",
+      "releases": "https://github.com/cavi-ai/ableton-mcp/releases",
+      "platforms": [
+        "macOS"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [],
+      "image": null
+    },
+    {
+      "slug": "adobe-mcp",
+      "name": "Adobe MCP",
+      "kind": "MCP server",
+      "category": "creative-apps",
+      "summary": "MCP tools for Photoshop, Illustrator, Animate, Character Animator and Dimension on macOS.",
+      "description": "MCP tools for Photoshop, Illustrator, Animate, Character Animator and Dimension on macOS, working on documents the workspace owns.",
+      "status": null,
+      "version": null,
+      "releasedAt": null,
+      "license": "MIT",
+      "install": "uv tool install cavi-adobe-mcp",
+      "page": "https://cavi-ai.xyz/products/adobe-mcp/",
+      "repository": "https://github.com/cavi-ai/adobe-mcp",
+      "docs": null,
+      "releases": "https://github.com/cavi-ai/adobe-mcp/releases",
+      "platforms": [
+        "macOS"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [],
+      "image": null
+    },
+    {
+      "slug": "obsidian-agent",
+      "name": "Obsidian Agent",
+      "kind": "Obsidian plugin",
+      "category": "obsidian",
+      "summary": "Portable, CLI-powered Obsidian workflows packaged for Claude, Codex, Gemini, OpenCode, and AgentSkills.",
+      "description": "One canonical Obsidian capability registry that reaches Claude, Codex, Gemini, OpenCode, and AgentSkills through the official Obsidian CLI, independent of Companion for Claude.",
+      "status": null,
+      "version": "v0.1.0",
+      "releasedAt": "2026-07-29",
+      "license": "MIT",
+      "install": "/plugin marketplace add cavi-ai/obsidian-agent",
+      "page": "https://cavi-ai.xyz/products/obsidian-agent/",
+      "repository": "https://github.com/cavi-ai/obsidian-agent",
+      "docs": "https://cavi-ai.xyz/docs/obsidian-agent/",
+      "releases": "https://github.com/cavi-ai/obsidian-agent/releases",
+      "platforms": [
+        "Obsidian"
+      ],
+      "hosts": [
+        "Claude Code",
+        "Codex",
+        "Gemini",
+        "OpenCode",
+        "AgentSkills"
+      ],
+      "requirements": [],
+      "image": null
+    },
+    {
+      "slug": "mlx-agent",
+      "name": "MLX Agent",
+      "kind": "Claude Code plugin",
+      "category": "local-models",
+      "summary": "Discover, adopt, and safely wire local MLX models on Apple Silicon.",
+      "description": "Discover, adopt, and safely wire local MLX models.",
+      "status": null,
+      "version": "v0.12.0",
+      "releasedAt": "2026-11-07",
+      "license": "MIT",
+      "install": null,
+      "page": "https://cavi-ai.xyz/products/mlx-agent/",
+      "repository": "https://github.com/cavi-ai/mlx-agent",
+      "docs": "https://cavi-ai.xyz/docs/mlx-agent/",
+      "releases": "https://github.com/cavi-ai/mlx-agent/releases",
+      "platforms": [
+        "macOS on Apple Silicon for host inspection and MLX execution"
+      ],
+      "hosts": [
+        "Claude Code",
+        "Codex",
+        "OpenCode",
+        "AgentSkills",
+        "agy",
+        "OpenClaw",
+        "hermes"
+      ],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/mlx-agent-hero.jpg",
+        "alt": "A duck knight with a croissant illustrates local model workflows"
+      }
+    },
+    {
+      "slug": "mcp-eval",
+      "name": "MCP Eval",
+      "kind": "Rust CLI",
+      "category": "secure-and-evaluate",
+      "summary": "Measure the operational cost MCP servers impose on agents and turn repeated friction into queryable findings.",
+      "description": "Proxy stdio or Streamable HTTP MCP traffic, index sanitized records, promote recurring failures, and run deterministic probes across five headline evaluation dimensions.",
+      "status": null,
+      "version": "v0.8.0",
+      "releasedAt": "2026-10-20",
+      "license": "MIT",
+      "install": "brew install cavi-ai/tap/mcpeval",
+      "page": "https://cavi-ai.xyz/products/mcp-eval/",
+      "repository": "https://github.com/cavi-ai/mcp-eval",
+      "docs": "https://cavi-ai.xyz/docs/mcp-eval/",
+      "releases": "https://github.com/cavi-ai/mcp-eval/releases",
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [],
+      "image": null
+    },
+    {
+      "slug": "api-client",
+      "name": "API Client",
+      "kind": "TypeScript package",
+      "category": "build-integrations",
+      "summary": "Typed HTTP, WebSocket, and SSE surfaces for compatible agent runtimes, with versioned reference documentation.",
+      "description": "Typed HTTP, WebSocket, and SSE surfaces for compatible agent runtimes, with versioned reference documentation.",
+      "status": null,
+      "version": "v0.22.0",
+      "releasedAt": "2026-10-21",
+      "license": "MIT",
+      "install": "npm install @cavi-ai/api-client",
+      "page": "https://cavi-ai.xyz/products/api-client/",
+      "repository": "https://github.com/cavi-ai/cavi-api-client",
+      "docs": "https://cavi-ai.xyz/docs/api-client/",
+      "releases": "https://github.com/cavi-ai/cavi-api-client/releases",
+      "platforms": [],
+      "hosts": [],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/api-client-hero.jpg",
+        "alt": "An octopus connects agents: More agents. Less rewiring"
+      }
+    },
+    {
+      "slug": "mcp-core",
+      "name": "MCP Core",
+      "kind": "Python package",
+      "category": "build-integrations",
+      "summary": "Build Python MCP servers with typed results, compact schemas and structured failures.",
+      "description": "A Python core for MCP servers: typed tool results, compact schemas and structured failures.",
+      "status": null,
+      "version": null,
+      "releasedAt": null,
+      "license": "MIT",
+      "install": "uv add cavi-mcp-core",
+      "page": "https://cavi-ai.xyz/products/mcp-core/",
+      "repository": "https://github.com/cavi-ai/mcp-core",
+      "docs": null,
+      "releases": "https://github.com/cavi-ai/mcp-core/releases",
+      "platforms": [],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [],
+      "image": null
+    },
+    {
+      "slug": "agent-sessions",
+      "name": "Agent Sessions",
+      "kind": "Python CLI",
+      "category": "build-integrations",
+      "summary": "Specialized workers, queued handoffs and leaner startup context for complex agent workflows.",
+      "description": "Discover recent sessions and their checkouts, exchange and claim messages through a local queue, keep partner relationships, and pin native configuration for worker launch and resume.",
+      "status": null,
+      "version": "v0.2.0",
+      "releasedAt": "2026-11-16",
+      "license": "MIT",
+      "install": "uv tool install git+https://github.com/cavi-ai/agent-sessions.git",
+      "page": "https://cavi-ai.xyz/products/agent-sessions/",
+      "repository": "https://github.com/cavi-ai/agent-sessions",
+      "docs": "https://cavi-ai.xyz/docs/agent-sessions/",
+      "releases": "https://github.com/cavi-ai/agent-sessions/releases",
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "hosts": [
+        "Codex",
+        "Claude Code"
+      ],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/agent-sessions-hero.jpg",
+        "alt": "Agent Sessions illustration with a team of raccoons and a five-start token projection"
+      }
+    },
+    {
+      "slug": "plugins",
+      "name": "CAVI Plugins",
+      "kind": "Plugin catalog",
+      "category": "host-plugins",
+      "summary": "One installation catalog for CAVI agent plugins and skills, per host.",
+      "description": "A host-specific installation catalog for CAVI agent plugins and skills.",
+      "status": "Preview",
+      "version": null,
+      "releasedAt": null,
+      "license": null,
+      "install": "claude plugin marketplace add cavi-ai/plugins",
+      "page": "https://cavi-ai.xyz/products/plugins/",
+      "repository": "https://github.com/cavi-ai/plugins",
+      "docs": null,
+      "releases": null,
+      "platforms": [],
+      "hosts": [
+        "Claude Code"
+      ],
+      "requirements": [],
+      "image": null
+    },
+    {
+      "slug": "antigravity",
+      "name": "Antigravity",
+      "kind": "OpenClaw plugin",
+      "category": "host-plugins",
+      "summary": "Connect OpenClaw to Google's Antigravity CLI (agy) as a subscription-backed model provider.",
+      "description": "Install as an OpenClaw plugin to run Google's Antigravity CLI (agy) as a model provider, with the CLI backend signed in on the Gateway host.",
+      "status": null,
+      "version": "v0.5.2",
+      "releasedAt": "2026-10-22",
+      "license": "MIT",
+      "install": "openclaw plugins install @cavi-ai/antigravity",
+      "page": "https://cavi-ai.xyz/products/antigravity/",
+      "repository": "https://github.com/cavi-ai/openclaw-antigravity",
+      "docs": "https://cavi-ai.xyz/docs/antigravity/",
+      "releases": "https://github.com/cavi-ai/openclaw-antigravity/releases",
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "hosts": [
+        "OpenClaw"
+      ],
+      "requirements": [],
+      "image": null
+    },
+    {
+      "slug": "loop-killer",
+      "name": "Loop Killer",
+      "kind": "Claude Code plugin",
+      "category": "host-plugins",
+      "summary": "Claude Code plugin that ends stop-hook re-prompt loops by clearing the active goal.",
+      "description": "When a stop hook keeps re-prompting a session and the replies make no tool calls, Loop Killer clears the active goal after 3 similar replies or 6 replies of any kind, and adds a notice naming the rule that fired.",
+      "status": null,
+      "version": "v0.2.0",
+      "releasedAt": "2026-10-31",
+      "license": "MIT",
+      "install": "/plugin install loop-killer@cavi-ai",
+      "page": "https://cavi-ai.xyz/products/loop-killer/",
+      "repository": "https://github.com/cavi-ai/loop-killer",
+      "docs": "https://cavi-ai.xyz/docs/loop-killer/",
+      "releases": "https://github.com/cavi-ai/loop-killer/releases",
+      "platforms": [
+        "Claude Code"
+      ],
+      "hosts": [
+        "Claude Code"
+      ],
+      "requirements": [],
+      "image": null
+    }
+  ],
+  "models": [
+    {
+      "id": "cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit",
+      "name": "Qwen3-VL-8B-Instruct-MLX-4bit",
+      "task": "Vision-language",
+      "scope": "GUI grounding · English",
+      "base": {
+        "name": "Qwen/Qwen3-VL-8B-Instruct",
+        "href": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct"
+      },
+      "format": "MLX 4-bit",
+      "size": "5.78 GB",
+      "license": "Apache-2.0 weights",
+      "href": "https://huggingface.co/cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit",
+      "install": "hf download cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit"
+    },
+    {
+      "id": "cavi-ai/bobby-control-detector",
+      "name": "bobby-control-detector",
+      "task": "Object detection",
+      "scope": null,
+      "base": {
+        "name": "PekingU/rtdetr_v2_r18vd",
+        "href": "https://huggingface.co/PekingU/rtdetr_v2_r18vd"
+      },
+      "format": "safetensors + ONNX",
+      "size": "0.16 GB",
+      "license": "Apache-2.0 weights",
+      "href": "https://huggingface.co/cavi-ai/bobby-control-detector",
+      "install": "hf download cavi-ai/bobby-control-detector"
+    },
+    {
+      "id": "cavi-ai/Audio8-ASR-Infinite-MLX-8bit",
+      "name": "Audio8-ASR-Infinite-MLX-8bit",
+      "task": "Speech recognition",
+      "scope": "Streaming · English, Mandarin",
+      "base": {
+        "name": "Edge0/Audio8-ASR-Infinite",
+        "href": "https://huggingface.co/Edge0/Audio8-ASR-Infinite"
+      },
+      "format": "MLX 8-bit",
+      "size": "5.29 GB",
+      "license": "Apache-2.0 weights · MIT code",
+      "href": "https://huggingface.co/cavi-ai/Audio8-ASR-Infinite-MLX-8bit",
+      "install": "hf download cavi-ai/Audio8-ASR-Infinite-MLX-8bit"
+    },
+    {
+      "id": "cavi-ai/Audio8-ASR-Infinite-MLX-4bit",
+      "name": "Audio8-ASR-Infinite-MLX-4bit",
+      "task": "Speech recognition",
+      "scope": "Streaming · English, Mandarin",
+      "base": {
+        "name": "Edge0/Audio8-ASR-Infinite",
+        "href": "https://huggingface.co/Edge0/Audio8-ASR-Infinite"
+      },
+      "format": "MLX 4-bit",
+      "size": "3.75 GB",
+      "license": "Apache-2.0 weights · MIT code",
+      "href": "https://huggingface.co/cavi-ai/Audio8-ASR-Infinite-MLX-4bit",
+      "install": "hf download cavi-ai/Audio8-ASR-Infinite-MLX-4bit"
+    },
+    {
+      "id": "cavi-ai/laya-MLX-8bit",
+      "name": "laya-MLX-8bit",
+      "task": "Text classification",
+      "scope": "Routing, moderation · English, multilingual",
+      "base": {
+        "name": "convaiinnovations/laya",
+        "href": "https://huggingface.co/convaiinnovations/laya"
+      },
+      "format": "MLX 8-bit",
+      "size": "1.62 GB",
+      "license": "Apache-2.0 weights · MIT code",
+      "href": "https://huggingface.co/cavi-ai/laya-MLX-8bit",
+      "install": "hf download cavi-ai/laya-MLX-8bit"
+    }
+  ]
+}

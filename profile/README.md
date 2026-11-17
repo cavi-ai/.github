@@ -24,7 +24,7 @@
   &nbsp;·&nbsp;
   <a href="https://github.com/cavi-ai/cavi-api-client"><strong>CAVI API Client</strong></a>
   &nbsp;·&nbsp;
-  <a href="#control-creative-apps-over-mcp"><strong>Creative apps</strong></a>
+  <a href="#creative-apps"><strong>Creative apps</strong></a>
   &nbsp;·&nbsp;
   <a href="#models-on-hugging-face"><strong>Models</strong></a>
   &nbsp;·&nbsp;
@@ -75,62 +75,72 @@ Open building blocks for secure, local, and inspectable agent systems.
   </tr>
 </table>
 
-### Control creative apps over MCP
-
-| Project | What it does | Install |
-| :-- | :-- | :-- |
-| [**Ableton MCP**](https://github.com/cavi-ai/ableton-mcp) | Local-first control of Ableton Live for MCP clients through a Remote Script bridge, a stdio MCP server, and a CLI with confirm-to-execute mutations: every change to the Live Set is planned first and runs only with a single-use confirmation. | `npm install -g @cavi-ai/ableton-mcp`, then `ableton-mcp install` |
-| [**Blender MCP**](https://github.com/cavi-ai/blender-mcp) | Local-first MCP tools for Blender scene inspection, mesh editing, previews, and game asset export, through a bridge that binds to loopback and requires a session token. | `uv tool install cavi-blender-mcp`, then `cavi-blender-mcp runtime start` to open Blender with the bridge |
-| [**Substance MCP**](https://github.com/cavi-ai/substance-mcp) | Local-first MCP servers for Adobe Substance 3D Painter, Designer and Sampler: layer editing, baking, texture export, batch jobs that export for Unreal, Unity and Blender, and SHA-256 receipts that chain across all three apps. | `uv tool install cavi-substance-mcp` |
-| [**Adobe MCP**](https://github.com/cavi-ai/adobe-mcp) | Local MCP servers for Adobe Photoshop, Illustrator, Animate, Character Animator and Dimension on macOS. Each edits owned copies of documents inside one workspace and records every native operation before it runs. | `uv tool install cavi-adobe-mcp` |
-| [**Premiere MCP**](https://github.com/cavi-ai/premiere-mcp) | Preview. MCP server for Adobe Premiere Pro on macOS: 42 typed tools run ExtendScript in Premiere Pro through an Adobe Bridge relay, and cut a clip list into a new project with transitions and a ProRes 422 HQ master. | `uv tool install git+https://github.com/cavi-ai/premiere-mcp.git` (Python 3.15+) |
-| [**After Effects MCP**](https://github.com/cavi-ai/after-effects-mcp) | Preview. MCP server for headless After Effects on macOS: 45 tools for comps, layers, shapes, masks, text, keyframes, effects, 3D and Essential Graphics, with `aerender` renders that check every output movie's frame count. | `uv tool install git+https://github.com/cavi-ai/after-effects-mcp.git` (Python 3.15+) |
-
 **Try one material choice:** [recreate a Painter roughness revision](https://github.com/cavi-ai/substance-mcp/blob/main/examples/painter/uniform-fill-revision/README.md)
 with the original mesh and maps, or [trace a two-material FBX into Painter](https://github.com/cavi-ai/blender-mcp/blob/main/examples/material-texture-sets/README.md).
 
-### Secure and evaluate agents
+<!-- catalog:products exclude="bobby-browser,companion-for-claude" -->
+### Creative apps
 
 | Project | What it does | Install |
 | :-- | :-- | :-- |
-| [**Secure Agent**](https://github.com/cavi-ai/secure-agent) | Local monitor for AI coding agents on macOS: sessions, processes, file activity, and network destinations. Optional guards can stop supported tool calls; an opt-in proxy inspects routed traffic for secret leaks. | Download the [macOS app](https://github.com/cavi-ai/secure-agent/releases/latest) (macOS 14 or later) |
-| [**MCP Eval**](https://github.com/cavi-ai/mcp-eval) | Evidence-driven MCP-server evaluation across discovery cost, schema guessability, error honesty, state recovery, and contention — turning agent friction into actionable findings. | `brew install cavi-ai/tap/mcpeval` |
+| [**Substance MCP**](https://github.com/cavi-ai/substance-mcp) | Local-first MCP servers for Adobe Substance 3D Painter, Designer and Sampler, with SHA-256 receipts across all three. | `uv tool install cavi-substance-mcp` · [Install guide](https://cavi-ai.xyz/products/substance-mcp/) |
+| [**Blender MCP**](https://github.com/cavi-ai/blender-mcp) | Local-first MCP tools for Blender scene inspection, mesh editing, previews and game asset export. | `uv tool install cavi-blender-mcp` · [Install guide](https://cavi-ai.xyz/products/blender-mcp/) |
+| [**Premiere MCP**](https://github.com/cavi-ai/premiere-mcp) | 42 typed tools for Premiere Pro on macOS that cut a clip list into a ProRes 422 HQ master. | `uv tool install cavi-premiere-mcp` · [Install guide](https://cavi-ai.xyz/products/premiere-mcp/) |
+| [**After Effects MCP**](https://github.com/cavi-ai/after-effects-mcp) | 45 tools for headless After Effects on macOS, with aerender renders checked frame by frame. | `uv tool install cavi-after-effects-mcp` · [Install guide](https://cavi-ai.xyz/products/after-effects-mcp/) |
+| [**Godot MCP**](https://github.com/cavi-ai/godot-mcp) | Preview. Inspect GLB models in Godot, review materials and animation poses, and explore assets in an interactive 3D viewer. | `git clone https://github.com/cavi-ai/godot-mcp.git` · [Install guide](https://cavi-ai.xyz/products/godot-mcp/) |
+| [**Ableton MCP**](https://github.com/cavi-ai/ableton-mcp) | Local-first Ableton Live control for MCP clients, with every change to the Set planned first and confirmed once. | `npm install -g @cavi-ai/ableton-mcp` · [Install guide](https://cavi-ai.xyz/products/ableton-mcp/) |
+| [**Adobe MCP**](https://github.com/cavi-ai/adobe-mcp) | MCP tools for Photoshop, Illustrator, Animate, Character Animator and Dimension on macOS. | `uv tool install cavi-adobe-mcp` · [Install guide](https://cavi-ai.xyz/products/adobe-mcp/) |
 
-### Build agent integrations
-
-| Project | What it does | Install |
-| :-- | :-- | :-- |
-| [**CAVI API Client**](https://github.com/cavi-ai/cavi-api-client) | One TypeScript client for many agent runtimes: adapts Claude, Codex, AGY, OpenCode, Hermes, and OpenClaw to shared contracts for runs, statuses, stream events, and token usage, so you write one progress renderer and one failure handler. Gateway-agnostic agent runtime infrastructure over typed HTTP, WebSocket, and SSE; ESM with no runtime dependencies. | `npm install @cavi-ai/api-client` |
-| [**MCP Core**](https://github.com/cavi-ai/mcp-core) | Shared Python core for MCP servers: one server type, one structured failure contract, compact tool schemas, bounded process runs and file reads, and an operation journal. Adobe MCP is built on it. | `uv add cavi-mcp-core` |
-| [**Agent Sessions**](https://github.com/cavi-ai/agent-sessions) | Find the Codex and Claude Code sessions that share a repository, send work to a peer, and claim messages before acting on them. Discovery and messaging run locally and never interrupt a running session. | `uv tool install git+https://github.com/cavi-ai/agent-sessions.git` (macOS or Linux) |
-
-### Run local models on Apple Silicon
+### Obsidian
 
 | Project | What it does | Install |
 | :-- | :-- | :-- |
-| [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discovers, verifies, and wires local MLX-optimized models on Apple Silicon — Claude, Codex, Antigravity, OpenCode, and AgentSkills. | `claude plugin marketplace add cavi-ai/mlx-agent`, then `claude plugin install mlx-agent@mlx-agent` |
-| [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Native macOS app for the MLX Agent model lifecycle: converts, verifies, compares, serves, and fine-tunes local models on Apple Silicon. | Download the [macOS app](https://github.com/cavi-ai/mlx-workbench/releases/latest) (Apple Silicon) |
+| [**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent) | Portable, CLI-powered Obsidian workflows packaged for Claude, Codex, Gemini, OpenCode, and AgentSkills. | `/plugin marketplace add cavi-ai/obsidian-agent` · [Install guide](https://cavi-ai.xyz/products/obsidian-agent/) |
 
-### Plugins for agent hosts
+### Local models
 
 | Project | What it does | Install |
 | :-- | :-- | :-- |
-| [**CAVI Plugins**](https://github.com/cavi-ai/plugins) | Host-neutral plugin catalog across Claude, Codex, Agy, OpenCode, OpenClaw, Hermes, and AgentSkills. | `claude plugin marketplace add cavi-ai/plugins` |
-| [**Obsidian Agent**](https://github.com/cavi-ai/obsidian-agent) | Portable, CLI-powered Obsidian workflows across agent hosts. | `/plugin marketplace add cavi-ai/obsidian-agent`, then `/plugin install obsidian-agent@obsidian-agent` in Claude Code |
-| [**Antigravity for OpenClaw**](https://github.com/cavi-ai/openclaw-antigravity) | OpenClaw provider plugin for Google's Antigravity CLI. | `openclaw plugins install @cavi-ai/antigravity` |
-| [**Loop Killer**](https://github.com/cavi-ai/loop-killer) | Claude Code plugin that ends stop-hook re-prompt loops: when replies to a re-prompting hook stop doing tool work, it clears the active goal and says so. | `claude plugin marketplace add cavi-ai/plugins`, then `/plugin install loop-killer@cavi-ai` in Claude Code |
+| [**MLX Workbench**](https://github.com/cavi-ai/mlx-workbench) | Native macOS app for converting, verifying, serving and comparing local MLX models. | [Install guide](https://cavi-ai.xyz/products/mlx-workbench/) |
+| [**MLX Agent**](https://github.com/cavi-ai/mlx-agent) | Discover, adopt, and safely wire local MLX models on Apple Silicon. | [Install guide](https://cavi-ai.xyz/products/mlx-agent/) |
+
+### Secure and evaluate
+
+| Project | What it does | Install |
+| :-- | :-- | :-- |
+| [**Secure Agent**](https://github.com/cavi-ai/secure-agent) | Local agent session monitoring and optional guards for file access and secret leaks. | [Install guide](https://cavi-ai.xyz/products/secure-agent/) |
+| [**MCP Eval**](https://github.com/cavi-ai/mcp-eval) | Measure the operational cost MCP servers impose on agents and turn repeated friction into queryable findings. | `brew install cavi-ai/tap/mcpeval` · [Install guide](https://cavi-ai.xyz/products/mcp-eval/) |
+
+### Build integrations
+
+| Project | What it does | Install |
+| :-- | :-- | :-- |
+| [**API Client**](https://github.com/cavi-ai/cavi-api-client) | Typed HTTP, WebSocket, and SSE surfaces for compatible agent runtimes, with versioned reference documentation. | `npm install @cavi-ai/api-client` · [Install guide](https://cavi-ai.xyz/products/api-client/) |
+| [**MCP Core**](https://github.com/cavi-ai/mcp-core) | Build Python MCP servers with typed results, compact schemas and structured failures. | `uv add cavi-mcp-core` · [Install guide](https://cavi-ai.xyz/products/mcp-core/) |
+| [**Agent Sessions**](https://github.com/cavi-ai/agent-sessions) | Specialized workers, queued handoffs and leaner startup context for complex agent workflows. | `uv tool install git+https://github.com/cavi-ai/agent-sessions.git` · [Install guide](https://cavi-ai.xyz/products/agent-sessions/) |
+
+### Host plugins
+
+| Project | What it does | Install |
+| :-- | :-- | :-- |
+| [**CAVI Plugins**](https://github.com/cavi-ai/plugins) | Preview. One installation catalog for CAVI agent plugins and skills, per host. | `claude plugin marketplace add cavi-ai/plugins` · [Install guide](https://cavi-ai.xyz/products/plugins/) |
+| [**Antigravity**](https://github.com/cavi-ai/openclaw-antigravity) | Connect OpenClaw to Google's Antigravity CLI (agy) as a subscription-backed model provider. | `openclaw plugins install @cavi-ai/antigravity` · [Install guide](https://cavi-ai.xyz/products/antigravity/) |
+| [**Loop Killer**](https://github.com/cavi-ai/loop-killer) | Claude Code plugin that ends stop-hook re-prompt loops by clearing the active goal. | `/plugin install loop-killer@cavi-ai` · [Install guide](https://cavi-ai.xyz/products/loop-killer/) |
+<!-- /catalog:products -->
 
 ## Models on Hugging Face
 
 MLX conversions for Apple Silicon and a page-control detector, published at [huggingface.co/cavi-ai](https://huggingface.co/cavi-ai). Each model card names its base model, the exact source revision, its contents and its requirements.
 
+<!-- catalog:models -->
 | Model | What it does | Download |
 | :-- | :-- | :-- |
-| [`cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit`](https://huggingface.co/cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit) | Image and text to text. 4-bit MLX conversion of Qwen3-VL-8B-Instruct; the vision tower stays in bf16. | `hf download cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit` |
-| [`cavi-ai/Audio8-ASR-Infinite-MLX-8bit`](https://huggingface.co/cavi-ai/Audio8-ASR-Infinite-MLX-8bit) | Speech recognition. 8-bit MLX conversion of Audio8-ASR-Infinite; the audio tower stays in bf16. | `hf download cavi-ai/Audio8-ASR-Infinite-MLX-8bit` |
-| [`cavi-ai/Audio8-ASR-Infinite-MLX-4bit`](https://huggingface.co/cavi-ai/Audio8-ASR-Infinite-MLX-4bit) | Speech recognition. 4-bit MLX conversion of Audio8-ASR-Infinite. | `hf download cavi-ai/Audio8-ASR-Infinite-MLX-4bit` |
-| [`cavi-ai/laya-MLX-8bit`](https://huggingface.co/cavi-ai/laya-MLX-8bit) | Text classification. MLX conversion of laya with its English, multilingual and typed-decisions checkpoints. | `hf download cavi-ai/laya-MLX-8bit` |
-| [`cavi-ai/bobby-control-detector`](https://huggingface.co/cavi-ai/bobby-control-detector) | Object detection. Finds the interactable controls in a web page screenshot; fine-tuned from RT-DETRv2, shipped as safetensors and ONNX. | `hf download cavi-ai/bobby-control-detector` |
+| [`cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit`](https://huggingface.co/cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit) | Vision-language. MLX 4-bit. GUI grounding · English. Base model [`Qwen/Qwen3-VL-8B-Instruct`](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct). | `hf download cavi-ai/Qwen3-VL-8B-Instruct-MLX-4bit` |
+| [`cavi-ai/bobby-control-detector`](https://huggingface.co/cavi-ai/bobby-control-detector) | Object detection. safetensors + ONNX. Base model [`PekingU/rtdetr_v2_r18vd`](https://huggingface.co/PekingU/rtdetr_v2_r18vd). | `hf download cavi-ai/bobby-control-detector` |
+| [`cavi-ai/Audio8-ASR-Infinite-MLX-8bit`](https://huggingface.co/cavi-ai/Audio8-ASR-Infinite-MLX-8bit) | Speech recognition. MLX 8-bit. Streaming · English, Mandarin. Base model [`Edge0/Audio8-ASR-Infinite`](https://huggingface.co/Edge0/Audio8-ASR-Infinite). | `hf download cavi-ai/Audio8-ASR-Infinite-MLX-8bit` |
+| [`cavi-ai/Audio8-ASR-Infinite-MLX-4bit`](https://huggingface.co/cavi-ai/Audio8-ASR-Infinite-MLX-4bit) | Speech recognition. MLX 4-bit. Streaming · English, Mandarin. Base model [`Edge0/Audio8-ASR-Infinite`](https://huggingface.co/Edge0/Audio8-ASR-Infinite). | `hf download cavi-ai/Audio8-ASR-Infinite-MLX-4bit` |
+| [`cavi-ai/laya-MLX-8bit`](https://huggingface.co/cavi-ai/laya-MLX-8bit) | Text classification. MLX 8-bit. Routing, moderation · English, multilingual. Base model [`convaiinnovations/laya`](https://huggingface.co/convaiinnovations/laya). | `hf download cavi-ai/laya-MLX-8bit` |
+<!-- /catalog:models -->
 
 ## Built in the open
 

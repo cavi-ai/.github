@@ -1,0 +1,71 @@
+name: Profile
+
+# Regenerates the product and model tables in profile/README.md from
+# https://cavi-ai.xyz/catalog.json. Each production deploy of the site sends
+# site-catalog-updated; the revision in the payload bypasses edge caches.
+on:
+  repository_dispatch:
+    types: [site-catalog-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    if: github.repository == 'cavi-ai/.github' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    concurrency:
+      group: profile
+      cancel-in-progress: false
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Fetch the site catalog
+        env:
+          REVISION: ${{ github.event.client_payload.revision }}
+        run: |
+          curl -fsS --retry 5 --retry-all-errors --header 'Cache-Control: no-cache' \
+            "https://cavi-ai.xyz/catalog.json?revision=${REVISION}" -o catalog/site-catalog.json
+
+      - name: Render the profile
+        run: node scripts/render-profile.mjs
+
+      - name: Test the profile
+        run: node --test
+
+      # A GitHub-signed commit leased on the checked-out head, as for release counts.
+      - name: Publish the changed profile
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MUTATION: >-
+            mutation($input: CreateCommitOnBranchInput!) {
+            createCommitOnBranch(input: $input) { commit { oid signature { isValid wasSignedByGitHub } } } }
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "The profile already matches the site catalog"
+            exit 0
+          fi
+          jq -n \
+            --arg query "$MUTATION" \
+            --arg head "$(git rev-parse HEAD)" \
+            --arg readme "$(base64 -w0 profile/README.md)" \
+            --arg catalog "$(base64 -w0 catalog/site-catalog.json)" \
+            '{query: $query, variables: {input: {
+              branch: {repositoryNameWithOwner: "cavi-ai/.github", branchName: "main"},
+              expectedHeadOid: $head,
+              message: {headline: "chore(profile): sync with the site catalog"},
+              fileChanges: {additions: [
+                {path: "profile/README.md", contents: $readme},
+                {path: "catalog/site-catalog.json", contents: $catalog}]}}}}' \
+            | gh api graphql --input - > "$RUNNER_TEMP/commit.json"
+          if ! jq -e '.data.createCommitOnBranch.commit.signature | .isValid and .wasSignedByGitHub' "$RUNNER_TEMP/commit.json" > /dev/null; then
+            echo "::error::Profile commit is missing a verified signature; inspect main before retrying"
+            exit 1
+          fi
+          echo "Published $(jq -r '.data.createCommitOnBranch.commit.oid' "$RUNNER_TEMP/commit.json")"
