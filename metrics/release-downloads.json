@@ -1,0 +1,30 @@
+{
+  "total": 23574,
+  "asOf": "2026-11-17T02:14:51+00:00",
+  "definition": "Downloads of GitHub release assets from public non-fork CAVI repositories, including prereleases, documentation and repeated downloads; excludes drafts and other distribution channels.",
+  "repositories": {
+    ".github": 0,
+    "ableton-mcp": 15,
+    "adobe-mcp": 7,
+    "after-effects-mcp": 2,
+    "agent-sessions": 13,
+    "blender-mcp": 15,
+    "bobby-browser": 529,
+    "cavi-api-client": 32,
+    "claude-obsidian": 217,
+    "companion-for-claude": 14845,
+    "godot-mcp": 0,
+    "homebrew-tap": 0,
+    "loop-killer": 4,
+    "mcp-core": 8,
+    "mcp-eval": 7644,
+    "mlx-agent": 50,
+    "mlx-workbench": 44,
+    "obsidian-agent": 10,
+    "openclaw-antigravity": 18,
+    "plugins": 0,
+    "premiere-mcp": 4,
+    "secure-agent": 83,
+    "substance-mcp": 34
+  }
+}
