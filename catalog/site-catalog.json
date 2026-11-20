@@ -40,8 +40,8 @@
       "summary": "Capability-scoped browser automation across SDK, MCP, and authenticated CDP surfaces.",
       "description": "Run multi-principal browser automation through explicit capabilities, idempotency, evidence, checkpoints, and authenticated control surfaces.",
       "status": "Alpha",
-      "version": "v0.24.0",
-      "releasedAt": "2026-11-09",
+      "version": "v0.26.0",
+      "releasedAt": "2026-11-17",
       "license": "MIT",
       "install": "brew install cavi-ai/tap/bobby-browser",
       "page": "https://cavi-ai.xyz/products/bobby-browser/",
@@ -72,8 +72,8 @@
       "summary": "In-vault companion experience for Obsidian-powered knowledge and agent continuity.",
       "description": "Use a local vault workflow to keep notes, context, and handoffs synchronized while working in Claude Code.",
       "status": null,
-      "version": "v0.50.2",
-      "releasedAt": "2026-11-10",
+      "version": "v0.51.0",
+      "releasedAt": "2026-11-16",
       "license": "MIT",
       "install": null,
       "page": "https://cavi-ai.xyz/products/companion-for-claude/",
@@ -100,8 +100,8 @@
       "summary": "Local agent session monitoring and optional guards for file access and secret leaks.",
       "description": "Track agent sessions, file activity, network destinations, and model-call costs through a macOS app, local console, daemon, and harness hooks.",
       "status": null,
-      "version": "v1.5.0",
-      "releasedAt": "2026-10-31",
+      "version": "v1.5.4",
+      "releasedAt": "2026-11-07",
       "license": "MIT",
       "install": null,
       "page": "https://cavi-ai.xyz/products/secure-agent/",
@@ -127,8 +127,8 @@
       "summary": "Native macOS app for converting, verifying, serving and comparing local MLX models.",
       "description": "Find a model, convert it to MLX, verify it, serve it on a loopback port, compare it against alternatives and wire it into your coding tools, with every operation running through mlx-agent.",
       "status": null,
-      "version": "v0.8.0",
-      "releasedAt": "2026-11-09",
+      "version": "v0.10.0",
+      "releasedAt": "2026-11-16",
       "license": "MIT",
       "install": null,
       "page": "https://cavi-ai.xyz/products/mlx-workbench/",
@@ -319,7 +319,10 @@
         "MCP"
       ],
       "requirements": [],
-      "image": null
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/ableton-hero.jpg",
+        "alt": "A rabbit producer and octopus co-producer debate a very large cowbell: Make it. Make it yours"
+      }
     },
     {
       "slug": "adobe-mcp",
@@ -337,6 +340,34 @@
       "repository": "https://github.com/cavi-ai/adobe-mcp",
       "docs": null,
       "releases": "https://github.com/cavi-ai/adobe-mcp/releases",
+      "platforms": [
+        "macOS"
+      ],
+      "hosts": [
+        "MCP"
+      ],
+      "requirements": [],
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/adobe-hero.jpg",
+        "alt": "A paper theatre with a fox arranging a whale and stars"
+      }
+    },
+    {
+      "slug": "character-animator-mcp",
+      "name": "Character Animator MCP",
+      "kind": "MCP server",
+      "category": "creative-apps",
+      "summary": "Local-first MCP server for Adobe Character Animator, with prepared project copies and verified exports.",
+      "description": "One stdio MCP server with 14 tools: inspect and capture the app, prepare and open project copies, import media, run scene actions, export scenes and ingest the results. Every operation works on a copy the server owns and reports an explicit outcome.",
+      "status": null,
+      "version": "v0.1.0",
+      "releasedAt": "2026-11-20",
+      "license": "MIT",
+      "install": "uv tool install cavi-character-animator-mcp",
+      "page": "https://cavi-ai.xyz/products/character-animator-mcp/",
+      "repository": "https://github.com/cavi-ai/character-animator-mcp",
+      "docs": "https://cavi-ai.xyz/docs/character-animator-mcp/",
+      "releases": "https://github.com/cavi-ai/character-animator-mcp/releases",
       "platforms": [
         "macOS"
       ],
@@ -383,8 +414,8 @@
       "summary": "Discover, adopt, and safely wire local MLX models on Apple Silicon.",
       "description": "Discover, adopt, and safely wire local MLX models.",
       "status": null,
-      "version": "v0.12.0",
-      "releasedAt": "2026-11-07",
+      "version": "v0.13.0",
+      "releasedAt": "2026-11-16",
       "license": "MIT",
       "install": null,
       "page": "https://cavi-ai.xyz/products/mlx-agent/",
@@ -433,7 +464,10 @@
         "MCP"
       ],
       "requirements": [],
-      "image": null
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/mcp-eval-hero.jpg",
+        "alt": "A corgi detective catches the same bug in disguise: Catch the repeat offenders"
+      }
     },
     {
       "slug": "api-client",
@@ -443,8 +477,8 @@
       "summary": "Typed HTTP, WebSocket, and SSE surfaces for compatible agent runtimes, with versioned reference documentation.",
       "description": "Typed HTTP, WebSocket, and SSE surfaces for compatible agent runtimes, with versioned reference documentation.",
       "status": null,
-      "version": "v0.22.0",
-      "releasedAt": "2026-10-21",
+      "version": "v0.22.1",
+      "releasedAt": "2026-11-18",
       "license": "MIT",
       "install": "npm install @cavi-ai/api-client",
       "page": "https://cavi-ai.xyz/products/api-client/",
@@ -480,7 +514,10 @@
         "MCP"
       ],
       "requirements": [],
-      "image": null
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/mcp-core-hero.jpg",
+        "alt": "A beaver supports a workbench while a hedgehog builds a clockwork dragonfly"
+      }
     },
     {
       "slug": "agent-sessions",
@@ -584,7 +621,10 @@
         "Claude Code"
       ],
       "requirements": [],
-      "image": null
+      "image": {
+        "src": "https://cavi-ai.xyz/media/products/loop-killer-hero.jpg",
+        "alt": "A tortoise stagehand closes the curtain on a parrot still giving its speech: The encore nobody asked for"
+      }
     }
   ],
   "models": [
