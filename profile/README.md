@@ -14,8 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json"><img src="https://img.shields.io/badge/dynamic/json?label=Release%20downloads&amp;query=%24.total&amp;url=https%3A%2F%2Fraw.githubusercontent.com%2Fcavi-ai%2F.github%2Fmain%2Fmetrics%2Frelease-downloads.json" alt="Release downloads across Cavi repositories"></a>
-  <a href="https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json"><img src="https://img.shields.io/badge/dynamic/json?label=Last%20updated&amp;query=%24.asOfDisplay&amp;url=https%3A%2F%2Fraw.githubusercontent.com%2Fcavi-ai%2F.github%2Fmain%2Fmetrics%2Frelease-downloads.json" alt="Release download metrics last updated"></a>
+  <a href="https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json"><img src="https://img.shields.io/badge/dynamic/json?label=Release%20downloads&amp;query=%24%5B%22total%22%2C%22asOfDisplay%22%5D&amp;url=https%3A%2F%2Fraw.githubusercontent.com%2Fcavi-ai%2F.github%2Fmain%2Fmetrics%2Frelease-downloads.json" alt="Release downloads and last updated time"></a>
 </p>
 
 ## Agent infrastructure
