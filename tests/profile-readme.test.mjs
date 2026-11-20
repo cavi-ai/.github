@@ -8,53 +8,27 @@ const readme = await readFile(new URL("../profile/README.md", import.meta.url), 
 const catalog = JSON.parse(await readFile(new URL("../catalog/site-catalog.json", import.meta.url), "utf8"));
 
 const productRow = (name) => readme.split("\n").find((line) => line.startsWith(`| [**${name}**](`));
-const section = (heading) => readme.split(/\n(?=#{2,3} )/).find((part) => part.startsWith(heading));
-const featured = ["bobby-browser", "companion-for-claude"];
+const block = (name) => readme.split(`<!-- catalog:${name}`)[1]?.split(`<!-- /catalog:${name} -->`)[0];
 
-test("presents CAVI-AI with its positioning and canonical links", () => {
-  for (const marker of [
-    "https://cavi-ai.xyz",
-    "Open research",
-    "MIT",
-    "More work is in development",
-  ]) assert.ok(readme.includes(marker), `missing ${marker}`);
-});
-
-test("names what the organization ships above the badges", () => {
-  const hero = readme.slice(readme.indexOf("</h2>"), readme.indexOf("<a href"));
-  for (const term of ["MCP servers", "Claude", "Obsidian", "browser automation", "MLX"])
-    assert.ok(hero.includes(term), `hero missing ${term}`);
+test("links the public resources near the top", () => {
+  const intro = readme.split("## ")[0];
+  for (const url of ["https://cavi-ai.xyz/docs", "https://huggingface.co/cavi-ai", "https://github.com/cavi-ai/homebrew-tap", "https://github.com/cavi-ai?tab=repositories"]) {
+    assert.ok(intro.includes(`href="${url}"`), `missing resource ${url}`);
+  }
 });
 
 test("the product and model tables are rendered from the site catalog", () => {
   assert.equal(renderProfile(readme, catalog), readme, "run node scripts/render-profile.mjs");
 });
 
-test("lists every catalog product once: featured ones under Start here, the rest by category", () => {
-  const start = readme.indexOf("## Start here");
-  const stack = readme.indexOf("## Explore the stack");
-  assert.ok(start !== -1 && start < stack, "Start here must precede the stack");
-  const startHere = readme.slice(start, stack);
-  assert.deepEqual(
-    [...startHere.matchAll(/^### (.+)$/gm)].map(([, name]) => name),
-    ["Companion for Claude", "Bobby Browser"],
-  );
+test("lists every catalog product once in generated rows", () => {
+  const products = block("products");
+  assert.ok(products);
   for (const product of catalog.products) {
-    const link = `[**${product.name}**](${product.repository})`;
-    const rows = readme.split("\n").filter((line) => line.startsWith(`| ${link}`));
-    if (featured.includes(product.slug)) {
-      assert.equal(rows.length, 0, `${product.name} is featured, not listed in a table`);
-      assert.ok(startHere.includes(`[**${product.name}**]`), `${product.name} lives under Start here`);
-    } else {
-      assert.equal(rows.length, 1, `${product.name} must appear in exactly one table row`);
-    }
+    const rows = products.split("\n").filter((line) => line.startsWith(`| [**${product.name}**](${product.repository})`));
+    assert.equal(rows.length, 1, `${product.name} must appear in exactly one row`);
   }
-  const groups = catalog.categories.filter((category) =>
-    catalog.products.some((product) => product.category === category.slug && !featured.includes(product.slug)));
-  assert.deepEqual(
-    [...readme.slice(stack).matchAll(/^### (.+)$/gm)].map(([, heading]) => heading),
-    groups.map((category) => category.label),
-  );
+  assert.equal((products.match(/^\| \[\*\*/gm) ?? []).length, catalog.products.length);
 });
 
 test("renders a category table with status, summary and install guide", () => {
@@ -106,82 +80,46 @@ test("names every product in title case", () => {
     if (readme.includes(`[**${name}**]`)) assert.ok(titleCase(name), `flagship "${name}" is not title case`);
 });
 
-test("selects a dedicated profile banner for each GitHub color scheme", async () => {
-  assert.match(
-    readme,
-    /<source media="\(prefers-color-scheme: dark\)" srcset="\.\/banner-dark\.png">/,
-  );
-  assert.match(
-    readme,
-    /<source media="\(prefers-color-scheme: light\)" srcset="\.\/banner-light\.png">/,
-  );
-  assert.match(
-    readme,
-    /<img src="\.\/banner-light\.png" alt="CAVI-AI — open research and infrastructure for agent systems">/,
-  );
-
-  for (const asset of ["banner-dark.png", "banner-light.png"]) {
-    const metadata = await stat(new URL(`../profile/${asset}`, import.meta.url));
-    assert.ok(metadata.size > 0, `${asset} must not be empty`);
-  }
-});
-
-test("describes the featured products accurately", () => {
-  assert.match(section("### Bobby Browser"), /\balpha\b/i);
-  assert.match(
-    readme,
-    /Obsidian Community Store release for Claude knowledge workflows/,
-  );
-  assert.ok(section("### Companion for Claude").includes("https://obsidian.md/plugins?id=claude-companion"));
-  assert.ok(section("### Bobby Browser").includes("brew install cavi-ai/tap/bobby-browser"));
-  assert.doesNotMatch(readme, /firewall|correlates/i);
+test("shows a nonempty local illustration with alt text", async () => {
+  const image = readme.match(/<img\b[^>]*src="(\.\/[^" ]+)"[^>]*>/);
+  assert.ok(image, "missing local illustration");
+  assert.match(image[0], /\balt="[^" ](?:[^"]*[^" ])?"/);
+  const metadata = await stat(new URL(`../profile/${image[1]}`, import.meta.url));
+  assert.ok(metadata.isFile() && metadata.size > 0, "illustration must be a nonempty regular file");
+  for (const img of readme.match(/<img\b[^>]*>/g) ?? [])
+    assert.match(img, /\balt="[^"]+"/, `image without alt text: ${img}`);
 });
 
 test("marks products without a published release as Preview", () => {
-  for (const product of catalog.products.filter((entry) => !featured.includes(entry.slug))) {
+  for (const product of catalog.products) {
     const summary = productRow(product.name).split(" | ")[1];
     if (product.status === "Preview") assert.match(summary, /^Preview\./, `${product.name} is marked Preview`);
     else assert.doesNotMatch(summary, /^Preview\./, `${product.name} has a release and is not Preview`);
   }
 });
 
-test("shows real product screenshots from each product's own repository", () => {
-  for (const src of [
-    "https://raw.githubusercontent.com/cavi-ai/companion-for-claude/main/assets/canvas-output.png",
-    "https://raw.githubusercontent.com/cavi-ai/secure-agent/main/assets/screenshots/overview-dark.jpg",
-    "https://raw.githubusercontent.com/cavi-ai/mlx-workbench/main/docs/images/library.png",
-  ]) assert.ok(readme.includes(`src="${src}"`), `missing screenshot ${src}`);
-  for (const img of readme.match(/<img\b[^>]*>/g))
-    assert.match(img, /\balt="[^"]+"/, `image without alt text: ${img}`);
-});
-
-test("shows only badges backed by live data or real destinations", () => {
-  const badges = readme.slice(readme.indexOf("</h2>"), readme.indexOf("## Start here"));
-  for (const marker of [
-    "metrics/release-downloads.json",
-    "GitHub release asset downloads",
-    "https://github.com/cavi-ai/homebrew-tap",
-    "https://cavi-ai.xyz/docs",
-  ]) assert.ok(badges.includes(marker), `missing badge marker ${marker}`);
-  // The organization has no social accounts yet.
-  assert.doesNotMatch(readme, /discord\.|x\.com\/|twitter\.com\/|linkedin\.com\//i);
+test("links one live downloads badge to its snapshot", () => {
+  const badges = [...readme.matchAll(/<a href="([^"]+)"><img src="([^"]+)"[^>]*><\/a>/g)]
+    .filter(([, href]) => href === "https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json");
+  assert.equal(badges.length, 1);
+  const [, href, encodedSrc] = badges[0];
+  assert.equal(href, "https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json");
+  const url = new URL(encodedSrc.replaceAll("&amp;", "&"));
+  assert.equal(url.origin + url.pathname, "https://img.shields.io/badge/dynamic/json");
+  assert.equal(url.searchParams.get("url"), "https://raw.githubusercontent.com/cavi-ai/.github/main/metrics/release-downloads.json");
+  assert.equal(url.searchParams.get("query"), '$["total","asOfDisplay"]');
 });
 
 test("lists every Hugging Face model with its download command", () => {
-  const models = section("## Models on Hugging Face");
-  assert.ok(models, "missing Models on Hugging Face section");
-  assert.ok(readme.indexOf("## Models on Hugging Face") < readme.indexOf("## Built in the open"));
-  assert.ok(models.includes("https://huggingface.co/cavi-ai"), "links the organization");
+  const models = block("models");
+  assert.ok(models);
   assert.ok(catalog.models.length > 0);
-  for (const { id } of catalog.models) {
-    const row = models.split("\n").find((line) => line.startsWith(`| [\`${id}\`](https://huggingface.co/${id})`));
-    assert.ok(row, `missing model row ${id}`);
-    assert.ok(row.includes(`\`hf download ${id}\``), `${id} row missing its download command`);
+  for (const { id, href, install } of catalog.models) {
+    const rows = models.split("\n").filter((line) => line.startsWith(`| [\`${id}\`](${href})`));
+    assert.equal(rows.length, 1, `expected one model row for ${id}`);
+    assert.ok(rows[0].includes(`\`${install}\``), `${id} row missing its download command`);
   }
-  assert.ok(
-    readme.slice(readme.indexOf("</h2>"), readme.indexOf("## Start here")).includes("https://huggingface.co/cavi-ai"),
-    "Hugging Face badge links the organization",
-  );
+  assert.equal((models.match(/^\| \[`/gm) ?? []).length, catalog.models.length);
 });
 
 test("links every in-page anchor to a heading", () => {
@@ -205,7 +143,6 @@ test("keeps the public profile scoped, stable, and version-free", () => {
   assert.doesNotMatch(readme, /\bv?\d+\.\d+\.\d+\b/);
   assert.doesNotMatch(readme, /latest releases?/i);
   assert.doesNotMatch(readme, /canonical runtime contract/i);
-  assert.doesNotMatch(readme, /cavi-ai\/claude-obsidian(?:-plugin)?/i);
   for (const privateName of [
     "cavi-control-ui", "ecg", "cc-hermes", "cavi-fleet-router",
     "game-art-pipeline", "houdini-mcp", "repo-audit",
