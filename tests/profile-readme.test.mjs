@@ -98,16 +98,18 @@ test("marks products without a published release as Preview", () => {
   }
 });
 
-test("links one live downloads badge to its snapshot", () => {
-  const badges = [...readme.matchAll(/<a href="([^"]+)"><img src="([^"]+)"[^>]*><\/a>/g)]
-    .filter(([, href]) => href === "https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json");
-  assert.equal(badges.length, 1);
-  const [, href, encodedSrc] = badges[0];
-  assert.equal(href, "https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json");
-  const url = new URL(encodedSrc.replaceAll("&amp;", "&"));
-  assert.equal(url.origin + url.pathname, "https://img.shields.io/badge/dynamic/json");
-  assert.equal(url.searchParams.get("url"), "https://raw.githubusercontent.com/cavi-ai/.github/main/metrics/release-downloads.json");
-  assert.equal(url.searchParams.get("query"), '$["total","asOfDisplay"]');
+test("links the live release download count and update time to their snapshot", () => {
+  const snapshot = "https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json";
+  const source = "https://raw.githubusercontent.com/cavi-ai/.github/main/metrics/release-downloads.json";
+  const badgesByQuery = [...readme.matchAll(/<a href="([^"]+)"[^>]*><img src="([^"]+)"[^>]*><\/a>/g)]
+    .filter(([, href]) => href === snapshot)
+    .map(([, , src]) => {
+      const url = new URL(src.replaceAll("&amp;", "&"));
+      assert.equal(url.searchParams.get("url"), source);
+      assert.equal(url.origin + url.pathname, "https://img.shields.io/badge/dynamic/json");
+      return [url.searchParams.get("query"), url.searchParams.get("color")];
+    });
+  assert.deepEqual(badgesByQuery, [["$.total", "238636"], ["$.asOfDisplay", "57606a"]]);
 });
 
 test("lists every Hugging Face model with its download command", () => {
