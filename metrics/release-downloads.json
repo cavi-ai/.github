@@ -1,7 +1,7 @@
 {
-  "total": 24279,
-  "asOf": "2026-11-21T05:53:26+00:00",
-  "asOfDisplay": "Nov 21, 2026 12:53 AM EST",
+  "total": 24296,
+  "asOf": "2026-11-21T14:19:52+00:00",
+  "asOfDisplay": "Nov 21, 2026 9:19 AM EST",
   "definition": "Downloads of GitHub release assets from public non-fork CAVI repositories, including prereleases, documentation and repeated downloads; excludes drafts and other distribution channels.",
   "repositories": {
     ".github": 0,
@@ -14,12 +14,12 @@
     "cavi-api-client": 45,
     "character-animator-mcp": 7,
     "claude-obsidian": 219,
-    "companion-for-claude": 15187,
+    "companion-for-claude": 15201,
     "godot-mcp": 4,
     "homebrew-tap": 0,
     "loop-killer": 6,
     "mcp-core": 28,
-    "mcp-eval": 7908,
+    "mcp-eval": 7910,
     "mlx-agent": 52,
     "mlx-workbench": 49,
     "obsidian-agent": 10,
@@ -27,6 +27,6 @@
     "plugins": 0,
     "premiere-mcp": 16,
     "secure-agent": 86,
-    "substance-mcp": 38
+    "substance-mcp": 39
   }
 }
