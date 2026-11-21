@@ -33,7 +33,17 @@ class CollectorTest(unittest.TestCase):
     def test_pagination_dedup_prerelease_and_drafts(self):
         result = mod.collect(self.request, "2026-01-01T00:00:00+00:00")
         self.assertEqual(result["total"], 7)
+        self.assertEqual(result["totalDisplay"], "7")
         self.assertEqual(result["repositories"], {"one": 7})
+
+    def test_total_display_groups_thousands_and_millions(self):
+        for count, expected in [(1000, "1,000"), (1000000, "1,000,000")]:
+            with self.subTest(count=count):
+                self.responses[self.assets][0][0]["download_count"] = count
+                self.responses[self.asset_next] = ([], "")
+                result = mod.collect(self.request, "2026-01-01T00:00:00+00:00")
+                self.assertEqual(result["total"], count)
+                self.assertEqual(result["totalDisplay"], expected)
 
     def test_private_or_failed_collection_aborts(self):
         self.responses[self.next][0][0]["private"] = True

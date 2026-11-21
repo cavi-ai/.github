@@ -81,7 +81,8 @@ def collect(request, now):
                 seen[aid] = (name, count)
                 subtotal += count
         totals[name] = subtotal
-    return {"total": sum(totals.values()), "asOf": now, "asOfDisplay": format_as_of(now), "definition": "Downloads of GitHub release assets from public non-fork CAVI repositories, including prereleases, documentation and repeated downloads; excludes drafts and other distribution channels.", "repositories": totals}
+    total = sum(totals.values())
+    return {"total": total, "totalDisplay": f"{total:,}", "asOf": now, "asOfDisplay": format_as_of(now), "definition": "Downloads of GitHub release assets from public non-fork CAVI repositories, including prereleases, documentation and repeated downloads; excludes drafts and other distribution channels.", "repositories": totals}
 
 
 def request(url):

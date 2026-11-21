@@ -1,5 +1,6 @@
 {
   "total": 24296,
+  "totalDisplay": "24,296",
   "asOf": "2026-11-21T14:19:52+00:00",
   "asOfDisplay": "Nov 21, 2026 9:19 AM EST",
   "definition": "Downloads of GitHub release assets from public non-fork CAVI repositories, including prereleases, documentation and repeated downloads; excludes drafts and other distribution channels.",

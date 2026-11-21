@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json"><img src="https://img.shields.io/badge/dynamic/json?label=Release%20downloads&amp;query=%24.total&amp;color=238636&amp;style=flat-square&amp;url=https%3A%2F%2Fraw.githubusercontent.com%2Fcavi-ai%2F.github%2Fmain%2Fmetrics%2Frelease-downloads.json" alt="Release downloads"></a>
+  <a href="https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json"><img src="https://img.shields.io/badge/dynamic/json?label=Release%20downloads&amp;query=%24.totalDisplay&amp;color=238636&amp;style=flat-square&amp;url=https%3A%2F%2Fraw.githubusercontent.com%2Fcavi-ai%2F.github%2Fmain%2Fmetrics%2Frelease-downloads.json" alt="Release downloads"></a>
   <a href="https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json" title="Last updated"><img src="https://img.shields.io/badge/dynamic/json?label=&amp;query=%24.asOfDisplay&amp;color=57606a&amp;style=flat-square&amp;url=https%3A%2F%2Fraw.githubusercontent.com%2Fcavi-ai%2F.github%2Fmain%2Fmetrics%2Frelease-downloads.json" alt="Last updated"></a>
 </p>
 

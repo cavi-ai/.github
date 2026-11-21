@@ -98,7 +98,7 @@ test("marks products without a published release as Preview", () => {
   }
 });
 
-test("links the live release download count and update time to their snapshot", () => {
+test("links the live release download count and update time to their snapshot", async () => {
   const snapshot = "https://github.com/cavi-ai/.github/blob/main/metrics/release-downloads.json";
   const source = "https://raw.githubusercontent.com/cavi-ai/.github/main/metrics/release-downloads.json";
   const badgesByQuery = [...readme.matchAll(/<a href="([^"]+)"[^>]*><img src="([^"]+)"[^>]*><\/a>/g)]
@@ -109,7 +109,9 @@ test("links the live release download count and update time to their snapshot", 
       assert.equal(url.origin + url.pathname, "https://img.shields.io/badge/dynamic/json");
       return [url.searchParams.get("query"), url.searchParams.get("color")];
     });
-  assert.deepEqual(badgesByQuery, [["$.total", "238636"], ["$.asOfDisplay", "57606a"]]);
+  const data = JSON.parse(await readFile(new URL("../metrics/release-downloads.json", import.meta.url), "utf8"));
+  assert.equal(data.totalDisplay, data.total.toLocaleString("en-US"));
+  assert.deepEqual(badgesByQuery, [["$.totalDisplay", "238636"], ["$.asOfDisplay", "57606a"]]);
 });
 
 test("lists every Hugging Face model with its download command", () => {
